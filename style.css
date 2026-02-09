@@ -154,6 +154,7 @@ nav {
     letter-spacing: 2px;
 }
 
+/* les 4 boutons du haut */
 .boutons {
     text-align: center; /* C'est cette ligne qui centre tout horizontalement */
     padding: 20px 0;    /* Optionnel : ajoute un peu d'espace au-dessus/dessous */
@@ -169,4 +170,37 @@ nav {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     transition: all 0.3s ease;
+}
+
+/* Style pour les cases de saisie (secteur et zone) */
+.recherche input[type="text"] {
+    background: rgba(255, 255, 255, 0.15); /* Fond translucide */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    padding: 8px 15px;
+    color: white;
+    outline: none; /* Enlève le contour bleu au clic */
+    margin-right: 5px;
+}
+
+/* Style pour les petits boutons "Rechercher" */
+.recherche button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    padding: 8px 15px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 15px;
+}
+
+.recherche button:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+/* Pour que le texte d'exemple (placeholder) soit plus visible */
+.recherche input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
 }
