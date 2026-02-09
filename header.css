@@ -1,0 +1,48 @@
+/* --- TITRE DU SITE --- */
+h1 {
+  text-transform: uppercase; /* Force les majuscules */
+  letter-spacing: 5px; /* Écarte les lettres pour un style élégant */
+  text-align: center;
+  font-family: Georgia, serif;
+  /* Ombre portée pour détacher le texte du fond sombre */
+  text-shadow: 10px 0px 15px rgb(0, 0, 0);
+  color: white;
+  margin-top: 80px; /* Espace pour ne pas coller au haut de la page */
+}
+
+/* --- LOGO EN HAUT À GAUCHE --- */
+.top-bar {
+  position: absolute; /* Fixe le bouton par rapport au coin de la page */
+  top: 20px;
+  left: 20px;
+  z-index: 1000; /* S'assure que le bouton reste au-dessus de tout */
+}
+
+.logo-link {
+  display: flex; /* Aligne l'image et le texte sur la même ligne */
+  align-items: center;
+  text-decoration: none; /* Enlève le souligné bleu du lien */
+  background: rgba(1, 1, 1, 0.4); /* Fond noir translucide (effet verre) */
+  padding: 8px 15px;
+  border-radius: 50px; /* Forme de pilule */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: 0.3s; /* Animation fluide quand on passe la souris */
+}
+
+.logo-link:hover {
+  background: rgba(71, 69, 69, 0.6);
+  transform: scale(1.05); /* Effet de zoom léger au survol */
+}   
+
+/* --- TAILLE DE L'IMAGE DU LOGO --- */
+.mini-logo {
+    height: 35px;    /* C'est cette ligne qui va enfin rétrécir ton logo ! */
+    width: auto;      /* Garde les proportions de l'image pour ne pas l'écraser */
+    margin-right: 10px; /* Ajoute un petit espace entre le logo et le texte */
+}
+
+/* --- OPTIONNEL : CACHER LE CARRÉ BLANC --- */
+/* Si ton logo a un fond blanc moche, on peut essayer de l'arrondir aussi */
+.mini-logo {
+    border-radius: 5px; 
+}

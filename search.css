@@ -1,0 +1,38 @@
+/* --- ZONE DE RECHERCHE --- */
+.recherche {
+  /* Lien vers ton image (on sort du dossier CSS avec ../) */
+  background-image: url(../image/image_de_recherche.avif);
+  background-repeat: no-repeat;
+  background-size: cover; /* L'image remplit toute la zone sans se déformer */
+  background-position: center;
+  height: 500px;
+  position: relative;
+}
+
+/* Placement du formulaire au milieu de l'image */
+form {
+  position: relative;
+  text-align: center;
+  top: 70px;
+}
+
+/* Styl e des champs de texte "Secteur" et "Zone" */
+.recherche input[type="text"] {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 8px 15px;
+  color: rgb(0, 0, 0);
+  outline: none; /* Enlève le tour bleu par défaut au clic */
+  margin-right: 5px;
+}
+
+/* Style des petits boutons "Rechercher" */
+.recherche button {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 8px 15px;
+  color: black;
+  cursor: pointer;
+}
