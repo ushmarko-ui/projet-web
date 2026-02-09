@@ -1,0 +1,155 @@
+/* MOBILE (+ TABLET PORTRAIT) */
+body {
+  width: auto;
+}
+
+/* TABLET LANDSCAPE */
+@media (max-width: 1280px) {
+  body {
+    width: auto;
+  }
+}
+
+/* LAPTOP */
+@media (min-width: 1024px) {
+  main {
+    width: 50%;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1280px) {
+  main {
+    width: 25%;
+  }
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+  text-shadow: 0 0 0 black;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-shadow: 10px 0px 15px rgb(0, 0, 0);
+}
+
+body {
+  background: linear-gradient(to right, #2f2e2e, grey);
+}
+
+
+
+/* boutons */
+.boutons {
+  position: relative;
+}
+.boutons a {
+  margin: 30px;
+  margin-left: 200px;
+}
+
+/* ligne */
+hr {
+  height: 5px;
+  background-color: rgb(67, 64, 126);
+  border-width: 2px;
+  position: relative;
+}
+
+/* image lie a la recherche */
+.recherche {
+  background-image: url(./image/recherche2.jpg);
+  background-repeat: no-repeat;
+  background-size: 1000px;
+  background-position: center;
+  height: 500px;
+  position: relative;
+}
+
+form {
+  position: relative;
+  text-align: center;
+  top: 70px;
+}
+
+/* --- NOUVEAUX STYLES POUR LE HEADER ET LE BOUTON ACCUEIL --- */
+
+/* On remet le h1 au centre proprement sans top négatif */
+h1 {
+    margin-top: 80px; /* Crée l'espace avec le haut de page */
+    text-align: center;
+    color: white;
+}
+
+/* Positionnement du bouton en haut à gauche */
+.top-bar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* logo cliquable en haut à gauche */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Enlève le souligné du lien */
+    background: rgba(1, 1, 1, 0.412);
+    padding: 8px 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: 0.3s;
+}
+
+.logo-link:hover {
+    background: rgba(71, 69, 69, 0.4);
+    transform: scale(1.05);
+}
+
+.mini-logo {
+    height: 35px; /* Taille du petit logo dans le bouton */
+    margin-right: 10px;
+}
+
+.site-name {
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-family: Georgia, serif;
+}
+
+/* Ajustement de la navigation pour qu'elle suive naturellement */
+nav {
+    margin-top: 20px;
+}*
+
+/* Style spécifique pour le gros bouton CV */
+.section-cv {
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 50px;
+}
+
+.section-cv h2 {
+    color: white;
+    font-family: Georgia, serif;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+/* On réutilise la classe .logo-link mais on l'agrandit */
+.btn-grand {
+    display: inline-flex; /* Pour qu'il reste centré */
+    justify-content: center;
+    width: auto;
+    min-width: 250px; /* Largeur minimale pour l'effet "grand bouton" */
+    padding: 20px 40px; /* Plus d'espace intérieur */
+    font-size: 1.2rem; /* Texte plus grand */
+    border-radius: 60px; /* Coins très arrondis */
+}
+
+.btn-grand .site-name {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
