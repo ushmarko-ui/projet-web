@@ -1,0 +1,47 @@
+/* --- LE BOUTON PROFIL EN HAUT À DROITE --- */
+.profil-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background: rgba(1, 1, 1, 0.4);
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    transition: 0.3s;
+}
+
+.profil-link:hover {
+    background: rgba(71, 69, 69, 0.6);
+    transform: scale(1.05);
+}
+
+.profil-icon {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%; /* Image bien ronde */
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+/* --- PAGE INFOS PERSONNELLES --- */
+.container-infos {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #333;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.top-bar {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    right: 20px;            /* IMPORTANT : définit la limite à droite de l'écran */
+    display: flex;          /* Active le mode flexible */
+    justify-content: space-between; /* MAGIQUE : pousse le premier élément à gauche et le second à droite */
+    align-items: center;    /* Aligne verticalement le logo et le profil */
+    z-index: 1000;
+}
