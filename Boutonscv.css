@@ -1,19 +1,17 @@
-/* --- SECTION DÉPOSER UN CV --- */
+/*Section pour déposer un cv*/
 .section-cv {
   text-align: center;
   margin-top: 50px;
-  padding-bottom: 50px;
 }
 
-/* Style du bouton géant cliquable */
+/* bouton pour deposer CV */
 .btn-grand {
   display: inline-flex;
   justify-content: center;
   min-width: 250px;
   padding: 20px 40px;
-  font-size: 1.2rem;
+  font-size: 20px;
   border-radius: 60px;
-  text-decoration: none;
   background: rgba(1, 1, 1, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;

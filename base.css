@@ -1,32 +1,14 @@
-/* --- CONFIGURATION GLOBALE --- */
+/*fond du site*/
 body {
   width: auto;
-  /* Dégradé de gris pour un aspect moderne et sobre */
-  background: linear-gradient(to right, #2f2e2e, grey);
+  background-color: rgb(205, 232, 231);
   margin: 0;
-  font-family: Arial, sans-serif; /* Police de secours si les autres ne chargent pas */
 }
 
-/* --- RESPONSIVE : ADAPTATION AUX ÉCRANS --- */
-/* Si l'écran est petit (Tablette portrait), on garde une largeur auto */
-@media (max-width: 1280px) {
-  body { width: auto; }
-}
-
-/* Sur Laptop, on réduit la zone principale à 50% pour ne pas que ce soit trop large */
-@media (min-width: 1024px) {
-  main { width: 50%; }
-}
-
-/* Sur grand écran Desktop, on centre le contenu sur 25% de la largeur */
-@media (min-width: 1280px) {
-  main { width: 25%; }
-}
-
-/* --- ÉLÉMENTS DE DÉCORATION --- */
+/* ligne de séparation */
 hr {
   height: 5px;
-  background-color: rgb(67, 64, 126); /* Couleur violette de ton thème */
+  background-color: rgb(67, 64, 126);
   border: none; /* Supprime la bordure par défaut du navigateur */
   position: relative;
 }
