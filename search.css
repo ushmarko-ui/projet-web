@@ -1,29 +1,25 @@
-/* --- ZONE DE RECHERCHE --- */
+/*barre de recherche */
 .recherche {
-  /* Lien vers ton image (on sort du dossier CSS avec ../) */
   background-image: url(../image/image_de_recherche.avif);
   background-repeat: no-repeat;
   background-size: cover; /* L'image remplit toute la zone sans se déformer */
   background-position: center;
-  height:450px;
+  height: 450px;
   position: relative;
 }
 
 /* Placement du formulaire au milieu de l'image */
 form {
-  position: relative; 
+  position: relative;
   text-align: center;
   top: 30px;
 }
 
-/* Styl e des champs de texte "Secteur" et "Zone" */
 .recherche input[type="text"] {
   background: rgba(0, 0, 0, 0.15);
   border: 4px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  padding: 20px 30px; 
-  color: rgb(0, 0, 0);
-  outline: none; /* Enlève le tour bleu par défaut au clic */
+  padding: 20px 30px;
   margin-right: 5px;
 }
 
@@ -33,6 +29,5 @@ form {
   border: 5px solid rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   padding: 8px 15px;
-  color: black;
   cursor: pointer;
 }
