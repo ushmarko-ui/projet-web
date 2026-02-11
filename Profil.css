@@ -1,5 +1,5 @@
-/* mot mon profil*/
-.profil-link {
+/* mon profil*/
+.lien-profil {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -11,7 +11,7 @@
 }
 
 /* image de profil  */
-.profil-icon {
+.profil {
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -20,7 +20,7 @@
 }
 
 /* barre de navigation */
-.top-bar {
+.barre-nav {
   position: absolute;
   top: 30px;
   left: 40px;

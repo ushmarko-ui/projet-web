@@ -14,18 +14,16 @@
   </head>
 
   <body>
+    <!-- classe pour la baniere -->
+    <div class="banniere-haut"></div>
     <header>
-      <div class="top-bar">
-        <a href="/Site HTML .html" class="logo-link">
-          <img src="image/logo.png" alt="Logo" class="mini-logo" />
+      <div class="barre-nav">
+        <a href="/Site HTML .html" class="lien-logo">
+          <img src="image/logo.png" alt="Logo" class="logo" />
           <span class="site-name">Stage Explorer</span>
         </a>
-        <a href="infos-perso.html" class="profil-link">
-          <img
-            src="image/image_reunion.avif"
-            alt="Profil"
-            class="profil-icon"
-          />
+        <a href="infos-perso.html" class="lien-profil">
+          <img src="image/image_reunion.avif" alt="Profil" class="profil" />
           <span>Mon Profil</span>
         </a>
       </div>
@@ -48,21 +46,17 @@
 
     <div class="recherche">
       <form>
-        <div>
-          <input type="text" placeholder="secteur" />
-          <button type="submit">Rechercher</button>
+        <input type="text" id="secteur" placeholder="secteur" />
+        <button class="bouton-recherche" type="submit">Rechercher</button>
 
-          <input type="text" placeholder="zone" />
-          <button type="submit">Rechercher</button>
-        </div>
+        <input type="text" id="zone" placeholder="zone" />
+        <button class="bouton-recherche" type="submit">Rechercher</button>
       </form>
     </div>
 
-    <div class="banniere-haut"></div>
-
     <section class="section-cv">
       <h2>Trouver un stage à partir du CV</h2>
-      <a href="postule-cv.html" class="logo-link btn-grand">
+      <a href="postule-cv.html" class="bouton-postule">
         <span class="postuler">Déposer un CV</span>
       </a>
     </section>
