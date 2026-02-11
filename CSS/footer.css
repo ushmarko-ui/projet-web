@@ -1,21 +1,18 @@
-/* Style du pied de page */
-footer {
-  width: 100%;
-  margin-top: 50px;
-}
-
+/* Style pour tes liens en bas (Footer) */
 .footer-links {
-  display: flex; /* les liens à cote */
-  gap: 20px; /* Crée un espace entre les deux textes */
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  gap: 15px; /* Pour séparer les deux liens */
 }
 
 .footer-links a {
-  color: #4b628a; /* Une couleur proche de ton thème */
+  color: rgb(67, 64, 126); /* On utilise le même bleu que ta ligne <hr> */
   text-decoration: none;
   font-size: 14px;
-  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
 .footer-links a:hover {
-  text-decoration: underline; /* Le lien se souligne quand on passe la souris dessus */
+  text-decoration: underline;
 }
