@@ -10,16 +10,20 @@ body {
   margin: 0 auto;
   text-align: center;
   padding-top: 20px;
-} /* Image du haut (PROFIL UTILISATEUR) */
+}
+/* profil */
+
 .banner {
   width: 90%;
   margin-bottom: 20px;
-} /* Icône de profil */
+}
+/* Icône de profil */
 .icon {
   width: 120px;
   height: auto;
   margin-bottom: 30px;
-} /* Champs de texte */
+}
+/* Champs de texte */
 .input {
   width: 80%;
   padding: 12px;
@@ -27,7 +31,8 @@ body {
   border: 2px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
-} /* Bouton */
+}
+/* Bouton */
 .btn {
   width: 50%;
   padding: 12px;

@@ -1,18 +1,18 @@
 footer {
-    width: 100%;
-    padding: 20px;
-    margin-top: 50px; /* Donne de l'air après la section CV */
+  width: 100%;
+  padding: 20px;
+  margin-top: 50px;
 }
 
 .footer-links a {
-    color: #000000; /* noir */
-    text-decoration: none;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    transition: 0.3s;
+  color: #000000;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  transition: 0.3s;
 }
 
 .footer-links a:hover {
-    text-decoration: underline;
-    color: #2c2c2c; /* Change de couleur au survol */
+  text-decoration: underline;
+  color: #2c2c2c;
 }
