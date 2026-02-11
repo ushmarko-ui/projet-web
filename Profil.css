@@ -24,7 +24,7 @@
   position: absolute;
   top: 30px;
   left: 40px;
-  right: 20px; /*mets les boutons sur les cotés*/
+  right: 20px; /*mets les boutons sur les cotÃ©s*/
   display: flex;
   justify-content: space-between; /*espace les boutons*/
   align-items: center; /* Aligne verticalement le logo et le profil */
