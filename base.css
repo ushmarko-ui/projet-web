@@ -1,6 +1,5 @@
 /*fond du site*/
 body {
-  width: auto;
   background-color: rgb(205, 232, 231);
   margin: 0;
 }
@@ -16,7 +15,6 @@ hr {
 /* Style du pied de page */
 footer {
   width: 100%;
-  padding: 20px;
   margin-top: 50px;
 }
 
