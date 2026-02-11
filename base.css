@@ -12,3 +12,30 @@ hr {
   border: none; /* Supprime la bordure par défaut du navigateur */
   position: relative;
 }
+
+
+/* Style du pied de page */
+footer {
+    width: 100%;
+    padding: 20px;
+    background-color: transparent; /* Pour garder ton fond bleu clair actuel */
+    margin-top: 50px;
+}
+
+.footer-links {
+    display: flex;         /* C'est ça qui met les liens côte à côte */
+    flex-direction: row;   /* Force l'alignement horizontal */
+    gap: 20px;             /* Crée un espace entre les deux textes */
+    justify-content: flex-start; /* Les place à gauche comme sur ta photo */
+}
+
+.footer-links a {
+    color: #4b628a;        /* Une couleur proche de ton thème */
+    text-decoration: none; /* Enlève le souligné par défaut */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Le lien se souligne quand on passe la souris dessus */
+}
