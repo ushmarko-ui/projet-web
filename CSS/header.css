@@ -3,10 +3,10 @@
 .banniere-haut {
   width: 100%;
   height: 140px;
-  background-image: url("./image/image_reunion.avif");
+  background-image: url("/image_reunion.avif");
   background-size: cover;
   background-position: center;
-  position: absolute; /*pour que l'image soit au top*/
+  position: absolute; /*pour que le titre soit au top*/
   top: 0;
   z-index: -1; /*mets le texte au dessus de l'image*/
 }
@@ -18,8 +18,7 @@ h1 {
   letter-spacing: 5px; /* Ecarte les lettres */
   text-align: center;
   font-family: Georgia, serif;
-
-  text-shadow: 10px 0px 15px rgb(0, 0, 0); /*Ombre titre*/
+  text-shadow: 10px 0px 15px rgb(0, 0, 0);
   color: white;
   margin-top: 80px; /* Espace pour ne pas coller au haut de la page */
 }
@@ -33,7 +32,7 @@ h1 {
   padding: 8px 20px;
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: 0.3s; /* Animation bouton*/
+  transition: 0.3s;
 }
 
 /* pour le logo (hover pour survol) */

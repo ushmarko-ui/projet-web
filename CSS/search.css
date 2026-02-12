@@ -1,6 +1,6 @@
 /*barre de recherche */
 .recherche {
-  background: url(./image/image_de_recherche.avif) center/cover;
+  background: url(/image_de_recherche.avif) center/cover;
   height: 250px;
   position: relative;
   width: 80%;

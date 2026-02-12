@@ -1,0 +1,18 @@
+/* Style pour tes liens en bas (Footer) */
+.footer-links {
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  gap: 15px; /* Pour séparer les deux liens */
+}
+
+.footer-links a {
+  color: rgb(67, 64, 126); /* On utilise le même bleu que ta ligne <hr> */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
