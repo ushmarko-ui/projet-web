@@ -38,3 +38,7 @@ form {
   padding: 20px 30px;
   margin-right: 5px;
 }
+
+input::placeholder {
+  color: rgb(0, 0, 0);
+}
