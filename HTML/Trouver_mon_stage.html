@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../image/logo.png" />
+    <title>Stage Explorer</title>
+
+    <link rel="stylesheet" href="../CSS/base.css" />
+    <link rel="stylesheet" href="../CSS/header.css" />
+    <link rel="stylesheet" href="../CSS/nav.css" />
+    <link rel="stylesheet" href="../CSS/profil.css" />
+    <link rel="stylesheet" href="../CSS/search2.css" />
+    <link rel="stylesheet" href="../CSS/footer.css" />
+    <link rel="stylesheet" href="../CSS/filtre.css" />
+  </head>
+  <body>
+    <!-- classe pour la baniere -->
+    <div class="banniere-haut"></div>
+    <header>
+      <div class="barre-nav">
+        <a href="../Index.html" class="lien-logo">
+          <img src="../image/logo.png" alt="Logo" class="logo" />
+          <span class="site-name">Stage Explorer</span>
+        </a>
+        <a href="../HTML/page_connexion.html" class="lien-profil">
+          <img src="/image_reunion.avif" alt="Profil" class="profil" />
+          <span>Mon Profil</span>
+        </a>
+      </div>
+
+      <div class="hero-title">
+        <h1>Stage Explorer</h1>
+      </div>
+    </header>
+
+    <nav>
+      <hr />
+      <div class="boutons">
+        <a href="./HTML/Trouver_mon_stage.html">Trouver mon stage</a>
+        <a href="./HTML/trouver-entreprise.html">Trouver une entreprise</a>
+        <a href="./HTML/messagerie.html">Messagerie</a>
+        <a href="./HTML/notification.html">Notification</a>
+        <a href="./HTML/page_connexion.html">Se connecter</a>
+      </div>
+      <hr />
+    </nav>
+
+    <main>
+      <div class="recherche">
+        <form>
+          <input
+            type="text"
+            id="secteur"
+            placeholder="Rechercher par job, mot-clé ou entreprise"
+          />
+          <button class="bouton-recherche" type="submit">Rechercher</button>
+
+          <input type="text" id="zone" placeholder="Où" />
+          <button class="bouton-recherche" type="submit">Rechercher</button>
+        </form>
+      </div>
+      <div class="FILTRES">
+        <div class="filtre">
+          <legend>Région&nbsp;:</legend>
+          <div>
+            <input type="checkbox" id="region1" name="region1" checked /><label
+              for="region1"
+              >Grand-est</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region2" name="region2" /><label
+              for="region2"
+              >Nouvelle-aquitaine</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region3" name="region3" /><label
+              for="region3"
+              >Bretagne</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region4" name="region4" /><label
+              for="region4"
+              >Pays-Loire</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region5" name="region5" /><label
+              for="region5"
+              >Auvergne-Rhône-Alpes</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region6" name="region6" /><label
+              for="region6"
+              >Bourgogne-Franche-Comté</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region7" name="region7" /><label
+              for="region7"
+              >Centre-Val de Loire</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region8" name="region8" /><label
+              for="region8"
+              >Corse</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region9" name="region9" /><label
+              for="region9"
+              >Guadeloupe</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region10" name="region10" /><label
+              for="region10"
+              >Guyane</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region11" name="region11" /><label
+              for="region11"
+              >Hauts-de-France</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region12" name="region12" /><label
+              for="region12"
+              >Île-de-France</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region13" name="region13" /><label
+              for="region13"
+              >La Réunion</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region14" name="region14" /><label
+              for="region14"
+              >Martinique</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region15" name="region15" /><label
+              for="region15"
+              >Mayotte</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region16" name="region16" /><label
+              for="region16"
+              >Normandie</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region17" name="region17" /><label
+              for="region17"
+              >Occitanie</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" id="region18" name="region18" /><label
+              for="region18"
+              >Provence-Alpes-Côte d'Azur</label
+            >
+          </div>
+        </div>
+
+        <div class="filtre2">
+          <legend>Salaire par mois&nbsp;:</legend>
+          <div>
+            <input
+              type="checkbox"
+              id="salaire1"
+              name="salaire1"
+              checked
+            /><label for="salaire1">500</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="salaire2"
+              name="salaire2"
+              checked
+            /><label for="salaire2">1000</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="salaire3"
+              name="salaire3"
+              checked
+            /><label for="salaire3">1500</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="salaire4"
+              name="salaire4"
+              checked
+            /><label for="salaire4">2000</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="salaire5"
+              name="salaire5"
+              checked
+            /><label for="salaire5">Au dessus de 2000</label>
+          </div>
+        </div>
+      </div>
+      <div class="offres-principale">
+        <h2>Offres</h2>
+        <div class="offres">
+          <img src="../image/offres.png" />
+          <img src="../image/offres.png" />
+          <img src="../image/offres.png" />
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="lien-footer">
+        <a href="../HTML/politique.html">Politique de confidentialité</a>
+        <a href="../HTML/mentions.html">mentions légales</a>
+      </div>
+    </footer>
+  </body>
+</html>
