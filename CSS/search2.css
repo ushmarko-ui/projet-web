@@ -40,11 +40,6 @@ form {
   gap: 20px;
 }
 
-.offres img {
-  width: 300px;
-  margin-bottom: 20px;
-}
-
 .recherche {
   background: linear-gradient(
     to bottom,
@@ -54,11 +49,40 @@ form {
   height: 150px;
 }
 
+/* partie photo offres (bien sur on remplacera avec des vrai offres) */
+
+.offres-principale img {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
 .offres-principale {
-  text-align: center;
+  width: 1200px;
   display: flex;
   flex-direction: column;
-  width: 350px;
+  align-items: center;
+  padding-right: 200px;
+}
+
+.contenu {
+  width: 80%;
   margin: auto;
-  margin-top: -500px;
+  display: flex;
+  padding-top: 50px;
+}
+
+.charger-plus {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.charger-plus:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }

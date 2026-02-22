@@ -1,29 +1,21 @@
-.filtre {
-  height: 380px;
-  width: 250px;
-  background-color: azure;
-  border-radius: 5px;
-  border-color: blue;
-  border-style: ridge;
-  border-width: 6px;
-}
-
 legend {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   font-weight: bold;
 }
 
-.filtre2 {
-  height: 120px;
+.filtre,
+.filtre2,
+.filtre3,
+.filtre4,
+.filtre5 {
   width: 250px;
   background-color: azure;
   border-radius: 5px;
   border-color: blue;
   border-style: ridge;
   border-width: 6px;
-  position: relative;
-  top: 10px;
+  margin-top: 10px;
 }
 
 .sidebar {
@@ -32,7 +24,5 @@ legend {
 }
 
 .FILTRES {
-  position: relative;
-  top: 90px;
-  left: 100px;
+  padding-top: 60px;
 }
