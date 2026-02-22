@@ -1,18 +1,28 @@
 /* Style pour tes liens en bas (Footer) */
-.footer-links {
-  padding: 20px;
-  margin-top: 30px;
+.lien-footer {
+  padding-top: 30px; /*agrandi le fond de couleur du footer*/
+  padding-bottom: 25px;
+  margin-top: 110px;
   display: flex;
-  gap: 15px; /* Pour séparer les deux liens */
+  justify-content: center;
+  gap: 15px; /*espace les liens*/
 }
 
-.footer-links a {
+.lien-footer a {
   color: rgb(67, 64, 126); /* On utilise le même bleu que ta ligne <hr> */
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
 }
 
-.footer-links a:hover {
+.politique {
+  color: black;
+}
+
+.lien-footer a:hover {
   text-decoration: underline;
+}
+
+footer {
+  background-color: rgb(203, 203, 203);
 }

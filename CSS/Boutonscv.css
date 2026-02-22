@@ -1,4 +1,4 @@
-/*Section pour dÃ©poser un cv*/
+/*Section pour déposer un cv*/
 .section-cv {
   text-align: center;
   margin-top: 50px;
@@ -22,4 +22,15 @@
 .bouton-postule:hover {
   background: rgba(71, 69, 69, 0.6);
   transform: scale(1.05);
+}
+
+.offres {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.offres img {
+  width: 300px; /* Ajustez selon vos besoins */
+  margin-bottom: 20px;
 }

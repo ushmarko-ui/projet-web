@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./CSS/search.css" />
     <link rel="stylesheet" href="./CSS/Boutonscv.css" />
     <link rel="stylesheet" href="./CSS/profil.css" />
+    <link rel="stylesheet" href="./CSS/footer.css" />
   </head>
 
   <body>
@@ -18,11 +19,11 @@
     <div class="banniere-haut"></div>
     <header>
       <div class="barre-nav">
-        <a href="./Site HTML .html" class="lien-logo">
+        <a href="./Index.html" class="lien-logo">
           <img src="./image/logo.png" alt="Logo" class="logo" />
           <span class="site-name">Stage Explorer</span>
         </a>
-        <a href="./HTML/PageConnexion.html" class="lien-profil">
+        <a href="./HTML/page_connexion.html" class="lien-profil">
           <img src="/image_reunion.avif" alt="Profil" class="profil" />
           <span>Mon Profil</span>
         </a>
@@ -36,33 +37,44 @@
     <nav>
       <hr />
       <div class="boutons">
-        <a href="./HTML/trouver-stage.html">Trouver mon stage</a>
+        <a href="./HTML/Trouver_mon_stage.html">Trouver mon stage</a>
         <a href="./HTML/trouver-entreprise.html">Trouver une entreprise</a>
         <a href="./HTML/messagerie.html">Messagerie</a>
         <a href="./HTML/notification.html">Notification</a>
+        <a href="./HTML/page_connexion.html">Se connecter</a>
       </div>
       <hr />
     </nav>
 
     <div class="recherche">
       <form>
-        <input type="text" id="secteur" placeholder="secteur" />
+        <input
+          type="text"
+          id="secteur"
+          placeholder="Rechercher par job, mot-clé ou entreprise"
+        />
         <button class="bouton-recherche" type="submit">Rechercher</button>
 
-        <input type="text" id="zone" placeholder="zone" />
+        <input type="text" id="zone" placeholder="Où" />
         <button class="bouton-recherche" type="submit">Rechercher</button>
       </form>
     </div>
 
     <section class="section-cv">
-      <h2>Trouver un stage à partir du CV</h2>
+      <h2>Offres Récentes</h2>
+      <div class="offres">
+        <img src="./image/offres.png" />
+        <img src="./image/offres.png" />
+        <img src="./image/offres.png" />
+      </div>
       <a href="./HTML/postule-cv.html" class="bouton-postule">
         <span class="postuler">Déposer un CV</span>
       </a>
     </section>
+    <section class="avant-footer"></section>
 
     <footer>
-      <div class="footer-links">
+      <div class="lien-footer">
         <a href="./HTML/politique.html">Politique de confidentialité</a>
         <a href="./HTML/mentions.html">mentions légales</a>
       </div>
