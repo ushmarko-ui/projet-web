@@ -11,7 +11,7 @@
 
     <header class="topbar">
         <div class="logo-container">
-            <div class="logo-badge">
+            <div class="logo-badge" id="home-btn">
                 <img src="../image/logo.png" alt="Logo Stage Explorer" class="mini-logo">
                 Stage Explorer
             </div>
@@ -81,5 +81,14 @@
         </section>
     </main>
 
+<script>
+  
+    document.getElementById('home-btn').addEventListener('click', () => {
+        window.location.href = "Index.html"; 
+    });
+</script>
+
+
+    
 </body>
 </html>
