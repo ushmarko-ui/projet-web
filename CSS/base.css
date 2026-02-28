@@ -12,3 +12,10 @@ hr {
   border: none;
   position: relative;
 }
+
+/* voir ou est probleme pour reponsive */
+@media (max-width: 420px) {
+  body {
+    background-color: red;
+  }
+}

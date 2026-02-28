@@ -20,3 +20,17 @@
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px); /* Le bouton monte légèrement */
 }
+
+@media (max-width: 880px) {
+  .boutons {
+    display: flex;
+    flex-wrap: wrap; /* mets a la ligne */
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .boutons a {
+    margin: 0; /* enleve marge entre les boutons */
+  }
+}

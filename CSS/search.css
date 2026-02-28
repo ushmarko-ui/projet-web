@@ -50,3 +50,23 @@ input::placeholder {
   position: relative;
   left: 30px;
 }
+
+@media (max-width: 940px) {
+  .recherche {
+    width: 100%;
+    left: 0;
+  }
+  form {
+    flex-direction: column;
+    align-items: center;
+  }
+  #secteur,
+  #zone {
+    width: 70%;
+  }
+
+  .bouton-recherche1,
+  .bouton-recherche2 {
+    width: 400px;
+  }
+}
