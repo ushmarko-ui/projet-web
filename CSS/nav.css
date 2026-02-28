@@ -21,6 +21,7 @@
   transform: translateY(-2px); /* Le bouton monte légèrement */
 }
 
+/* reponsive pour la barre de nav */
 @media (max-width: 880px) {
   .boutons {
     display: flex;

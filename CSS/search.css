@@ -51,6 +51,7 @@ input::placeholder {
   left: 30px;
 }
 
+/* reponsive pour les barres de recherches */
 @media (max-width: 940px) {
   .recherche {
     width: 100%;
