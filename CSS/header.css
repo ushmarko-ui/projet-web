@@ -3,7 +3,7 @@
 .banniere-haut {
   width: 100%;
   height: 140px;
-  background-image: url("/image_reunion.avif");
+  background-image: url("/image/image_reunion.avif");
   background-size: cover;
   background-position: center;
   position: absolute; /*pour que le titre soit au top*/

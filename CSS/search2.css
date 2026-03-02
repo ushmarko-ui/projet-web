@@ -1,0 +1,88 @@
+.bouton-recherche {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  position: relative;
+  right: 15px;
+}
+
+#secteur {
+  background: rgba(254, 254, 254, 0.7);
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin-right: 5px;
+  width: 300px;
+  height: 35px;
+}
+
+#zone {
+  background: rgba(246, 246, 246, 0.7);
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin-right: 5px;
+  height: 35px;
+}
+
+input::placeholder {
+  color: rgb(0, 0, 0);
+  position: relative;
+  left: 30px;
+}
+
+form {
+  position: relative;
+  text-align: center;
+  top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.recherche {
+  background: linear-gradient(
+    to bottom,
+    rgb(165, 143, 143),
+    rgb(128, 128, 223)
+  );
+  height: 150px;
+}
+
+/* partie photo offres (bien sur on remplacera avec des vrai offres) */
+
+.offres-principale img {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.offres-principale {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 200px;
+}
+
+.contenu {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  padding-top: 50px;
+}
+
+.charger-plus {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.charger-plus:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}

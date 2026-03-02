@@ -1,0 +1,43 @@
+.entreprise img {
+  width: 350px;
+  height: 200px;
+}
+
+.entreprises_contenu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  justify-items: center;
+}
+
+h2 {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.entreprise1,
+.entreprise2,
+.entreprise3,
+.entreprise4,
+.entreprise5,
+.entreprise6 {
+  width: 350px;
+  height: 400px;
+  background: rgb(227, 230, 232);
+  border: 5px solid rgba(178, 100, 100, 0.4);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+}
+
+.entreprises_contenu a {
+  text-decoration: none;
+  color: black;
+}

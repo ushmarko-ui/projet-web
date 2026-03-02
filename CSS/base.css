@@ -13,21 +13,33 @@ hr {
   position: relative;
 }
 
-/* Style pour tes liens en bas (Footer) */
-.footer-links {
-    padding: 20px;
-    margin-top: 30px;
-    display: flex;
-    gap: 15px; /* Pour séparer les deux liens */
+/* voir ou est probleme pour reponsive */
+@media (max-width: 420px) {
+  body {
+    background-color: red;
+  }
 }
 
-.footer-links a {
-    color: rgb(67, 64, 126); /* On utilise le même bleu que ta ligne <hr> */
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
+body {
+    margin: 0;
+    width: 100%;
+    /* On crée un dégradé avec tes couleurs de Stage Explorer */
+    background: linear-gradient(-45deg, #0f2a28, #1e3a38, #2d1b4d, #1a2e2c);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: white; /* Pour que tes textes restent lisibles */
+    font-family: Arial, sans-serif;
 }
 
-.footer-links a:hover {
-    text-decoration: underline;
+/* L'animation qui fait bouger le fond */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

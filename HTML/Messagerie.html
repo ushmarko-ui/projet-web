@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Explorer - Messagerie</title>
+    <link rel="stylesheet" href="../css/messagerie.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="logo-container">
+            <div class="logo-badge" id="home-btn">
+                <img src="../image/logo.png" alt="Logo Stage Explorer" class="mini-logo">
+                Stage Explorer
+            </div>
+        </div>
+        
+        <h1 class="main-title">STAGE EXPLORER</h1>
+        
+        <div class="profile-container">
+            <button class="profil-btn">
+                <span class="user-icon">👤</span> Mon Profil
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <button>Trouver mon stage</button>
+        <button>Trouver une entreprise</button>
+        <button class="active">Messagerie</button>
+        <button>Notification</button>
+        <button>Se connecter</button>
+    </nav>
+
+    <main class="messagerie-container">
+        <section class="conversations">
+            <div class="section-header">
+                <h2>Conversations</h2>
+            </div>
+
+            <div class="conversation active">
+                <div class="conv-name">Entreprise A</div>
+                <div class="conv-preview">Bonjour, nous avons bien reçu...</div>
+            </div>
+
+            <div class="conversation">
+                <div class="conv-name">Entreprise B</div>
+                <div class="conv-preview">Merci pour l’intérêt que vous...</div>
+            </div>
+
+            <div class="conversation">
+                <div class="conv-name">Tuteur de stage</div>
+                <div class="conv-preview">Pensez à m’envoyer votre CV...</div>
+            </div>
+        </section>
+
+        <section class="messages-area">
+            <div class="messages-header">
+                <h2>Entreprise A</h2>
+                <span class="status">En ligne</span>
+            </div>
+
+            <div class="messages-body">
+                <div class="message received">
+                    Bonjour, nous avons bien reçu votre candidature pour le poste de stagiaire.
+                </div>
+                <div class="message sent">
+                    Bonjour, merci pour votre retour. Je reste disponible pour un entretien.
+                </div>
+                <div class="message received">
+                    Parfait, nous vous recontacterons très prochainement.
+                </div>
+            </div>
+
+            <form class="message-input">
+                <input type="text" placeholder="Écrire un message...">
+                <button type="submit">Envoyer</button>
+            </form>
+        </section>
+    </main>
+
+<script>
+  
+    document.getElementById('home-btn').addEventListener('click', () => {
+        window.location.href = "Index.html"; 
+    });
+</script>
+
+
+    
+</body>
+</html>
