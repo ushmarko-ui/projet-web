@@ -4,29 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/connexion.css">
-    <title>Formulaire de connexion</title>
+    <title>Se connecter</title>
 </head>
 <body>
+    <img src="../image/ReadyToWork (3).png" alt="logo" class="logo">
     <div class="container">
-        <div class="form">
-            <h2>
-                S'identifier
-                <span id="error-message" style="display: block; color: #ff4d4d; font-size: 0.5em; margin-top: 5px;"></span>
-            </h2>
+    <div class="form">
+        <h2>S'identifier
+        <span id="error-message" style="display: block; color: #ff4d4d; font-size: 0.5em; margin-top: 5px;"></span>
+        </h2>
 
-            <div class="inputBox">
-                <input type="text" id="username" placeholder="Nom d'utilisateur">
-            </div>
-            <div class="inputBox">
-                <input type="password" id="password" placeholder="Mot de passe">
-            </div>
-            <div class="inputBox">
-                <input type="button" id="submit-btn" value="Connexion">
-            </div>
+        <div class="inputBox">
+            <input type="text" id="username" placeholder="Nom d'utilisateur">
+        </div>
+
+        <div class="inputBox">
+            <input type="password" id="password" placeholder="Mot de passe">
+        </div>
+
+        <div class="inputBox">
+            <input type="submit" id="submit-btn" value="Connexion">
         </div>
     </div>
-
-    <script>
+</div>
+  <script>
         // Le script ne se déclenche que lors du CLIC sur le bouton
         document.getElementById('submit-btn').onclick = function() {
             const userTape = document.getElementById('username').value;
