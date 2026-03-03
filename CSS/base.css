@@ -20,26 +20,3 @@ hr {
   }
 }
 
-body {
-    margin: 0;
-    width: 100%;
-    /* On crée un dégradé avec tes couleurs de Stage Explorer */
-    background: linear-gradient(-45deg, #0f2a28, #1e3a38, #2d1b4d, #1a2e2c);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    color: white; /* Pour que tes textes restent lisibles */
-    font-family: Arial, sans-serif;
-}
-
-/* L'animation qui fait bouger le fond */
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
