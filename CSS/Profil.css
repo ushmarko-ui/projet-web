@@ -34,3 +34,19 @@
   justify-content: space-between; /*espace les boutons*/
   align-items: center; /* Aligne verticalement le logo et le profil */
 }
+
+
+
+.dark-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a; /* Fond sombre comme ta capture */
+    color: #ccc;
+}
+.dark-table th, .dark-table td {
+    padding: 12px;
+    border: 1px solid #333;
+    text-align: left;
+}
+.dark-table tr:nth-child(even) { background-color: #222; }
+.add-btn { background-color: #6200ea; color: white; border-radius: 4px; padding: 10px 20px; }

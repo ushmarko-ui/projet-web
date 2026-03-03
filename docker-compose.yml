@@ -1,9 +1,16 @@
+version: '3.8'
+
 services:
-  mon-projet:
-    image: php:8.4-apache
-    container_name: apache_projet
-    ports:
-      - "8081:80"
-    volumes:
-      - .:/var/www/html
+  db:
+    image: mysql:8.0
+    container_name: stage_explorer_db
     restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: stage_explorer
+      MYSQL_USER: user_stage
+      MYSQL_PASSWORD: password_stage
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d # Script pour créer le pilote au début
