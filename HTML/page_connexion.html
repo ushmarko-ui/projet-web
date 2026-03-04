@@ -1,60 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/connexion.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/connexion.css" />
     <title>Se connecter</title>
-</head>
-<body>
-    <img src="../image/ReadyToWork (3).png" alt="logo" class="logo">
+  </head>
+  <body>
+    <img src="../image/ReadyToWork (3).png" alt="logo" class="logo" />
     <div class="container">
-    <div class="form">
-        <h2>S'identifier
-        <span id="error-message" style="display: block; color: #ff4d4d; font-size: 0.5em; margin-top: 5px;"></span>
+      <div class="form">
+        <h2>
+          S'identifier
+          <span
+            id="error-message"
+            style="
+              display: block;
+              color: #ff4d4d;
+              font-size: 0.5em;
+              margin-top: 5px;
+            "
+          ></span>
         </h2>
 
         <div class="inputBox">
-            <input type="text" id="username" placeholder="Nom d'utilisateur">
+          <input type="text" id="username" placeholder="Nom d'utilisateur" />
         </div>
 
         <div class="inputBox">
-            <input type="password" id="password" placeholder="Mot de passe">
+          <input type="password" id="password" placeholder="Mot de passe" />
         </div>
 
         <div class="inputBox">
-            <input type="submit" id="submit-btn" value="Connexion">
+          <input type="submit" id="submit-btn" value="Connexion" />
         </div>
+      </div>
     </div>
-</div>
-  <script>
-        // Le script ne se déclenche que lors du CLIC sur le bouton
-        document.getElementById('submit-btn').onclick = function() {
-            const userTape = document.getElementById('username').value;
-            const mdpTape = document.getElementById('password').value;
-            const errorSpan = document.getElementById('error-message');
+    <script>
+      // clique sur connexion
+      document.getElementById("submit-btn").onclick = function () {
+        const userTape = document.getElementById("username").value;
+        const mdpTape = document.getElementById("password").value;
+        const errorSpan = document.getElementById("error-message");
 
-            // Récupération du rôle dans l'URL
-            const params = new URLSearchParams(window.location.search);
-            const role = params.get('role');
+        // Récupération du rôle dans l'URL
+        const params = new URLSearchParams(window.location.search);
+        const role = params.get("role");
 
-            // Vérification pour le Pilote
-            if (role === "pilote") {
-                if (userTape === "pilote_user" && mdpTape === "pilote123") {
-                    localStorage.setItem('userRole', 'pilote');
-                    window.location.href = "../index.html"; // Redirection seulement si OK
-                } else {
-                    errorSpan.innerText = "Identifiants Pilote incorrects !";
-                }
-            } 
-            // Vérification pour les autres rôles
-            else if (userTape !== "" && mdpTape !== "") {
-                localStorage.setItem('userRole', role);
-                window.location.href = "../index.html";
-            } else {
-                errorSpan.innerText = "Veuillez remplir les champs";
-            }
-        };
+        // Vérification pour le Pilote
+        if (role === "pilote") {
+          if (userTape === "pilote_user" && mdpTape === "pilote123") {
+            localStorage.setItem("userRole", "pilote");
+            window.location.href = "../index.html"; // Redirection seulement si OK
+          } else {
+            errorSpan.innerText = "Identifiants Pilote incorrects !";
+          }
+        }
+
+        // Vérification pour les autres rôles
+        else if (userTape !== "" && mdpTape !== "") {
+          localStorage.setItem("userRole", role);
+          window.location.href = "../index.html";
+        } else {
+          errorSpan.innerText = "Veuillez remplir les champs";
+        }
+      };
     </script>
-</body>
+  </body>
 </html>

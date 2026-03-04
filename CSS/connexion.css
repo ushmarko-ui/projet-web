@@ -1,136 +1,148 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
 }
 
 body {
-    display: flex;
-    flex-direction: column;   /* empile verticalement */
-    align-items: center;      /* centre horizontalement */
-    justify-content: center;
-    height: 100vh;
-    background: #f2f4f7;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f2f4f7;
 }
 .container {
-    position: relative;
-    width: 480px;
-    height: 550px;
-    background: #1f2933;
-    border-radius: 12px;
-    overflow: hidden;
+  position: relative;
+  width: 480px;
+  height: 550px;
+  background: #1f2933;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 /* Animation border */
 .container::before {
-    content: '';
-    position: absolute;
-    inset: -50%;
-    background: linear-gradient(90deg, transparent, #3b82f6, #008000, #FFA500, transparent);
-    animation: animate 7s linear infinite;
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #3b82f6,
+    #008000,
+    #ffa500,
+    transparent
+  );
+  animation: animate 7s linear infinite;
 }
 
 .container::after {
-    content: '';
-    position: absolute;
-    inset: -50%;
-    background: linear-gradient(90deg, transparent, red, #60fa7a, #f63b9c, transparent);
-    animation: animate 7s linear infinite;
-    animation-delay: -3.5s;
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    red,
+    #60fa7a,
+    #f63b9c,
+    transparent
+  );
+  animation: animate 7s linear infinite;
+  animation-delay: -3.5s;
 }
 
 @keyframes animate {
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* ✅ Correction logo */
 .container img {
-    position: relative;
-    z-index: 20;
-    display: block;
-    margin: 20px auto 0;
+  position: relative;
+  z-index: 20;
+  display: block;
+  margin: 20px auto 0;
 }
 
-/* Formulaire */
+/* page de connexion */
 .form {
-    position: absolute;
-    inset: 4px;
-    background: #ffffff;
-    border-radius: 10px;
-    z-index: 10;
-    padding: 45px 40px;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  inset: 4px;
+  background: #ffffff;
+  border-radius: 10px;
+  z-index: 10;
+  padding: 45px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form h2 {
-    text-align: center;
-    letter-spacing: 0.1em;
-    color: #1f2933;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: #1f2933;
 }
 
 .inputBox {
-    position: relative;
-    width: 100%;
-    margin-top: 30px;
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .inputBox input {
-    width: 100%;
-    padding: 18px 10px 8px;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #cbd5e1;
-    font-size: 1em;
-    outline: none;
-    color: #1f2933;
+  width: 100%;
+  padding: 18px 10px 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #cbd5e1;
+  font-size: 1em;
+  outline: none;
+  color: #1f2933;
 }
 
 input[type="submit"] {
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
-    cursor: pointer;
-    margin-top: 30px;
-    padding: 12px;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: background 0.3s ease;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.3s ease;
 }
 
 input[type="submit"]:hover {
-    background: #1e40af;
+  background: #1e40af;
 }
 .logo {
-    width: 200px;
-    margin-bottom: 5px;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+  width: 200px;
+  margin-bottom: 5px;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
 }
-/* Style pour les boutons de la page de choix */
+
+/* Style pour les boutons de la page de choix de role */
 .btn-choix {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: #2563eb;
-    color: #ffffff;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: 0.3s ease;
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.3s ease;
 }
 
 .btn-choix:hover {
-    background: #1e40af;
-    transform: scale(1.02);
+  background: #1e40af;
+  transform: scale(1.02);
 }
 
-/* On ajuste un peu le h2 pour qu'il ne soit pas collé */
 .form h2 {
-    margin-bottom: 10px;
-    color: #1f2933;
+  margin-bottom: 10px;
+  color: #1f2933;
 }
