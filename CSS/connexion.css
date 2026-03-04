@@ -6,24 +6,19 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                      url('../image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    
-    display: flex;
-    flex-direction: column; /* FORCE LE LOGO EN HAUT ET LE RESTE EN BAS */
-    align-items: center;    /* CENTRE TOUT HORIZONTALEMENT */
-    justify-content: center; /* CENTRE TOUT VERTICALEMENT */
-    min-height: 100vh;
-    margin: 0;
-}
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 
-/* On s'assure que le logo ne prend pas trop de place */
-.logo {
-    width: 200px;
-    margin-bottom: 20px; /* Espace entre le logo et le formulaire */
+  display: flex;
+  flex-direction: column; /* FORCE LE LOGO EN HAUT ET LE RESTE EN BAS */
+  align-items: center; /* CENTRE TOUT HORIZONTALEMENT */
+  justify-content: center; /* CENTRE TOUT VERTICALEMENT */
+  min-height: 100vh;
+  margin: 0;
 }
 
 /* Le cadre qui contient tout */
@@ -32,43 +27,43 @@ body {
   width: 400px;
   padding: 40px;
   background: rgba(255, 255, 255, 0.1); /* Transparence */
-  backdrop-filter: blur(15px);         /* EFFET VITRE */
+  backdrop-filter: blur(15px); /* EFFET VITRE */
   -webkit-backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 2px solid rgba(255, 255, 255, 0.2); /* Bordure fine blanche */
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   z-index: 1;
   /* Style pour les boutons de choix de rôle (Bleu d'origine) */
-.btn-choix {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  margin-top: 20px;
-  background: #2563eb; /* Ton bleu d'origine */
-  color: #ffffff;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 8px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+  .btn-choix {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: #2563eb; /* Ton bleu d'origine */
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
 
-.btn-choix:hover {
-  background: #1e40af; /* Bleu plus foncé au survol */
-  transform: translateY(-2px); /* Petit effet de levée */
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-}
+  .btn-choix:hover {
+    background: #1e40af; /* Bleu plus foncé au survol */
+    transform: translateY(-2px); /* Petit effet de levée */
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  }
 
-/* On ajuste le titre pour qu'il ne colle pas aux boutons */
-.form h2 {
-  margin-bottom: 30px;
-  color: #ffffff;
-  text-align: center;
-}
+  /* On ajuste le titre pour qu'il ne colle pas aux boutons */
+  .form h2 {
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-align: center;
+  }
 }
 
 /* Le titre et les textes */
@@ -88,8 +83,10 @@ h2 {
   background: rgba(255, 255, 255, 0.2); /* Fond des cases transparent */
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
-  color: white;
   outline: none;
+}
+input::placeholder {
+  color: #ffffff;
 }
 
 /* Le bouton de connexion */
@@ -112,28 +109,26 @@ input[type="submit"]:hover {
 
 /* Pour le logo si tu en as un */
 .logo {
-    display: block;
-    margin: 0 auto 20px;
-    width: 100px;
+  display: block;
+  margin: 0 auto;
+  width: 200px;
 }
 
 .txt-inscription {
-    margin-top: 25px;
-    text-align: center;
-    color: white;
-    font-size: 0.9em;
+  margin-top: 25px;
+  text-align: center;
+  color: white;
+  font-size: 0.9em;
 }
 
 .lien-inscription {
-    color: #ffcc00; /* Une couleur dorée/jaune pour attirer l'oeil */
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+  color: #ffcc00; /* Une couleur dorée/jaune pour attirer l'oeil */
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .lien-inscription:hover {
-    color: #ffffff; /* Le lien devient blanc quand on passe dessus */
-    text-decoration: underline; /* On souligne au survol */
+  color: #ffffff; /* Le lien devient blanc quand on passe dessus */
+  text-decoration: underline; /* On souligne au survol */
 }
-
-

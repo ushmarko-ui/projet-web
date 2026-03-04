@@ -1,5 +1,5 @@
 .bouton-recherche {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.6);
   border: 3px solid rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   padding: 8px 15px;
@@ -18,7 +18,7 @@
 }
 
 #zone {
-  background: rgba(246, 246, 246, 0.7);
+  background: rgba(254, 254, 254, 0.7);
   border: 3px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   margin-right: 5px;
@@ -76,13 +76,17 @@ form {
   padding: 10px 20px;
   margin: 0 10px;
   text-decoration: none;
-  color: white;
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: rgb(0, 0, 0);
+  background: rgba(255, 255, 255, 0.6);
+  border: 3px solid rgba(0, 0, 0, 0.4);
   border-radius: 8px;
 }
 
 .charger-plus:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+}
+
+label {
+  color: black;
 }
