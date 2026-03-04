@@ -6,6 +6,10 @@
     <title>ReadyToWork</title>
     <link rel="shortcut icon" href="./image/ReadyToWork (3).png" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./CSS/base.css" />
     <link rel="stylesheet" href="./CSS/header.css" />
     <link rel="stylesheet" href="./CSS/nav.css" />
@@ -15,6 +19,11 @@
     <link rel="stylesheet" href="./CSS/footer.css" />
 
     <style>
+      /* 2. APPLICATION GLOBALE DE LA POLICE POPPINS */
+      * {
+        font-family: "Poppins", sans-serif !important;
+      }
+
       /* Style pour le bouton spécial Pilote */
       #btn-ajout-etudiant {
         background-color: #6200ea;
@@ -56,18 +65,8 @@
         <a href="./HTML/Trouver_une_entreprise.html">Trouver une entreprise</a>
         <a href="./HTML/notification.html">Notification</a>
 
-        <a
-          href="HTML/gestion_etudiants.html"
-          id="btn-ajout-etudiant"
-          style="display: none"
-          >Gestion Étudiants</a
-        >
-        <a
-          href="HTML/gestion_pilotes.html"
-          id="btn-ajout-pilote"
-          style="display: none"
-          >Gestion Pilotes</a
-        >
+        <a href="HTML/gestion_etudiants.html" id="btn-ajout-etudiant" style="display: none">Gestion Étudiants</a>
+        <a href="HTML/gestion_pilotes.html" id="btn-ajout-pilote" style="display: none">Gestion Pilotes</a>
 
         <a href="./HTML/page_connexion.html" id="btn-login">Se connecter</a>
         <a href="#" id="btn-logout" style="display: none">Déconnexion</a>
@@ -77,11 +76,7 @@
 
     <div class="recherche">
       <form>
-        <input
-          type="text"
-          id="secteur"
-          placeholder="Rechercher par job, mot-clé ou entreprise"
-        />
+        <input type="text" id="secteur" placeholder="Rechercher par job, mot-clé ou entreprise" />
         <button class="bouton-recherche" type="submit">Rechercher</button>
 
         <input type="text" id="zone" placeholder="Où" />
@@ -157,22 +152,18 @@
         const btnLogin = document.getElementById("btn-login");
         const btnLogout = document.getElementById("btn-logout");
 
-        // LOGIQUE DES RÔLES
         if (userRole === "admin") {
-          // L'admin voit TOUT
           btnEtudiant.style.display = "inline-block";
           btnPilote.style.display = "inline-block";
           btnLogin.style.display = "none";
           btnLogout.style.display = "inline-block";
         } else if (userRole === "pilote") {
-          // Le pilote ne voit QUE les étudiants
           btnEtudiant.style.display = "inline-block";
           btnPilote.style.display = "none";
           btnLogin.style.display = "none";
           btnLogout.style.display = "inline-block";
         }
 
-        // Action de déconnexion
         btnLogout.onclick = function () {
           localStorage.removeItem("userRole");
           window.location.reload();

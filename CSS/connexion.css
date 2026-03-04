@@ -2,158 +2,138 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-.ton-conteneur {
-    /* Fond noir avec 50% d'opacité (0.5) */
-    background-color: rgba(0, 0, 0, 0.5); 
-}
+
 body {
-    /* Chemin vers ton image (depuis le dossier CSS, il faut remonter d'un cran avec ../) */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                      url('../image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-repeat: no-repeat;
+    
+    display: flex;
+    flex-direction: column; /* FORCE LE LOGO EN HAUT ET LE RESTE EN BAS */
+    align-items: center;    /* CENTRE TOUT HORIZONTALEMENT */
+    justify-content: center; /* CENTRE TOUT VERTICALEMENT */
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
-    color: rgba(255, 255, 255 , 0); /* Pour s'assurer que le texte par défaut est blanc */
-     display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
 }
+
+/* On s'assure que le logo ne prend pas trop de place */
+.logo {
+    width: 200px;
+    margin-bottom: 20px; /* Espace entre le logo et le formulaire */
+}
+
+/* Le cadre qui contient tout */
 .container {
   position: relative;
-  width: 480px;
-  height: 550px;
-  background: #1f2933;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-/* Animation border */
-.container::before {
-  content: "";
-  position: absolute;
-  inset: -50%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #3b82f6,
-    #008000,
-    #ffa500,
-    transparent
-  );
-  animation: animate 7s linear infinite;
-}
-
-.container::after {
-  content: "";
-  position: absolute;
-  inset: -50%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    red,
-    #60fa7a,
-    #f63b9c,
-    transparent
-  );
-  animation: animate 7s linear infinite;
-  animation-delay: -3.5s;
-}
-
-@keyframes animate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.container img {
-  position: relative;
-  z-index: 20;
+  width: 400px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1); /* Transparence */
+  backdrop-filter: blur(15px);         /* EFFET VITRE */
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Bordure fine blanche */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  z-index: 1;
+  /* Style pour les boutons de choix de rôle (Bleu d'origine) */
+.btn-choix {
   display: block;
-  margin: 20px auto 0;
-}
-
-/* page de connexion */
-.form {
-  position: absolute;
-  inset: 4px;
-  background: #ffffff;
-  border-radius: 10px;
-  z-index: 10;
-  padding: 45px 40px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form h2 {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: #2563eb; /* Ton bleu d'origine */
+  color: #ffffff;
+  text-decoration: none;
   text-align: center;
-  letter-spacing: 0.1em;
-  color: #1f2933;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-choix:hover {
+  background: #1e40af; /* Bleu plus foncé au survol */
+  transform: translateY(-2px); /* Petit effet de levée */
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* On ajuste le titre pour qu'il ne colle pas aux boutons */
+.form h2 {
+  margin-bottom: 30px;
+  color: #ffffff;
+  text-align: center;
+}
+}
+
+/* Le titre et les textes */
+h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .inputBox {
-  position: relative;
-  width: 100%;
-  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .inputBox input {
   width: 100%;
-  padding: 18px 10px 8px;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid #cbd5e1;
-  font-size: 1em;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2); /* Fond des cases transparent */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  color: white;
   outline: none;
-  color: #1f2933;
 }
 
+/* Le bouton de connexion */
 input[type="submit"] {
-  border: none;
-  background: #2563eb;
-  color: #ffffff;
-  cursor: pointer;
-  margin-top: 30px;
+  width: 100%;
   padding: 12px;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: background 0.3s ease;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 input[type="submit"]:hover {
-  background: #1e40af;
-}
-.logo {
-  width: 200px;
-  margin-bottom: 5px;
-  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
-}
-
-/* Style pour les boutons de la page de choix de role */
-.btn-choix {
-  display: block;
-  width: 100%;
-  padding: 12px;
   background: #2563eb;
-  color: #ffffff;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: 0.3s ease;
+  color: white;
 }
 
-.btn-choix:hover {
-  background: #1e40af;
-  transform: scale(1.02);
+/* Pour le logo si tu en as un */
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 100px;
 }
 
-.form h2 {
-  margin-bottom: 10px;
-  color: #1f2933;
+.txt-inscription {
+    margin-top: 25px;
+    text-align: center;
+    color: white;
+    font-size: 0.9em;
 }
+
+.lien-inscription {
+    color: #ffcc00; /* Une couleur dorée/jaune pour attirer l'oeil */
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lien-inscription:hover {
+    color: #ffffff; /* Le lien devient blanc quand on passe dessus */
+    text-decoration: underline; /* On souligne au survol */
+}
+
+
