@@ -52,16 +52,26 @@
     <nav>
       <hr />
       <div class="boutons">
-    <a href="./HTML/Trouver_mon_stage.html">Trouver mon stage</a>
-    <a href="./HTML/Trouver_une_entreprise.html">Trouver une entreprise</a>
-    <a href="./HTML/notification.html">Notification</a>
+        <a href="./HTML/Trouver_mon_stage.html">Trouver mon stage</a>
+        <a href="./HTML/Trouver_une_entreprise.html">Trouver une entreprise</a>
+        <a href="./HTML/notification.html">Notification</a>
 
-    <a href="HTML/gestion_etudiants.html" id="btn-ajout-etudiant" style="display: none">Gestion Étudiants</a>
-    <a href="HTML/gestion_pilotes.html" id="btn-ajout-pilote" style="display: none">Gestion Pilotes</a>
-    
-    <a href="./HTML/page_connexion.html" id="btn-login">Se connecter</a>
-    <a href="#" id="btn-logout" style="display: none">Déconnexion</a>
-</div>
+        <a
+          href="HTML/gestion_etudiants.html"
+          id="btn-ajout-etudiant"
+          style="display: none"
+          >Gestion Étudiants</a
+        >
+        <a
+          href="HTML/gestion_pilotes.html"
+          id="btn-ajout-pilote"
+          style="display: none"
+          >Gestion Pilotes</a
+        >
+
+        <a href="./HTML/page_connexion.html" id="btn-login">Se connecter</a>
+        <a href="#" id="btn-logout" style="display: none">Déconnexion</a>
+      </div>
       <hr />
     </nav>
 
@@ -130,9 +140,6 @@
           </div>
         </div>
       </div>
-      <a href="./HTML/postule-cv.html" class="bouton-postule">
-        <span class="postuler">Déposer un CV</span>
-      </a>
     </section>
 
     <footer>
@@ -143,35 +150,34 @@
     </footer>
 
     <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const userRole = localStorage.getItem("userRole");
-    const btnEtudiant = document.getElementById("btn-ajout-etudiant");
-    const btnPilote = document.getElementById("btn-ajout-pilote");
-    const btnLogin = document.getElementById("btn-login");
-    const btnLogout = document.getElementById("btn-logout");
+      document.addEventListener("DOMContentLoaded", function () {
+        const userRole = localStorage.getItem("userRole");
+        const btnEtudiant = document.getElementById("btn-ajout-etudiant");
+        const btnPilote = document.getElementById("btn-ajout-pilote");
+        const btnLogin = document.getElementById("btn-login");
+        const btnLogout = document.getElementById("btn-logout");
 
-    // LOGIQUE DES RÔLES
-    if (userRole === "admin") {
-        // L'admin voit TOUT
-        btnEtudiant.style.display = "inline-block";
-        btnPilote.style.display = "inline-block";
-        btnLogin.style.display = "none";
-        btnLogout.style.display = "inline-block";
-    } 
-    else if (userRole === "pilote") {
-        // Le pilote ne voit QUE les étudiants
-        btnEtudiant.style.display = "inline-block";
-        btnPilote.style.display = "none";
-        btnLogin.style.display = "none";
-        btnLogout.style.display = "inline-block";
-    }
+        // LOGIQUE DES RÔLES
+        if (userRole === "admin") {
+          // L'admin voit TOUT
+          btnEtudiant.style.display = "inline-block";
+          btnPilote.style.display = "inline-block";
+          btnLogin.style.display = "none";
+          btnLogout.style.display = "inline-block";
+        } else if (userRole === "pilote") {
+          // Le pilote ne voit QUE les étudiants
+          btnEtudiant.style.display = "inline-block";
+          btnPilote.style.display = "none";
+          btnLogin.style.display = "none";
+          btnLogout.style.display = "inline-block";
+        }
 
-    // Action de déconnexion
-    btnLogout.onclick = function () {
-      localStorage.removeItem("userRole");
-      window.location.reload();
-    };
-  });
-</script>
+        // Action de déconnexion
+        btnLogout.onclick = function () {
+          localStorage.removeItem("userRole");
+          window.location.reload();
+        };
+      });
+    </script>
   </body>
 </html>

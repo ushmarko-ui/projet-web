@@ -4,26 +4,6 @@
   margin-top: 50px;
 }
 
-/* bouton pour deposer CV */
-.bouton-postule {
-  display: inline-flex;
-  justify-content: center;
-  text-decoration: none;
-  min-width: 250px;
-  padding: 20px 40px;
-  font-size: 20px;
-  border-radius: 60px;
-  background: rgba(1, 1, 1, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  transition: 0.3s;
-}
-
-.bouton-postule:hover {
-  background: rgba(71, 69, 69, 0.6);
-  transform: scale(1.05);
-}
-
 .offres {
   display: flex;
   flex-direction: column;
@@ -90,6 +70,7 @@ p {
   text-align: center;
   position: relative;
   top: 50px;
+  color: black;
 }
 
 .bouton_raccourcis {
@@ -112,6 +93,7 @@ p {
 h3 {
   position: relative;
   top: 30px;
+  color: black;
 }
 
 /* reponsive pour les raccourcis */
