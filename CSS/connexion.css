@@ -4,14 +4,25 @@
   box-sizing: border-box;
   font-family: "poppins", sans-serif;
 }
-
+.ton-conteneur {
+    /* Fond noir avec 50% d'opacité (0.5) */
+    background-color: rgba(0, 0, 0, 0.5); 
+}
 body {
-  display: flex;
+    /* Chemin vers ton image (depuis le dossier CSS, il faut remonter d'un cran avec ../) */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 255, 255 , 0); /* Pour s'assurer que le texte par défaut est blanc */
+     display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #f2f4f7;
 }
 .container {
   position: relative;
