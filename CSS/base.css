@@ -1,6 +1,6 @@
 /* Fond du site - Ton bleu clair d'origine */
 body {
-  background-color: rgb(205, 232, 231);
+  background-color: rgb(79, 78, 78);
   margin: 0;
   font-family: Arial, sans-serif;
 }
@@ -8,7 +8,7 @@ body {
 /* Ligne de séparation */
 hr {
   height: 5px;
-  background-color: rgb(67, 64, 126);
+  background-color: rgb(62, 62, 62);
   border: none;
   position: relative;
 }

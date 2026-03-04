@@ -3,7 +3,7 @@ body { background: #1a1a1a; color: white; font-family: sans-serif; padding: 20px
 /* Barre d'ajout (Inputs + Bouton Violet) */
 .add-row { display: flex; gap: 8px; margin-bottom: 20px; align-items: center; }
 input { background: #121212; border: 1px solid #333; color: white; padding: 8px; border-radius: 4px; width: 120px; }
-.btn-add { background: #6200ea; color: white; border: none; padding: 8px 18px; border-radius: 4px; cursor: pointer; font-size: 18px; }
+.btn-add { background: #7b7b7c; color: white; border: none; padding: 8px 18px; border-radius: 4px; cursor: pointer; font-size: 18px; }
 
 /* Tableau Noir */
 table { width: 100%; border-collapse: collapse; background: #212121; border: 1px solid #333; }

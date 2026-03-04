@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Pilotes - ReadyToWork</title>
+    <link rel="stylesheet" href="../CSS/gestion_etudiants.css">
+    <link rel="stylesheet" href="../HTML/gestion_etudiants.html">
+</head>
+<body>
+
+    <h2>Gestion des Pilotes</h2>
+
+    <div class="add-row">
+        <button class="btn-add" id="add-pilote-btn">+</button>
+        <input type="text" id="pilote-id" placeholder="ID Pilote">
+        <input type="text" id="pilote-name" placeholder="Nom Complet">
+        <input type="text" id="pilote-centre" placeholder="Centre / Ville">
+        <input type="text" id="pilote-email" placeholder="E-mail Professionnel">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Actions</th>
+                <th>ID</th>
+                <th>Nom Complet</th>
+                <th>Centre / Ville</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody id="pilote-table-body">
+            <tr>
+                <td>
+                    
+                    <button class="btn-action">🗑️</button>
+                </td>
+                <td>P001</td>
+                <td>Jean Pilote</td>
+                <td>Nanterre</td>
+                <td>jean.pilote@cesi.fr</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Script pour ajouter un pilote dynamiquement
+        document.getElementById('add-pilote-btn').onclick = function() {
+            const id = document.getElementById('pilote-id').value;
+            const name = document.getElementById('pilote-name').value;
+            const centre = document.getElementById('pilote-centre').value;
+            const email = document.getElementById('pilote-email').value;
+
+            if (id && name && email) {
+                const tbody = document.getElementById('pilote-table-body');
+                const row = tbody.insertRow();
+                
+                row.innerHTML = `
+                    <td>
+                        
+                        <button class="btn-action">🗑️</button>
+                    </td>
+                    <td>${id}</td>
+                    <td>${name}</td>
+                    <td>${centre}</td>
+                    <td>${email}</td>
+                `;
+
+                // Vider les champs
+                document.querySelectorAll('.add-row input').forEach(input => input.value = "");
+            } else {
+                alert("Veuillez remplir l'ID, le Nom et l'Email.");
+            }
+        };
+
+        //script pour supprimer un pilote 
+document.querySelector('table').addEventListener('click', function(e) {
+    
+    if (e.target.innerText === '🗑️' || e.target.classList.contains('btn-supprimer')) {
+        
+       
+        if (confirm("Voulez-vous vraiment supprimer cette ligne ?")) {
+           
+            const ligne = e.target.closest('tr');
+            ligne.remove();
+        }
+    }
+});
+    </script>
+
+</body>
+</html>

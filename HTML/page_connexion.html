@@ -37,34 +37,32 @@
       </div>
     </div>
     <script>
-      // clique sur connexion
-      document.getElementById("submit-btn").onclick = function () {
-        const userTape = document.getElementById("username").value;
-        const mdpTape = document.getElementById("password").value;
-        const errorSpan = document.getElementById("error-message");
-
-        // Récupération du rôle dans l'URL
+      
+    document.getElementById('submit-btn').onclick = function() {
+        const userTape = document.getElementById('username').value;
+        const mdpTape = document.getElementById('password').value;
+        const errorSpan = document.getElementById('error-message');
         const params = new URLSearchParams(window.location.search);
-        const role = params.get("role");
+        const role = params.get('role');
 
-        // Vérification pour le Pilote
-        if (role === "pilote") {
-          if (userTape === "pilote_user" && mdpTape === "pilote123") {
-            localStorage.setItem("userRole", "pilote");
-            window.location.href = "../index.html"; // Redirection seulement si OK
-          } else {
-            errorSpan.innerText = "Identifiants Pilote incorrects !";
-          }
+        if (role === "admin") {
+            // Identifiants pour l'Admin
+            if (userTape === "admin_user" && mdpTape === "admin123") {
+                localStorage.setItem('userRole', 'admin');
+                window.location.href = "../index.html";
+            } else {
+                errorSpan.innerText = "Identifiants Admin incorrects !";
+            }
+        } 
+        else if (role === "pilote") {
+            if (userTape === "pilote_user" && mdpTape === "pilote123") {
+                localStorage.setItem('userRole', 'pilote');
+                window.location.href = "../index.html";
+            } else {
+                errorSpan.innerText = "Identifiants Pilote incorrects !";
+            }
         }
-
-        // Vérification pour les autres rôles
-        else if (userTape !== "" && mdpTape !== "") {
-          localStorage.setItem("userRole", role);
-          window.location.href = "../index.html";
-        } else {
-          errorSpan.innerText = "Veuillez remplir les champs";
-        }
-      };
+    };
     </script>
   </body>
 </html>

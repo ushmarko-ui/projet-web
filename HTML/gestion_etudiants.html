@@ -35,7 +35,7 @@
         <tbody id="table-body">
             <tr>
                 <td>
-                    <button class="btn-action">✏️</button>
+                    
                     <button class="btn-action">🗑️</button>
                 </td>
                 <td>1</td>
@@ -64,8 +64,8 @@
                 
                 row.innerHTML = `
                     <td>
-                        <button class="btn-action">✏️</button>
-                        <button class="btn-action">🗑️</button>
+                        
+                        <button class="btn-action btn-supprimer">🗑️</button>
                     </td>
                     <td>${id}</td>
                     <td>${fname}</td>
@@ -81,6 +81,20 @@
                 alert("Veuillez remplir au moins l'ID, le Prénom et le Nom.");
             }
         };
+
+        //script pour supprimer un pilote 
+document.querySelector('table').addEventListener('click', function(e) {
+    
+    if (e.target.innerText === '🗑️' || e.target.classList.contains('btn-supprimer')) {
+        
+        
+        if (confirm("Voulez-vous vraiment supprimer cette ligne ?")) {
+            
+            const ligne = e.target.closest('tr');
+            ligne.remove(); 
+        }
+    }
+});
     </script>
 
 </body>
