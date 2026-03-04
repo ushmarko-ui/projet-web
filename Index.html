@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stage Explorer</title>
-    <link rel="shortcut icon" href="./image/logo.png" />
+    <title>ReadyToWork</title>
+    <link rel="shortcut icon" href="./image/ReadyToWork (3).png" />
 
     <link rel="stylesheet" href="./CSS/base.css" />
     <link rel="stylesheet" href="./CSS/header.css" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./CSS/Boutonscv.css" />
     <link rel="stylesheet" href="./CSS/profil.css" />
     <link rel="stylesheet" href="./CSS/footer.css" />
-    
+
     <style>
       /* Style pour le bouton spécial Pilote */
       #btn-ajout-etudiant {
@@ -35,8 +35,8 @@
     <header>
       <div class="barre-nav">
         <a href="./Index.html" class="lien-logo">
-          <img src="./image/logo.png" alt="Logo" class="logo" />
-          <span class="site-name">Stage Explorer</span>
+          <img src="./image/ReadyToWork (3).png" alt="Logo" class="logo" />
+          <span class="site-name">ReadyToWork</span>
         </a>
         <a href="HTML/choix_role.html" class="lien-profil">
           <img src="image/image_reunion.avif" alt="Profil" class="profil" />
@@ -45,7 +45,7 @@
       </div>
 
       <div class="hero-title">
-        <h1>Stage Explorer</h1>
+        <h1>ReadyToWork</h1>
       </div>
     </header>
 
@@ -56,17 +56,26 @@
         <a href="./HTML/Trouver_une_entreprise.html">Trouver une entreprise</a>
         <a href="./HTML/messagerie.html">Messagerie</a>
         <a href="./HTML/notification.html">Notification</a>
-        
-        <a href="HTML/gestion_etudiants.html" id="btn-ajout-etudiant" style="display: none;">Ajouts d'étudiant</a>
+
+        <a
+          href="HTML/gestion_etudiants.html"
+          id="btn-ajout-etudiant"
+          style="display: none"
+          >Ajouts d'étudiant</a
+        >
         <a href="./HTML/page_connexion.html" id="btn-login">Se connecter</a>
-        <a href="#" id="btn-logout" style="display: none;">Déconnexion</a>
+        <a href="#" id="btn-logout" style="display: none">Déconnexion</a>
       </div>
       <hr />
     </nav>
 
     <div class="recherche">
       <form>
-        <input type="text" id="secteur" placeholder="Rechercher par job, mot-clé ou entreprise" />
+        <input
+          type="text"
+          id="secteur"
+          placeholder="Rechercher par job, mot-clé ou entreprise"
+        />
         <button class="bouton-recherche" type="submit">Rechercher</button>
 
         <input type="text" id="zone" placeholder="Où" />
@@ -83,14 +92,48 @@
       </div>
       <div class="raccourcis">
         <div class="raccourcis_candidature">
-          <div class="couleur1"><img src="./image/SuivreCanditatures.png" /></div>
+          <div class="couleur1">
+            <img src="./image/SuivreCanditatures.png" />
+          </div>
           <div class="premier_raccourcis">
             <h3>Suivez votre candidature</h3>
-            <p>Gardez le contrôle à chaque étape.</p>
+            <p>
+              Gardez le contrôle à chaque étape. Postulez en toute sérénité et
+              recevez des notifications dès qu’il y a une évolution dans votre
+              dossier.
+            </p>
             <button class="bouton_raccourcis">Voir mes candidatures</button>
           </div>
         </div>
+        <div class="raccourcis_stage">
+          <div class="couleur2">
+            <img src="./image/TrouverStage.png" />
+          </div>
+          <div class="deuxieme_raccourcis">
+            <h3>Trouver mon stage</h3>
+            <p>
+              Rémunération, télétravail, avantages… Toutes les informations
+              essentielles sont claires dès le départ pour vous aider à faire le
+              bon choix.
+            </p>
+            <button class="bouton_raccourcis">Voir les offres</button>
+          </div>
         </div>
+        <div class="raccourcis_entreprise">
+          <div class="couleur3">
+            <img src="./image/TrouverEntreprise.jpg" />
+          </div>
+          <div class="troisieme_raccourcis">
+            <h3>Trouver les entreprises qui me correspondent</h3>
+            <p>
+              Processus de recrutement, délais de réponse, conditions de
+              travail… Accédez à des informations fiables et gagnez du temps
+              dans votre recherche.
+            </p>
+            <button class="bouton_raccourcis">Voir les entreprises</button>
+          </div>
+        </div>
+      </div>
       <a href="./HTML/postule-cv.html" class="bouton-postule">
         <span class="postuler">Déposer un CV</span>
       </a>
@@ -104,21 +147,21 @@
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        const userRole = localStorage.getItem('userRole'); 
-        const btnAjout = document.getElementById('btn-ajout-etudiant');
-        const btnLogin = document.getElementById('btn-login');
-        const btnLogout = document.getElementById('btn-logout');
+      document.addEventListener("DOMContentLoaded", function () {
+        const userRole = localStorage.getItem("userRole");
+        const btnAjout = document.getElementById("btn-ajout-etudiant");
+        const btnLogin = document.getElementById("btn-login");
+        const btnLogout = document.getElementById("btn-logout");
 
-        if (userRole === 'pilote') {
-          btnAjout.style.display = 'inline-block';
-          btnLogin.style.display = 'none';
-          btnLogout.style.display = 'inline-block';
+        if (userRole === "pilote") {
+          btnAjout.style.display = "inline-block";
+          btnLogin.style.display = "none";
+          btnLogout.style.display = "inline-block";
         }
 
         // Action de déconnexion
-        btnLogout.onclick = function() {
-          localStorage.removeItem('userRole');
+        btnLogout.onclick = function () {
+          localStorage.removeItem("userRole");
           window.location.reload();
         };
       });

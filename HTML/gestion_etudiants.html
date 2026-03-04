@@ -1,20 +1,87 @@
-<div class="table-container">
-    <div class="table-header">
-        <button class="add-btn">+</button>
-        <input type="text" placeholder="ID">
-        <input type="text" placeholder="First Name">
-        </div>
-    <table class="dark-table">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Étudiants - Stage Explorer</title>
+    <link rel="stylesheet" href="../CSS/gestion_etudiants.css">
+</head>
+<body>
+
+    <h2>Gestion des Étudiants</h2>
+
+    <div class="add-row">
+        <button class="btn-add" id="add-student-btn">+</button>
+        <input type="text" id="input-id" placeholder="ID">
+        <input type="text" id="input-fname" placeholder="First Name">
+        <input type="text" id="input-lname" placeholder="Last Name">
+        <input type="text" id="input-user" placeholder="Username">
+        <input type="text" id="input-email" placeholder="E-mail">
+        <input type="text" id="input-age" placeholder="Age">
+    </div>
+
+    <table>
         <thead>
             <tr>
-                <th>Actions</th><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>E-mail</th><th>Age</th>
+                <th>Actions</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>E-mail</th>
+                <th>Age</th>
             </tr>
         </thead>
-        <tbody id="student-list">
+        <tbody id="table-body">
             <tr>
-                <td><button>✏️</button> <button>🗑️</button></td>
-                <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td><td>mdo@gmail.com</td><td>28</td>
+                <td>
+                    <button class="btn-action">✏️</button>
+                    <button class="btn-action">🗑️</button>
+                </td>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>mdo@gmail.com</td>
+                <td>28</td>
             </tr>
         </tbody>
     </table>
-</div>
+
+    <script>
+        // Petit script pour faire fonctionner le bouton "+"
+        document.getElementById('add-student-btn').onclick = function() {
+            const id = document.getElementById('input-id').value;
+            const fname = document.getElementById('input-fname').value;
+            const lname = document.getElementById('input-lname').value;
+            const user = document.getElementById('input-user').value;
+            const email = document.getElementById('input-email').value;
+            const age = document.getElementById('input-age').value;
+
+            if (id && fname && lname) {
+                const tbody = document.getElementById('table-body');
+                const row = tbody.insertRow();
+                
+                row.innerHTML = `
+                    <td>
+                        <button class="btn-action">✏️</button>
+                        <button class="btn-action">🗑️</button>
+                    </td>
+                    <td>${id}</td>
+                    <td>${fname}</td>
+                    <td>${lname}</td>
+                    <td>${user}</td>
+                    <td>${email}</td>
+                    <td>${age}</td>
+                `;
+
+                // On vide les champs après l'ajout
+                document.querySelectorAll('.add-row input').forEach(input => input.value = "");
+            } else {
+                alert("Veuillez remplir au moins l'ID, le Prénom et le Nom.");
+            }
+        };
+    </script>
+
+</body>
+</html>
