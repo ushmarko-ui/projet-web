@@ -35,3 +35,21 @@
     margin: 0; /* enleve marge entre les boutons */
   }
 }
+
+/* bouton rajout en etant connecter au pilote */
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+#btn-ajout-etudiant {
+  background-color: #6200ea;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+#btn-logout {
+  background-color: #cc0000;
+  color: white;
+  border-radius: 5px;
+}

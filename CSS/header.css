@@ -17,10 +17,9 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 5px; /* Ecarte les lettres */
   text-align: center;
-  font-family: Georgia, serif;
   text-shadow: 10px 0px 15px rgb(0, 0, 0);
   color: white;
-  margin-top: 80px; /* Espace pour ne pas coller au haut de la page */
+  margin-top: 80px;
 }
 
 /* bouton du logo */
