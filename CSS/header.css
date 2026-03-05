@@ -13,7 +13,7 @@
 
 /*Titre du site */
 
-h1 {
+.titre_header {
   text-transform: uppercase;
   letter-spacing: 5px; /* Ecarte les lettres */
   text-align: center;
