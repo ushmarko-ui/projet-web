@@ -18,7 +18,7 @@ form {
 
 /* Style des petits boutons "Rechercher" */
 .bouton-recherche {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.6);
   border: 3px solid rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   padding: 8px 15px;
@@ -32,7 +32,7 @@ form {
   border: 3px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   margin-right: 5px;
-  width: 300px;
+  width: 320px;
   height: 35px;
 }
 
@@ -50,6 +50,13 @@ input::placeholder {
   left: 30px;
 }
 
+.bouton-recherche2 {
+  background: rgba(255, 255, 255, 0.6);
+  border: 3px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
 /* reponsive pour les barres de recherches */
 @media (max-width: 940px) {
   .recherche {

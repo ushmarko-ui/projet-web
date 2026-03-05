@@ -87,7 +87,6 @@ h2 {
   background: rgba(255, 255, 255, 0.2); 
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
-  color: white;
   outline: none;
 }
 
@@ -111,16 +110,16 @@ input[type="submit"]:hover {
 
 
 .logo {
-    display: block;
-    margin: 0 auto 20px;
-    width: 100px;
+  display: block;
+  margin: 0 auto;
+  width: 200px;
 }
 
 .txt-inscription {
-    margin-top: 25px;
-    text-align: center;
-    color: white;
-    font-size: 0.9em;
+  margin-top: 25px;
+  text-align: center;
+  color: white;
+  font-size: 0.9em;
 }
 
 .lien-inscription {
@@ -134,5 +133,3 @@ input[type="submit"]:hover {
     color: #ffffff; 
     text-decoration: underline; 
 }
-
-
