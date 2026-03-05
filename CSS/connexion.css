@@ -13,38 +13,38 @@ body {
     background-attachment: fixed;
     
     display: flex;
-    flex-direction: column; /* FORCE LE LOGO EN HAUT ET LE RESTE EN BAS */
-    align-items: center;    /* CENTRE TOUT HORIZONTALEMENT */
-    justify-content: center; /* CENTRE TOUT VERTICALEMENT */
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
     min-height: 100vh;
     margin: 0;
 }
 
-/* On s'assure que le logo ne prend pas trop de place */
+
 .logo {
     width: 200px;
-    margin-bottom: 20px; /* Espace entre le logo et le formulaire */
+    margin-bottom: 20px; 
 }
 
-/* Le cadre qui contient tout */
+
 .container {
   position: relative;
   width: 400px;
   padding: 40px;
-  background: rgba(255, 255, 255, 0.1); /* Transparence */
-  backdrop-filter: blur(15px);         /* EFFET VITRE */
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(15px);         
   -webkit-backdrop-filter: blur(15px);
   border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2); /* Bordure fine blanche */
+  border: 2px solid rgba(255, 255, 255, 0.2); 
   box-shadow: 0 15px 35px rgba(0,0,0,0.5);
   z-index: 1;
-  /* Style pour les boutons de choix de rôle (Bleu d'origine) */
+ 
 .btn-choix {
   display: block;
   width: 100%;
   padding: 15px;
   margin-top: 20px;
-  background: #2563eb; /* Ton bleu d'origine */
+  background: #2563eb; 
   color: #ffffff;
   text-decoration: none;
   text-align: center;
@@ -58,12 +58,12 @@ body {
 }
 
 .btn-choix:hover {
-  background: #1e40af; /* Bleu plus foncé au survol */
-  transform: translateY(-2px); /* Petit effet de levée */
+  background: #1e40af; 
+  transform: translateY(-2px); 
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* On ajuste le titre pour qu'il ne colle pas aux boutons */
+
 .form h2 {
   margin-bottom: 30px;
   color: #ffffff;
@@ -71,7 +71,6 @@ body {
 }
 }
 
-/* Le titre et les textes */
 h2 {
   color: white;
   text-align: center;
@@ -85,14 +84,14 @@ h2 {
 .inputBox input {
   width: 100%;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.2); /* Fond des cases transparent */
+  background: rgba(255, 255, 255, 0.2); 
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
   color: white;
   outline: none;
 }
 
-/* Le bouton de connexion */
+
 input[type="submit"] {
   width: 100%;
   padding: 12px;
@@ -110,7 +109,7 @@ input[type="submit"]:hover {
   color: white;
 }
 
-/* Pour le logo si tu en as un */
+
 .logo {
     display: block;
     margin: 0 auto 20px;
@@ -125,15 +124,15 @@ input[type="submit"]:hover {
 }
 
 .lien-inscription {
-    color: #ffcc00; /* Une couleur dorée/jaune pour attirer l'oeil */
+    color: #ffcc00; 
     text-decoration: none;
     font-weight: bold;
     transition: 0.3s;
 }
 
 .lien-inscription:hover {
-    color: #ffffff; /* Le lien devient blanc quand on passe dessus */
-    text-decoration: underline; /* On souligne au survol */
+    color: #ffffff; 
+    text-decoration: underline; 
 }
 
 
