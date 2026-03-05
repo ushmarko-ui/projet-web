@@ -3,28 +3,34 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/créer_un_compte.css">
-    <title>Créer un compte</title>
+    <link rel="stylesheet" href="../CSS/connexion.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Créer un compte - ReadyToWork</title>
 </head>
 <body>
-    <img src="../image/ReadyToWork (3).png" alt="logo" class="logo">
+    <img src="../image/ReadyToWork.png" alt="logo" class="logo">
+
     <div class="container">
-    <div class="form">
-        <h2>Créer votre compte</h2>
+        <div class="form">
+            <h2>Créer votre compte</h2>
 
-        <div class="inputBox">
-            <input type="text" placeholder="Nom d'utilisateur">
-        </div>
+            <form>
+                <div class="inputBox">
+                    <input type="text" placeholder="Nom d'utilisateur" required>
+                </div>
 
-        <div class="inputBox">
-            <input type="password" placeholder="Mot de passe">
-        </div>
+                <div class="inputBox">
+                    <input type="password" placeholder="Mot de passe" required>
+                </div>
 
-        <div class="inputBox">
-            <input type="submit" value="Créer le compte">
+                <input type="submit" value="Créer le compte">
+
+                <p class="txt-inscription">
+                    Déjà un compte ? 
+                    <a href="page_connexion.html" class="lien-inscription">Connectez-vous</a>
+                </p>
+            </form>
         </div>
     </div>
-</div>
-
-
-
+</body>
+</html>

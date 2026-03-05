@@ -1,6 +1,6 @@
-/* Fond du site - Ton bleu clair d'origine */
+
   body {
-    /* Chemin vers ton image (depuis le dossier CSS, il faut remonter d'un cran avec ../) */
+    
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg');
     background-size: cover;
     background-position: center;
@@ -8,11 +8,11 @@
     background-repeat: no-repeat;
     margin: 0;
     padding: 0;
-    color: white; /* Pour s'assurer que le texte par défaut est blanc */
+    color: white; 
 }
 
 
-/* Ligne de séparation */
+
 hr {
   height: 5px;
   background-color: rgb(62, 62, 62);
@@ -20,7 +20,7 @@ hr {
   position: relative;
 }
 
-/* voir ou est probleme pour reponsive */
+
 @media (max-width: 420px) {
   body {
     background-color: red;
