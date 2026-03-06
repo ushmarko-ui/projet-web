@@ -8,3 +8,16 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
 --Création compte Pilote
 INSERT INTO utilisateurs (username, password, role) 
 VALUES ('pilote_user', 'pilote123', 'pilote');
+
+
+-- Création entreprises 
+
+CREATE TABLE IF NOT EXISTS entreprises (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255),
+  description TEXT,
+  mots_cles TEXT
+);
+
+INSERT INTO entreprises (nom, description, mots_cles)
+VALUES ("TechCorp", "Entreprise informatique", "informatique, tech, logiciel");
