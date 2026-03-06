@@ -1,156 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReadyToWork - Bootstrap Edition</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.1); }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('./image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: rgb(255, 255, 255);
-            min-height: 100vh;
-        }
-        /* Custom Glassmorphism Utility */
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 15px;
-        }
-        .hero-banner {
-            height: 140px;
-            background: url("./image/image_reunion.avif") center/cover;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            z-index: -1;
-            filter: brightness(0.6);
-        }
-        .nav-link-custom {
-            color: rgb(255, 255, 255);
-            padding: 10px 20px;
-            transition: 0.3s;
-            border-radius: 10px;
-            text-decoration: none;
-        }
-        .nav-link-custom:hover {
-            background: rgba(119, 119, 119, 0.2);
-            transform: translateY(-3px);
-            color: #ffcc00;
-        }
-        .card-img-custom {
-            transition: 0.4s;
-            border-radius: 15px;
-        }
-        .card-img-custom:hover { transform: scale(1.05); }
-       
-        input::placeholder {
-          color: white;
-        }
+      :root {
+        --glass: rgba(255, 255, 255, 0.1);
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("./image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg")
+            no-repeat center center fixed;
+        background-size: cover;
+        color: rgb(255, 255, 255);
+        min-height: 100vh;
+      }
+      /* Custom Glassmorphism Utility */
+      .glass {
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+      }
+      .hero-banner {
+        height: 140px;
+        background: url("./image/image_reunion.avif") center/cover;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        z-index: -1;
+        filter: brightness(0.6);
+      }
+      .nav-link-custom {
+        color: rgb(255, 255, 255);
+        padding: 10px 20px;
+        transition: 0.3s;
+        border-radius: 10px;
+        text-decoration: none;
+      }
+      .nav-link-custom:hover {
+        background: rgba(119, 119, 119, 0.2);
+        transform: translateY(-3px);
+        color: #ffcc00;
+      }
+      .card-img-custom {
+        transition: 0.4s;
+        border-radius: 15px;
+      }
+      .card-img-custom:hover {
+        transform: scale(1.05);
+      }
 
-        h2 {-webkit-text-stroke-width: 2px;
-            -webkit-text-stroke-color: rgb(26, 189, 230);
-            font-size: 30px;
-            font-weight: bold;
-        }
-    
-    
+      input::placeholder {
+        color: white;
+      }
+
+      h2 {
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: rgb(26, 189, 230);
+        font-size: 30px;
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="hero-banner"></div>
 
     <header class="container-fluid py-3">
-        <div class="d-flex justify-content-between align-items-center px-lg-5">
-            <a href="index.html" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white">
-                <img src="./image/ReadyToWork.png" alt="Logo" height="35" class="me-2">
-                <span class="fw-bold">ReadyToWork</span>
-            </a>
-            <a href="HTML/choix_role.html" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white">
-                <img src="image/image_reunion.avif" alt="Profil" class="rounded-circle me-2" width="30" height="30">
-                <span>Mon Profil</span>
-            </a>
-        </div>
-        <h1 class="text-center mt-5 fw-bold text-uppercase ls-5" style="letter-spacing: 5px;">ReadyToWork</h1>
+      <div class="d-flex justify-content-between align-items-center px-lg-5">
+        <a
+          href="index.html"
+          class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white"
+        >
+          <img
+            src="./image/ReadyToWork.png"
+            alt="Logo"
+            height="35"
+            class="me-2"
+          />
+          <span class="fw-bold">ReadyToWork</span>
+        </a>
+        <a
+          href="HTML/choix_role.html"
+          class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white"
+        >
+          <img
+            src="image/image_reunion.avif"
+            alt="Profil"
+            class="rounded-circle me-2"
+            width="30"
+            height="30"
+          />
+          <span>Mon Profil</span>
+        </a>
+      </div>
+      <h1
+        class="text-center mt-5 fw-bold text-uppercase ls-5"
+        style="letter-spacing: 5px"
+      >
+        ReadyToWork
+      </h1>
     </header>
 
     <nav class="container my-4">
-        <hr class="border-2 opacity-50">
-        <div class="d-flex flex-wrap justify-content-center gap-3 py-2">
-            <a href="./HTML/Trouver_mon_stage.html" class="glass nav-link-custom">Trouver mon stage</a>
-            <a href="./HTML/Trouver_une_entreprise.html" class="glass nav-link-custom">Trouver une entreprise</a>
-            <a href="./HTML/liste_de_souhait.html" class="glass nav-link-custom">Liste de souhaits</a>
-            <a href="HTML/gestion_etudiants.html" id="btn-ajout-etudiant" class="nav-link-custom bg-primary d-none">Gestion Étudiants</a>
-            <a href="HTML/gestion_pilotes.html" id="btn-ajout-pilote" class="nav-link-custom bg-info d-none">Gestion Pilotes</a>
-            <a href="./HTML/page_connexion.html" id="btn-login" class="glass nav-link-custom border-primary" style="display: none;">Se connecter</a>
-            <a href="#" id="btn-logout" class="nav-link-custom bg-danger d-none">Déconnexion</a>
-        </div>
-        <hr class="border-2 opacity-50">
+      <hr class="border-2 opacity-50" />
+      <div class="d-flex flex-wrap justify-content-center gap-3 py-2">
+        <a href="./HTML/Trouver_mon_stage.html" class="glass nav-link-custom"
+          >Trouver mon stage</a
+        >
+        <a
+          href="./HTML/Trouver_une_entreprise.html"
+          class="glass nav-link-custom"
+          >Trouver une entreprise</a
+        >
+        <a href="./HTML/liste_de_souhait.html" class="glass nav-link-custom"
+          >Liste de souhaits</a
+        >
+        <a
+          href="HTML/gestion_etudiants.html"
+          id="btn-ajout-etudiant"
+          class="nav-link-custom bg-primary d-none"
+          >Gestion Étudiants</a
+        >
+        <a
+          href="HTML/gestion_pilotes.html"
+          id="btn-ajout-pilote"
+          class="nav-link-custom bg-info d-none"
+          >Gestion Pilotes</a
+        >
+        <a
+          href="./HTML/page_connexion.html"
+          id="btn-login"
+          class="glass nav-link-custom border-primary d-none"
+          >Se connecter</a
+        >
+        <a href="#" id="btn-logout" class="nav-link-custom bg-danger d-none"
+          >Déconnexion</a
+        >
+      </div>
+      <hr class="border-2 opacity-50" />
     </nav>
-
     <section class="container mb-5">
-        <form class="row g-3 justify-content-center">
-            <div class="col-md-5">
-                <input type="text" class="form-control form-control-lg white text- border-0" placeholder="Job, mot-clé ou entreprise">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control form-control-lg white text-black border-0" placeholder="Où ?">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold">Rechercher</button>
-            </div>
-        </form>
+      <form class="row g-3 justify-content-center">
+        <div class="col-md-5">
+          <input
+            type="text"
+            class="form-control form-control-lg white text- border-0"
+            placeholder="Job, mot-clé ou entreprise"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control form-control-lg white text-black border-0"
+            placeholder="Où ?"
+          />
+        </div>
+        <div class="col-md-2">
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg w-100 rounded-pill fw-bold"
+          >
+            Rechercher
+          </button>
+        </div>
+      </form>
     </section>
 
     <main class="container py-5 text-center">
-        <h2 class="mb-5">Offres Récentes</h2>
-        <div class="row g-4 justify-content-center mb-5">
-            <div class="col-6 col-md-3"><img src="./image/offres.png" class="img-fluid card-img-custom shadow"></div>
-            <div class="col-6 col-md-3"><img src="./image/offres.png" class="img-fluid card-img-custom shadow"></div>
-            <div class="col-6 col-md-3"><img src="./image/offres.png" class="img-fluid card-img-custom shadow"></div>
+      <h2 class="mb-5">Offres Récentes</h2>
+      <div class="row g-4 justify-content-center mb-5">
+        <div class="col-6 col-md-3">
+          <img
+            src="./image/offres.png"
+            class="img-fluid card-img-custom shadow"
+          />
+        </div>
+        <div class="col-6 col-md-3">
+          <img
+            src="./image/offres.png"
+            class="img-fluid card-img-custom shadow"
+          />
+        </div>
+        <div class="col-6 col-md-3">
+          <img
+            src="./image/offres.png"
+            class="img-fluid card-img-custom shadow"
+          />
+        </div>
+      </div>
+
+      <div class="row g-5 align-items-center mb-5">
+        <div class="col-lg-6">
+          <img
+            src="./image/SuivreCanditatures.png"
+            class="img-fluid rounded-4 glass p-2"
+          />
+        </div>
+        <div class="col-lg-6 glass p-5">
+          <h3>Suivez votre candidature</h3>
+          <p class="text-light">
+            Gardez le contrôle à chaque étape. Postulez en toute sérénité et
+            recevez des notifications en temps réel.
+          </p>
+          <button class="btn btn-light rounded-pill px-4 fw-bold">
+            Voir mes candidatures
+          </button>
         </div>
 
-        <div class="row g-5 align-items-center mb-5">
-            <div class="col-lg-6"><img src="./image/SuivreCanditatures.png" class="img-fluid rounded-4 glass p-2"></div>
-            <div class="col-lg-6 glass p-5">
-                <h3>Suivez votre candidature</h3>
-                <p class="text-light">Gardez le contrôle à chaque étape. Postulez en toute sérénité et recevez des notifications en temps réel.</p>
-                <button class="btn btn-light rounded-pill px-4 fw-bold">Voir mes candidatures</button>
-            </div>
+        <div class="col-lg-6">
+          <img
+            src="/image/TrouverStage.png"
+            class="img-fluid rounded-4 glass p-2"
+          />
         </div>
-    </nav>
+        <div class="col-lg-6 glass p-5">
+          <h3>Trouver mon stage</h3>
+          <p class="text-light">
+            Rémunération, télétravail, avantages… Toutes les informations
+            essentielles sont claires dès le départ pour vous aider à faire le
+            bon choix.
+          </p>
+          <button class="btn btn-light rounded-pill px-4 fw-bold">
+            Voir les offres
+          </button>
+        </div>
+
+        <div class="col-lg-6">
+          <img
+            src="/image/TrouverEntreprise.jpg"
+            class="img-fluid rounded-4 glass p-2"
+            style="max-width: 277px; min-height: 220px"
+          />
+        </div>
+        <div class="col-lg-6 glass p-5">
+          <h3>Trouver les entreprises qui me correspondent</h3>
+          <p class="text-light">
+            Processus de recrutement, délais de réponse, conditions de travail…
+            Accédez à des informations fiables et gagnez du temps dans votre
+            recherche.
+          </p>
+          <button class="btn btn-light rounded-pill px-4 fw-bold">
+            Voir les entreprises
+          </button>
+        </div>
+      </div>
+    </main>
 
     <footer class="glass mt-5 py-4">
-        <div class="container d-flex justify-content-center gap-4">
-            <a href="./HTML/politique.html" class="text-white-50 text-decoration-none small hover-warning">Politique de confidentialité</a>
-            <a href="./HTML/mentions.html" class="text-white-50 text-decoration-none small hover-warning">Mentions légales</a>
-        </div>
+      <div class="container d-flex justify-content-center gap-4">
+        <a
+          href="./HTML/politique.html"
+          class="text-white-50 text-decoration-none small hover-warning"
+          >Politique de confidentialité</a
+        >
+        <a
+          href="./HTML/mentions.html"
+          class="text-white-50 text-decoration-none small hover-warning"
+          >Mentions légales</a
+        >
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Ta logique JS reste la même, juste on adapte les classes d-none de Bootstrap
-        document.addEventListener("DOMContentLoaded", function () {
-            const userRole = localStorage.getItem("userRole");
-            if (userRole === "admin") {
-                document.getElementById("btn-ajout-etudiant").classList.remove("d-none");
-                document.getElementById("btn-ajout-pilote").classList.remove("d-none");
-                document.getElementById("btn-login").classList.add("d-none");
-                document.getElementById("btn-logout").classList.remove("d-none");
-            }
-            // ... reste de ta logique
-        });
-        document.getElementById("btn-logout").onclick = () => { localStorage.clear(); location.reload(); };
+      // Ta logique JS reste la même, juste on adapte les classes d-none de Bootstrap
+      document.addEventListener("DOMContentLoaded", function () {
+        const userRole = localStorage.getItem("userRole");
+        const btnEtudiant = document.getElementById("btn-ajout-etudiant");
+        const btnPilote = document.getElementById("btn-ajout-pilote");
+        const btnLogin = document.getElementById("btn-login");
+        const btnLogout = document.getElementById("btn-logout");
+        if (userRole === "admin") {
+          document
+            .getElementById("btn-ajout-etudiant")
+            .classList.remove("d-none");
+          document
+            .getElementById("btn-ajout-pilote")
+            .classList.remove("d-none");
+          document.getElementById("btn-login").classList.add("d-none");
+          document.getElementById("btn-logout").classList.remove("d-none");
+        }
+        if (userRole === "pilote") {
+          document
+            .getElementById("btn-ajout-etudiant")
+            .classList.remove("d-none");
+          document.getElementById("btn-login").classList.add("d-none");
+          document.getElementById("btn-logout").classList.remove("d-none");
+        }
+        if (userRole === "etudiant") {
+          document;
+          document.getElementById("btn-login").classList.add("d-none");
+          document.getElementById("btn-logout").classList.remove("d-none");
+        }
+      });
+      document.getElementById("btn-logout").onclick = () => {
+        localStorage.clear();
+        location.reload();
+      };
     </script>
-</body>
+  </body>
 </html>
