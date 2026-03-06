@@ -123,3 +123,25 @@ h3 {
     top: 50px;
   }
 }
+
+.titre_offre {
+  font-size: 40px;
+  -webkit-text-stroke-width: 2px; /* pour couleur contour texte */
+  -webkit-text-stroke-color: rgb(0, 166, 207);
+  margin-top: 0;
+}
+
+@media (max-width: 940px) {
+  .titre_offre {
+    padding-top: 50px;
+    margin-bottom: 0px;
+  }
+  .offres {
+    position: relative;
+    top: 50px;
+  }
+  .section-cv {
+    position: relative;
+    top: 85px;
+  }
+}

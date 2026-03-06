@@ -2,6 +2,9 @@
   text-align: center;
   margin-top: 0;
   margin-bottom: 50px;
+  font-size: 50px;
+  -webkit-text-stroke-width: 2px; /* pour couleur contour texte */
+  -webkit-text-stroke-color: rgb(26, 189, 230);
 }
 
 .tableau {
@@ -14,10 +17,9 @@
 }
 
 td {
-  border-top: 5px groove rgba(2, 49, 144, 0.721);
-  border-bottom: 5px groove rgba(2, 49, 144, 0.721);
-  max-width: 150px;
-  min-width: 150px;
+  border-top: 5px groove rgba(30, 171, 237, 0.721);
+  border-bottom: 5px groove rgba(30, 171, 237, 0.721);
+  min-width: 130px;
   text-align: center;
   padding: 20px;
   padding-left: 60px;
@@ -26,6 +28,8 @@ td {
 
 th {
   padding-bottom: 10px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
 }
 
 table {

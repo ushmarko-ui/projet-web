@@ -1,6 +1,6 @@
 body {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    linear-gradient(rgba(0, 0, 0, 0.497), rgba(0, 0, 0, 0.4)),
     url("../image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg");
   background-size: cover;
   background-position: center;
@@ -13,7 +13,7 @@ body {
 
 hr {
   height: 5px;
-  background-color: rgb(184, 240, 251, 0.5);
+  background-color: rgb(149, 199, 250);
   border: none;
   margin: 0;
 }

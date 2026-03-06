@@ -17,9 +17,11 @@
   text-transform: uppercase;
   letter-spacing: 5px; /* Ecarte les lettres */
   text-align: center;
-  text-shadow: 10px 0px 15px rgb(0, 0, 0);
   color: white;
+  text-shadow: 10px 0px 15px rgb(0, 0, 0);
   margin-top: 80px;
+  -webkit-text-stroke-width: 1px; /* pour couleur contour texte */
+  -webkit-text-stroke-color: rgb(237, 132, 40);
 }
 
 /* bouton du logo */
