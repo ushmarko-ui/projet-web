@@ -32,7 +32,6 @@
       .glass {
         background: var(--glass);
         backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 15px;
       }
@@ -135,6 +134,12 @@
           id="btn-ajout-etudiant"
           class="nav-link-custom bg-primary d-none"
           >Gestion Étudiants</a
+        >
+        <a
+          href="HTML/creation_entreprise.html"
+          id="btn-ajout-entreprise"
+          class="nav-link-custom bg-warning d-none"
+          >Gestion Entreprise</a
         >
         <a
           href="HTML/gestion_pilotes.html"
@@ -292,12 +297,18 @@
           document
             .getElementById("btn-ajout-pilote")
             .classList.remove("d-none");
+          document
+            .getElementById("btn-ajout-entreprise")
+            .classList.remove("d-none");
           document.getElementById("btn-login").classList.add("d-none");
           document.getElementById("btn-logout").classList.remove("d-none");
         }
         if (userRole === "pilote") {
           document
             .getElementById("btn-ajout-etudiant")
+            .classList.remove("d-none");
+          document
+            .getElementById("btn-ajout-entreprise")
             .classList.remove("d-none");
           document.getElementById("btn-login").classList.add("d-none");
           document.getElementById("btn-logout").classList.remove("d-none");
