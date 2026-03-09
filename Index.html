@@ -56,7 +56,8 @@
         transform: translateY(-3px);
         color: #ffcc00;
       }
-      .card-img-custom {
+
+      .hover .card-img-custom {
         transition: 0.4s;
         border-radius: 15px;
       }
@@ -67,12 +68,21 @@
       input::placeholder {
         color: white;
       }
+      .container {
+        margin: 0;
+      }
 
       h2 {
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: rgb(26, 189, 230);
         font-size: 30px;
         font-weight: bold;
+      }
+      .container {
+        margin: auto;
+      }
+      .hover-warning:hover {
+        color: #ffcc00 !important;
       }
     </style>
   </head>
@@ -115,16 +125,16 @@
       </h1>
     </header>
 
-    <nav class="container my-4">
+    <nav class="container-fluid px-lg-5">
       <hr class="border-2 opacity-50" />
       <div class="d-flex flex-wrap justify-content-center gap-3 py-2">
         <a href="./HTML/Trouver_mon_stage.html" class="glass nav-link-custom"
-          >Trouver mon stage</a
+          >Stage</a
         >
         <a
           href="./HTML/Trouver_une_entreprise.html"
           class="glass nav-link-custom"
-          >Trouver une entreprise</a
+          >Entreprise</a
         >
         <a href="./HTML/liste_de_souhait.html" class="glass nav-link-custom"
           >Liste de souhaits</a
@@ -146,6 +156,12 @@
           id="btn-ajout-pilote"
           class="nav-link-custom bg-info d-none"
           >Gestion Pilotes</a
+        >
+        <a
+          href="HTML/gestion_offres.html"
+          id="btn-ajout-offres"
+          class="nav-link-custom bg-dark d-none"
+          >Gestion Offres</a
         >
         <a
           href="./HTML/page_connexion.html"
@@ -191,19 +207,19 @@
       <div class="row g-4 justify-content-center mb-5">
         <div class="col-6 col-md-3">
           <img
-            src="./image/offres.png"
+            src="/image/offres.png"
             class="img-fluid card-img-custom shadow"
           />
         </div>
         <div class="col-6 col-md-3">
           <img
-            src="./image/offres.png"
+            src="/image/offres.png"
             class="img-fluid card-img-custom shadow"
           />
         </div>
         <div class="col-6 col-md-3">
           <img
-            src="./image/offres.png"
+            src="/image/offres.png"
             class="img-fluid card-img-custom shadow"
           />
         </div>
@@ -212,7 +228,7 @@
       <div class="row g-5 align-items-center mb-5">
         <div class="col-lg-6">
           <img
-            src="./image/SuivreCanditatures.png"
+            src="/image/SuivreCanditatures.png"
             class="img-fluid rounded-4 glass p-2"
           />
         </div>
@@ -279,6 +295,11 @@
           >Mentions légales</a
         >
       </div>
+      <div class="text-center">
+        <p class="text-white-50 small mb-0">
+          &copy; 2026 ReadyToWork. Tous droits réservés.
+        </p>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -300,6 +321,9 @@
           document
             .getElementById("btn-ajout-entreprise")
             .classList.remove("d-none");
+          document
+            .getElementById("btn-ajout-offres")
+            .classList.remove("d-none");
           document.getElementById("btn-login").classList.add("d-none");
           document.getElementById("btn-logout").classList.remove("d-none");
         }
@@ -309,6 +333,9 @@
             .classList.remove("d-none");
           document
             .getElementById("btn-ajout-entreprise")
+            .classList.remove("d-none");
+          document
+            .getElementById("btn-ajout-offres")
             .classList.remove("d-none");
           document.getElementById("btn-login").classList.add("d-none");
           document.getElementById("btn-logout").classList.remove("d-none");
