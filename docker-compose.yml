@@ -15,7 +15,6 @@ services:
     volumes:
       - ./init:/docker-entrypoint-initdb.d
 
-
   www:
     image: php:8.2-apache
     container_name: stage_explorer_www
@@ -23,5 +22,5 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html
-    depends_on:
-      - db
+    command: >
+      sh -c "a2enmod rewrite && docker-php-ext-install pdo pdo_mysql && apache2-foreground"
