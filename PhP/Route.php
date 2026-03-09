@@ -1,27 +1,65 @@
 <?php
+use Slim\Views\Twig;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 return function ($app) {
 
-    $app->get('/', function ($request, $response) {
-        return $this->get('view')->render($response, 'home.twig');
+    // --- ACCUEIL ---
+    $app->get('/', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, 'Index.html');
     });
 
-    $app->get('/search', function ($request, $response) {
-        $mot = $request->getQueryParams()['q'] ?? '';
-
-        $sql = "SELECT * FROM entreprises
-                WHERE nom LIKE :mot
-                   OR description LIKE :mot
-                   OR mots_cles LIKE :mot";
-
-        $stmt = $this->get('db')->prepare($sql);
-        $stmt->execute(['mot' => "%$mot%"]);
-        $entreprises = $stmt->fetchAll();
-
-        return $this->get('view')->render($response, 'search.twig', [
-            'entreprises' => $entreprises,
-            'mot' => $mot
-        ]);
+    // --- RECHERCHE ET OFFRES ---
+    $app->get('/trouver-stage', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/Trouver_mon_stage.html');
     });
 
+    $app->get('/trouver-entreprise', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/Trouver_une_entreprise.html');
+    });
+
+    // --- AUTHENTIFICATION ---
+    $app->get('/connexion', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/page_connexion.html');
+    });
+
+    $app->get('/inscription', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/page_creation_compte.html');
+    });
+
+    $app->get('/choix-role', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/choix_role.html');
+    });
+
+    // --- GESTION (ADMIN/PILOTE) ---
+    $app->get('/gestion-etudiants', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/gestion_etudiants.html');
+    });
+
+    $app->get('/gestion-offres', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/gestion_offres.html');
+    });
+
+    $app->get('/gestion-pilotes', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/gestion_pilotes.html');
+    });
+
+    $app->get('/creation-entreprise', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/creation_entreprise.html');
+    });
+
+    // --- UTILISATEUR ---
+    $app->get('/souhaits', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/liste_de_souhait.html');
+    });
+
+    // --- LÉGAL ---
+    $app->get('/mentions-legales', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/mentions.html');
+    });
+
+    $app->get('/politique-confidentialite', function (Request $request, Response $response) {
+        return Twig::fromRequest($request)->render($response, '/HTML/politique.html');
+    });
 };
