@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souhait-
+{% endblock %}
+
+{% block content %}
+
+	<style>
+
+		/* Titre avec contour cyan */
+		.titre_souhait {
+			text-align: center;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			font-size: 50px; /* Responsive font size */
+			font-weight: 800;
+			color: white;
+			-webkit-text-stroke-width: 2px;
+			-webkit-text-stroke-color: rgb(26, 189, 230);
+		}
+
+		/* Style du tableau */
+		.tableau-container {
+			background: rgba(0, 0, 0, 0.4);
+			border-radius: 15px;
+			padding: 20px;
+			backdrop-filter: blur(5px);
+		}
+
+		.table-souhaits {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		.table-souhaits th {
+			padding-bottom: 15px;
+			font-weight: bold;
+			color: white;
+			text-transform: uppercase;
+			font-size: 0.9rem;
+			text-align: center;
+		}
+
+		.table-souhaits td {
+			border-top: 5px groove rgba(30, 171, 237, 0.721);
+			border-bottom: 5px groove rgba(30, 171, 237, 0.721);
+			min-width: 130px;
+			text-align: center;
+			padding: 20px;
+			background: rgba(255, 255, 255, 0.05);
+			transition: 0.3s;
+		}
+
+		.table-souhaits tr:hover td {
+			background: rgba(30, 171, 237, 0.2);
+			color: #ffcc00;
+		}
+	</style>
+</head>
+
+<main class="container mb-5">
+	<h1 class="titre_souhait">⭐ Voici votre liste de souhaits</h1>
+
+	<div class="tableau-container table-responsive shadow-lg">
+		<table class="table-souhaits">
+			<thead>
+				<tr>
+					<th>Nom entreprise</th>
+					<th>Ville</th>
+					<th>Date du stage</th>
+					<th>Domaine</th>
+					<th>Niveau d'étude</th>
+					<th>Salaire</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Google</td>
+					<td>Paris</td>
+					<td>Juin 2026</td>
+					<td>Informatique</td>
+					<td>Bac +3</td>
+					<td>1200€</td>
+				</tr>
+				<tr>
+					<td>Tesla</td>
+					<td>Berlin</td>
+					<td>Septembre 2026</td>
+					<td>Ingénierie</td>
+					<td>Bac +5</td>
+					<td>1500€</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</main>{% endblock %}

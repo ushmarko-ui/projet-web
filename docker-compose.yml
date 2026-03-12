@@ -1,26 +1,16 @@
-version: "3.8"
+volumes:
+  logs:
+    driver: local
 
 services:
-  db:
-    image: mysql:8.0
-    container_name: stage_explorer_db
-    restart: always
+  slim:
+    build: .
+    working_dir: /var/www
+    command: php -S 0.0.0.0:8080 -t public
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: stage_explorer
-      MYSQL_USER: user_stage
-      MYSQL_PASSWORD: password_stage
+      docker: "true"
     ports:
-      - "3307:3306"
+      - "8080:8080"
     volumes:
-      - ./init:/docker-entrypoint-initdb.d
-
-  www:
-    image: php:8.2-apache
-    container_name: stage_explorer_www
-    ports:
-      - "8080:80"
-    volumes:
-      - .:/var/www/html
-    command: >
-      sh -c "a2enmod rewrite && docker-php-ext-install pdo pdo_mysql && apache2-foreground"
+      - .:/var/www
+      - logs:/var/www/logs

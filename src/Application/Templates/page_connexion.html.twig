@@ -98,7 +98,7 @@
   </head>
   <body>
     <div class="container d-flex flex-column align-items-center">
-      <img src="/image/ReadyToWork.png" alt="logo" class="logo-login" />
+      <img src="./image/ReadyToWork.png" alt="logo" class="logo-login" />
 
       <div class="glass-container text-center">
         <h2 class="text-white mb-4 fw-bold">S'identifier</h2>
@@ -160,14 +160,14 @@
         if (role === "admin") {
           if (userTape === "admin_user" && mdpTape === "admin123") {
             localStorage.setItem("userRole", "admin");
-            window.location.href = "../index.html";
+            window.location.href = "/";
           } else {
             errorSpan.innerText = "Identifiants Admin incorrects !";
           }
         } else if (role === "pilote") {
           if (userTape === "pilote_user" && mdpTape === "pilote123") {
             localStorage.setItem("userRole", "pilote");
-            window.location.href = "../index.html";
+            window.location.href = "/";
           } else {
             errorSpan.innerText = "Identifiants Pilote incorrects !";
           }
