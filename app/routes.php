@@ -13,6 +13,7 @@ use App\Application\Controller\HomeController;
 use App\Application\Controller\OffreController;
 use App\Application\Controller\EtudiantController;
 use App\Application\Controller\PiloteController;
+use App\Application\Controller\ConnexionController;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -25,7 +26,6 @@ return function (App $app) {
     $app->get('/souhait', [HomeController::class, 'souhait']);
     $app->get('/politique', [HomeController::class, 'politique']);
     $app->get('/role', [HomeController::class, 'role']);
-    $app->get('/connexion', [HomeController::class, 'connexion']);
     $app->get('/creation_entreprise', [EntrepriseController::class, 'creation_entreprise']);
     $app->get('/gestion_etudiants', [EtudiantController::class, 'gestion_etudiants']);
     $app->get('/gestion_pilotes', [PiloteController::class, 'gestion_pilotes']);
@@ -33,4 +33,7 @@ return function (App $app) {
     $app->get('/creation_compte', [HomeController::class, 'creation_compte']);
     $app->get('/mentions', [HomeController::class, 'mentions']);
     $app->get('/postule', [HomeController::class, 'Formulaire_postule']);
+    $app->get('/connexion',  [ConnexionController::class, 'afficher']);
+    $app->post('/connexion', [ConnexionController::class, 'connecter']);
+    $app->get('/deconnexion', [ConnexionController::class, 'deconnecter']);
 };

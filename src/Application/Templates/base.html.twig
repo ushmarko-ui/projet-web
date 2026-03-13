@@ -114,12 +114,26 @@
 				<a href="/stage" class="glass nav-link-custom">Stage</a>
 				<a href="/entreprise" class="glass nav-link-custom">Entreprise</a>
 				<a href="/souhait" class="glass nav-link-custom">Liste de souhaits</a>
-				<a href="/gestion_etudiants" id="btn-ajout-etudiant" class="nav-link-custom bg-primary d-none">Gestion Étudiants</a>
-				<a href="/creation_entreprise" id="btn-ajout-entreprise" class="nav-link-custom bg-warning d-none">Gestion Entreprise</a>
-				<a href="/gestion_pilotes" id="btn-ajout-pilote" class="nav-link-custom bg-info d-none">Gestion Pilotes</a>
-				<a href="/gestion_offres" id="btn-ajout-offres" class="nav-link-custom bg-dark d-none">Gestion Offres</a>
-				<a href="/page_connexion" id="btn-login" class="glass nav-link-custom border-primary d-none">Se connecter</a>
-				<a href="#" id="btn-logout" class="nav-link-custom bg-danger d-none">Déconnexion</a>
+
+				{% if role== 'admin' %}
+					<a href="/gestion_etudiants" id="btn-ajout-etudiant" class="nav-link-custom bg-primary">Gestion Étudiants</a>
+					<a href="/creation_entreprise" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
+					<a href="/gestion_pilotes" id="btn-ajout-pilote" class="nav-link-custom bg-info">Gestion Pilotes</a>
+					<a href="/gestion_offres" id="btn-ajout-offres" class="nav-link-custom bg-dark">Gestion Offres</a>
+				{% endif %}
+
+				{% if role== 'pilote' %}
+					<a href="/gestion_etudiants" id="btn-ajout-etudiant" class="nav-link-custom bg-primary">Gestion Étudiants</a>
+					<a href="/creation_entreprise" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
+					<a href="/gestion_pilotes" id="btn-ajout-pilote" class="nav-link-custom bg-info">Gestion Pilotes</a>
+					<a href="/gestion_offres" id="btn-ajout-offres" class="nav-link-custom bg-dark">Gestion Offres</a>
+				{% endif %}
+
+				{% if role %}
+					<a href="/deconnexion" id="btn-logout" class="nav-link-custom bg-danger">Déconnexion</a>
+					<a href="/page_connexion" id="btn-login" class="glass nav-link-custom border-primary d-none">Se connecter</a>
+				{% endif %}
+
 			</div>
 			<hr class="border-2 opacity-50"/>
 		</nav>
@@ -147,39 +161,6 @@
 				</div>
 			{% endblock %}
 		</footer>
-		<script>
-			// Ta logique JS reste la même, juste on adapte les classes d-none de Bootstrap
-document.addEventListener("DOMContentLoaded", function () {
-const userRole = localStorage.getItem("userRole");
-const btnEtudiant = document.getElementById("btn-ajout-etudiant");
-const btnPilote = document.getElementById("btn-ajout-pilote");
-const btnLogin = document.getElementById("btn-login");
-const btnLogout = document.getElementById("btn-logout");
-if (userRole === "admin") {
-document.getElementById("btn-ajout-etudiant").classList.remove("d-none");
-document.getElementById("btn-ajout-pilote").classList.remove("d-none");
-document.getElementById("btn-ajout-entreprise").classList.remove("d-none");
-document.getElementById("btn-ajout-offres").classList.remove("d-none");
-document.getElementById("btn-login").classList.add("d-none");
-document.getElementById("btn-logout").classList.remove("d-none");
-}
-if (userRole === "pilote") {
-document.getElementById("btn-ajout-etudiant").classList.remove("d-none");
-document.getElementById("btn-ajout-entreprise").classList.remove("d-none");
-document.getElementById("btn-ajout-offres").classList.remove("d-none");
-document.getElementById("btn-login").classList.add("d-none");
-document.getElementById("btn-logout").classList.remove("d-none");
-}
-if (userRole === "etudiant") {
-document;
-document.getElementById("btn-login").classList.add("d-none");
-document.getElementById("btn-logout").classList.remove("d-none");
-}
-});
-document.getElementById("btn-logout").onclick = () => {
-localStorage.clear();
-location.reload();
-};
-		</script>
+
 	</body>
 </html>

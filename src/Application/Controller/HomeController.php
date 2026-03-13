@@ -11,24 +11,28 @@ class HomeController
     public function home(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'index.html.twig', []);
+        $session = $request->getAttribute('session');
+        return $view->render($response, 'index.html.twig', ['role' => $session['userRole'] ?? '']);
     }
     public function stage(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'Trouver_mon_stage.html.twig', []);
+        $session = $request->getAttribute('session');
+        return $view->render($response, 'Trouver_mon_stage.html.twig', ['role' => $session['userRole'] ?? '']);
     }
 
     public function entreprise(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'Trouver_une_entreprise.html.twig', []);
+        $session = $request->getAttribute('session');
+        return $view->render($response, 'Trouver_une_entreprise.html.twig', ['role' => $session['userRole'] ?? '']);
     }
 
     public function souhait(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'liste_de_souhait.html.twig', []);
+        $session = $request->getAttribute('session');
+        return $view->render($response, 'liste_de_souhait.html.twig', ['role' => $session['userRole'] ?? '']);
     }
 
     public function politique(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
@@ -46,7 +50,8 @@ class HomeController
     public function connexion(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'page_connexion.html.twig', []);
+        $role = $request->getQueryParams()['role'] ?? '';
+        return $view->render($response, 'page_connexion.html.twig', ['role' => $role]);
     }
 
     public function creation_entreprise(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
@@ -83,6 +88,7 @@ class HomeController
     public function Formulaire_postule(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'Formulaire_postule.html.twig', []);
+        $session = $request->getAttribute('session');
+        return $view->render($response, 'Formulaire_postule.html.twig', ['role' => $session['userRole'] ?? '']);
     }
 }
