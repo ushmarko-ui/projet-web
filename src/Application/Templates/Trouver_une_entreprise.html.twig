@@ -5,83 +5,39 @@
 
 {% block content %}
 	<style>
-		/* Cartes Entreprises (Style Trouver_une_entreprise.css) */
-		.card-entreprise {
-			width: 350px;
-			height: 400px;
-			background: rgb(227, 230, 232);
-			border: 5px solid rgba(178, 100, 100, 0.4);
-			border-radius: 5px;
-			transition: 0.3s ease;
-			color: black;
-			overflow: hidden;
-			margin: auto;
-		}
-
-		.card-entreprise:hover {
-			transform: translateY(-10px);
-			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-		}
-
-		.card-entreprise img {
-			width: 100%;
-			height: 200px;
-			object-fit: cover;
-		}
-
 
 		h2 {
 			-webkit-text-stroke-width: 2px;
 			-webkit-text-stroke-color: rgb(26, 189, 230);
 		}
+		.offre-card {
+			background: rgba(255, 255, 255, 0.15);
+			backdrop-filter: blur(10px);
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			border-radius: 15px;
+		}
 	</style>
 </head>
 
 
-<main class="container mb-5">
+<main class="container py-5 text-center">
 	<h2 class="text-center fw-bold mb-5 py-3">
 		Trouver l'entreprise parfaite à vos besoins !
 	</h2>
 
 	<div class="row g-4 justify-content-center">
-		<div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-			<a href="/Index.html" class="text-decoration-none">
-				<div class="card-entreprise shadow-sm">
-					<img src="./image/recrutement.png" alt="Entreprise"/>
-					<div class="p-3">
-						<h3 class="h5 fw-bold text-center">Nom de l'entreprise</h3>
-						<p class="text-center mt-3">
-							Texte à personnaliser selon l'entreprise.
-						</p>
-					</div>
+		{% for entreprise in entreprises %}
+			<div class="col-md-4">
+				<div class="offre-card p-4 text-white">
+					<div class="fw-bold fs-5 mb-2">{{ entreprise.nom }}</div>
+					<div class="mb-2">{{ entreprise.domaine }}</div>
+					<div>📍
+						{{ entreprise.lieu }}</div>
+					<div>✉️
+						{{ entreprise.email }}</div>
+					<a href="/postule" class="btn btn-primary mt-2">Postule</a>
 				</div>
-			</a>
-		</div>
-		<div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-			<a href="/Index.html" class="text-decoration-none">
-				<div class="card-entreprise shadow-sm">
-					<img src="./image/recrutement.png" alt="Entreprise"/>
-					<div class="p-3">
-						<h3 class="h5 fw-bold text-center">Nom de l'entreprise</h3>
-						<p class="text-center mt-3">
-							Texte à personnaliser selon l'entreprise.
-						</p>
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-			<a href="/Index.html" class="text-decoration-none">
-				<div class="card-entreprise shadow-sm">
-					<img src="./image/recrutement.png" alt="Entreprise"/>
-					<div class="p-3">
-						<h3 class="h5 fw-bold text-center">Nom de l'entreprise</h3>
-						<p class="text-center mt-3">
-							Texte à personnaliser selon l'entreprise.
-						</p>
-					</div>
-				</div>
-			</a>
-		</div>
+			</div>
+		{% endfor %}
 	</div>
 </main>{% endblock %}
