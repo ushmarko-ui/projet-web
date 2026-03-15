@@ -14,7 +14,7 @@
 
 			body {
 				font-family: "Poppins", sans-serif;
-				background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("/image/panorama-lac-dallos-montagne-c-florianscala-1280x645-1734687992.jpg") no-repeat center center fixed;
+				background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("/image/background2.jpg") no-repeat center center fixed;
 				background-size: cover;
 				color: white;
 				min-height: 100vh;
@@ -51,9 +51,6 @@
 			.hover-warning:hover {
 				color: #ffcc00 !important;
 			}
-			#message {
-				height: 200px;
-			}
 		</style>
 	</head>
 	<body>
@@ -70,7 +67,7 @@
 					<span>Mon Profil</span>
 				</a>
 			</div>
-			<h1 class="text-center mt-5 fw-bold text-uppercase ls-5">
+			<h1 class="text-center mt-5 fw-bold text-uppercase">
 				ReadyToWork
 			</h1>
 		</header>
@@ -90,36 +87,43 @@
 			</div>
 			<hr class="border-2 opacity-50"/>
 		</nav>
-		<form>
+		<form action="/postule" method="POST" enctype="multipart/form-data">
 			<div class="container glass mt-5 py-4 w-50 d-flex flex-column align-items-center">
 				<div class="mb-3">
 					<h1>Postule<h1></div>
+						{% if success %}
+							<div class="alert alert-success">{{ success }}</div>
+						{% endif %}
+						{% if error %}
+							<div class="alert alert-danger">{{ error }}</div>
+						{% endif %}
+
 						<div class="mb-3 w-50">
 							<label for="Prenom">Prenom</label>
-							<input type="text" class="form-control" id="prenom" placeholder="Prenom">
+							<input type="text" name="prenom" class="form-control" id="prenom" placeholder="Prenom" required>
 						</div>
 						<div class="mb-3 w-50">
 							<label for="Nom">Nom</label>
-							<input type="text" class="form-control" id="nom" placeholder="Nom">
+							<input type="text" name="nom" class="form-control" id="nom" placeholder="Nom" required>
 						</div>
 						<div class="mb-3 w-50">
 							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="Mot_de_passe">
+							<input type="password" name="mot_de_passe" class="form-control" id="password" placeholder="Mot_de_passe" required>
 						</div>
 						<div class="mb-3 w-50">
 							<label for="email">Email address</label>
-							<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrer email">
+							<input type="email" name="email" class="form-control" id="email" placeholder="Entrer email" required>
 						</div>
 						<div class="mb-5 w-50">
 							<label for="Description">Message</label>
-							<input type="message" class="form-control" id="message" placeholder="Message">
+							<textarea class="form-control" name="description" id="textarea" rows="5" placeholder="Message"></textarea>
 						</div>
 						<div class="mb-5">
 							<label>fichier</label>
 							<input type="file" id="fichier" name="fichier" accept=".pdf, .docx" required/>
 							<input type="hidden" name="MAX_FILE_SIZE" value="2097152"/>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button id="validation" value="submit" type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</form>
 				<footer class="glass mt-5 py-4">
@@ -136,4 +140,4 @@
 			</body>
 		</html>
 	</body>
-</html>
+</html></body></html>

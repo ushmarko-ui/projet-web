@@ -99,11 +99,4 @@ class HomeController
         $view = Twig::fromRequest($request);
         return $view->render($response, 'mentions.html.twig', []);
     }
-
-    public function Formulaire_postule(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-    {
-        $view = Twig::fromRequest($request);
-        $session = $request->getAttribute('session');
-        return $view->render($response, 'Formulaire_postule.html.twig', ['role' => $session['userRole'] ?? '']);
-    }
 }

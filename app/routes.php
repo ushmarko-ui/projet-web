@@ -14,6 +14,7 @@ use App\Application\Controller\OffreController;
 use App\Application\Controller\EtudiantController;
 use App\Application\Controller\PiloteController;
 use App\Application\Controller\ConnexionController;
+use App\Application\Controller\PostuleController;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -32,8 +33,9 @@ return function (App $app) {
     $app->get('/gestion_offres', [OffreController::class, 'gestion_offres']);
     $app->get('/creation_compte', [HomeController::class, 'creation_compte']);
     $app->get('/mentions', [HomeController::class, 'mentions']);
-    $app->get('/postule', [HomeController::class, 'Formulaire_postule']);
     $app->get('/connexion',  [ConnexionController::class, 'afficher']);
     $app->post('/connexion', [ConnexionController::class, 'connecter']);
     $app->get('/deconnexion', [ConnexionController::class, 'deconnecter']);
+    $app->get('/postule',  [PostuleController::class, 'afficher2']);
+    $app->post('/postule', [PostuleController::class, 'traiter']);
 };
