@@ -144,22 +144,68 @@
 						</tr>
 					</thead>
 					<tbody id="pilote-table-body">
-						{% for pilote in pilotes %}
+						{% for gestion_pilote in gestion_pilotes %}
 							<tr>
 								<td class="text-center">
 									<button class="btn-delete btn-supprimer">🗑️</button>
 									<button class="btn-edit btn-modifier">✏️</button>
 								</td>
-								<td>{{ pilote.id }}</td>
-								<td>{{ pilote.Nom }}</td>
-								<td>{{ pilote.prenom }}</td>
-								<td>{{ pilote.ville }}</td>
-								<td>{{ pilote.email }}</td>
+								<td>{{ gestion_pilote.id }}</td>
+								<td>{{ gestion_pilote.Nom }}</td>
+								<td>{{ gestion_pilote.prenom }}</td>
+								<td>{{ gestion_pilote.ville }}</td>
+								<td>{{ gestion_pilote.email }}</td>
 							</tr>
 						{% endfor %}
 					</tbody>
-				</tbody>
-			</table>
-		</div>
+				</table>
+			</div>
+			<div class="mt-5">
+				<nav aria-label="Pagination">
+					<ul class="pagination mb-0 justify-content-center">
+						<li class="page-item">
+							<a class="page-link" href="?page={{ page - 1 }}">
+								&laquo; Page précédente
+							</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=1">1</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=2">2</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=3">3</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=4">4</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=5">5</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=6">6</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=7">7</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=8">8</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=9">9</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page=10">10</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link" href="?page={{ page + 1 }}">
+								Page suivante &raquo;
+							</a>
+						</li>
+					</li>
+				</ul>
+			</nav>
+		</body>
 	</body>
 </html>

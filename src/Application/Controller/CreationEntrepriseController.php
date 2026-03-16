@@ -6,13 +6,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 
-class EntrepriseController
+class CreationEntrepriseController
 {
-    public function entreprise(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    public function creation_entreprise(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        $session = $request->getAttribute('session');
-
         $entreprises = [
             ['id' => 1, 'nom' => 'Engie', 'domaine' => 'Informatique', 'lieu' => 'Paris', 'email' => 'contact@engie.com'],
             ['id' => 2, 'nom' => 'GreenLeaf', 'domaine' => 'Écologie', 'lieu' => 'Lyon', 'email' => 'contact@greenleaf.com'],
@@ -33,16 +31,15 @@ class EntrepriseController
             ['id' => 17, 'nom' => 'LogiChain', 'domaine' => 'Logistique', 'lieu' => 'Le Havre', 'email' => 'contact@logichain.com'],
             ['id' => 18, 'nom' => 'SpaceTech', 'domaine' => 'Aérospatial', 'lieu' => 'Toulouse', 'email' => 'contact@spacetech.com'],
         ];
-
         $page = (int)($request->getQueryParams()['page'] ?? 1);
-        $parPage = 9;
+        $parPage = 10;
         $offset = ($page - 1) * $parPage;
 
-        $entreprisesPagination = array_slice($entreprises, $offset, $parPage);
+        $Gestion_EntreprisePagination = array_slice($entreprises, $offset, $parPage);
 
-        return $view->render($response, 'Trouver_une_entreprise.html.twig', [
+        return $view->render($response, 'creation_entreprise.html.twig', [
             'role' => $session['userRole'] ?? '',
-            'entreprises' => $entreprisesPagination,
+            'gestion_entreprises' => $Gestion_EntreprisePagination,
             'page' => $page,
         ]);
     }
