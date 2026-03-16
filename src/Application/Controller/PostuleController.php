@@ -58,9 +58,7 @@ class PostuleController
                     $error = "Fichier trop volumineux (max 2MB).";
                 } else {
                     $uploadDir = __DIR__ . '/../../../public/uploads/';
-                    if (!is_dir($uploadDir)) {
-                        mkdir($uploadDir, 0755, true);
-                    }
+
                     $filename = basename($fichier->getClientFilename());
                     $fichier->moveTo($uploadDir . $filename);
                     $success = "Candidature envoyée avec succès, $prenom $nom !";
