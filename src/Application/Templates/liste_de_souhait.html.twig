@@ -55,6 +55,18 @@
 			background: rgba(30, 171, 237, 0.2);
 			color: #ffcc00;
 		}
+		.btn-delete {
+			background: none;
+			border: none;
+			opacity: 0.6;
+			transition: 0.3s;
+			font-size: 1.1rem;
+		}
+
+		.btn-delete:hover {
+			opacity: 1;
+			transform: scale(1.2);
+		}
 	</style>
 </head>
 
@@ -65,6 +77,7 @@
 		<table class="table-souhaits">
 			<thead>
 				<tr>
+					<th>Action</th>
 					<th>Nom entreprise</th>
 					<th>Ville</th>
 					<th>Date du stage</th>
@@ -76,6 +89,9 @@
 			{% for souhait in souhaits %}
 				<tbody>
 					<tr>
+						<td class="text-center">
+							<button class="btn-delete btn-supprimer">🗑️</button>
+						</td>
 						<td>{{ souhait.Nom }}</td>
 						<td>{{ souhait.Ville }}</td>
 						<td>{{ souhait.Date}}</td>
@@ -88,49 +104,49 @@
 		</table>
 	</div>
 	<div class="mt-5">
-					<nav aria-label="Pagination">
-						<ul class="pagination mb-0 justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="?page=1">
-									&laquo; Page précédente
-								</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=1">1</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=2">2</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=3">3</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=4">4</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=5">5</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=6">6</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=7">7</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=8">8</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=9">9</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=10">10</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=2">
-									Page suivante &raquo;
-								</a>
-							</li>
-						</ul>
-					</nav>
+		<nav aria-label="Pagination">
+			<ul class="pagination mb-0 justify-content-center">
+				<li class="page-item">
+					<a class="page-link" href="?page=1">
+						&laquo; Page précédente
+					</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=1">1</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=2">2</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=3">3</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=4">4</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=5">5</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=6">6</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=7">7</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=8">8</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=9">9</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=10">10</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" href="?page=2">
+						Page suivante &raquo;
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 </main>{% endblock %}
