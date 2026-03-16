@@ -73,24 +73,18 @@
 					<th>Salaire</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>Google</td>
-					<td>Paris</td>
-					<td>Juin 2026</td>
-					<td>Informatique</td>
-					<td>Bac +3</td>
-					<td>1200€</td>
-				</tr>
-				<tr>
-					<td>Tesla</td>
-					<td>Berlin</td>
-					<td>Septembre 2026</td>
-					<td>Ingénierie</td>
-					<td>Bac +5</td>
-					<td>1500€</td>
-				</tr>
-			</tbody>
+			{% for souhait in souhaits %}
+				<tbody>
+					<tr>
+						<td>{{ souhait.Nom }}</td>
+						<td>{{ souhait.Ville }}</td>
+						<td>{{ souhait.Date}}</td>
+						<td>{{ souhait.Domaine }}</td>
+						<td>{{ souhait.Niveau }}</td>
+						<td>{{ souhait.Salaire }}</td>
+					</tr>
+				</tbody>
+			{% endfor %}
 		</table>
 	</div>
 </main>{% endblock %}

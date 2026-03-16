@@ -15,16 +15,17 @@ use App\Application\Controller\EtudiantController;
 use App\Application\Controller\PiloteController;
 use App\Application\Controller\ConnexionController;
 use App\Application\Controller\PostuleController;
+use App\Application\Controller\SouhaitController;
+use App\Application\Controller\StageController;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
-        // CORS Pre-Flight OPTIONS Request Handler
         return $response;
     });
     $app->get('/', [HomeController::class, 'home']);
-    $app->get('/stage', [HomeController::class, 'stage']);
+    $app->get('/stage', [StageController::class, 'stage']);
     $app->get('/entreprise', [HomeController::class, 'entreprise']);
-    $app->get('/souhait', [HomeController::class, 'souhait']);
+    $app->get('/souhait', [SouhaitController::class, 'souhait']);
     $app->get('/politique', [HomeController::class, 'politique']);
     $app->get('/role', [HomeController::class, 'role']);
     $app->get('/creation_entreprise', [EntrepriseController::class, 'creation_entreprise']);
