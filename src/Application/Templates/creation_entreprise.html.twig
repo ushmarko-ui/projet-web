@@ -7,7 +7,7 @@
 
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
-
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 		<style>
 			body {
 				font-family: "Poppins", sans-serif;
@@ -69,19 +69,21 @@
 				color: white;
 			}
 
-			.btn-delete {
+			.btn-delete,
+			.btn-edit {
 				background: none;
 				border: none;
-				color: #ff4d4d;
 				opacity: 0.6;
 				transition: 0.3s;
 				font-size: 1.1rem;
 			}
 
-			.btn-delete:hover {
+			.btn-delete:hover,
+			.btn-edit:hover {
 				opacity: 1;
 				transform: scale(1.2);
 			}
+
 			.glass {
 				background: var(--glass);
 				backdrop-filter: blur(10px);
@@ -142,6 +144,7 @@
 							<tr>
 								<td class="text-center">
 									<button class="btn-delete btn-supprimer">🗑️</button>
+									<button class="btn-edit btn-modifier">✏️</button>
 								</td>
 								<td>{{ entreprise.id }}</td>
 								<td>{{ entreprise.nom}}</td>
@@ -155,56 +158,4 @@
 			</div>
 		</body>
 	</body>
-</html></div><script>
-
-{# A enlever et mettre dans controlleur #}
-document.getElementById("add-student-btn").onclick = function () {
-const inputs = {
-id: document.getElementById("input-id").value,
-fname: document.getElementById("input-fname").value,
-lname: document.getElementById("input-lname").value,
-user: document.getElementById("input-user").value,
-email: document.getElementById("input-email").value
-};
-
-if (inputs.id && inputs.fname && inputs.lname) {
-const tbody = document.getElementById("table-body");
-const row = tbody.insertRow();
-
-row.innerHTML = `
-                    <td class="text-center">
-                        <button class="btn-delete btn-supprimer">🗑️</button>
-                    </td>
-                    <td>${
-inputs.id
-}</td>
-                    <td>${
-inputs.fname
-}</td>
-                    <td>${
-inputs.lname
-}</td>
-                    <td>${
-inputs.user
-}</td>
-                    <td>${
-inputs.email
-}</td>
-                `;
-
-// Nettoyage des champs
-document.querySelectorAll("input.form-control").forEach((i) => (i.value = ""));
-} else {
-alert("Veuillez remplir au moins l'ID, le Prénom et le Nom.");
-}
-};
-
-// Logique de suppression
-document.getElementById("table-body").addEventListener("click", function (e) {
-const btn = e.target.closest(".btn-supprimer");
-if (btn) {
-if (confirm("Voulez-vous vraiment supprimer cet étudiant ?")) {
-btn.closest("tr").remove();
-}
-}
-});</script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body></html>
+</html>
