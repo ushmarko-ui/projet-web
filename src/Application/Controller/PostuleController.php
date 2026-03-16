@@ -24,7 +24,7 @@ class PostuleController
         $nom         = htmlspecialchars($data['nom']         ?? '', ENT_QUOTES, 'UTF-8');
         $email       = filter_var($data['email'] ?? '', FILTER_SANITIZE_EMAIL);
         $description = htmlspecialchars($data['description'] ?? '', ENT_QUOTES, 'UTF-8');
-        $mot_de_passe = htmlspecialchars($data['mot_de_passe'] ?? '', ENT_QUOTES, 'UTF-8');
+        $telephone = htmlspecialchars($data['telephone'] ?? '', ENT_QUOTES, 'UTF-8');
 
         $error   = null;
         $success = null;
@@ -39,6 +39,10 @@ class PostuleController
             $error = "Votre nom ne doit contenir que des lettres.";
         } elseif (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "L'adresse email '$email' n'est pas valide";
+        } elseif (empty($telephone)) {
+            $error = "le numero est obligatoire";
+        } elseif (!preg_match("/^[0-9]+$/", $telephone)) {
+            $error = "Votre numero ne doit pas contenir de lettre.";
         }
         // Gestion fichier
         if ($error === null) {
@@ -74,7 +78,7 @@ class PostuleController
             'nom'         => $nom,
             'email'       => $email,
             'description' => $description,
-            'mot_de_passe' => $mot_de_passe,
+            'telephone' => $telephone,
         ]);
     }
 }
