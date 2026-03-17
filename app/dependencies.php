@@ -9,6 +9,12 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Doctrine\DBAL\DriverManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\ORMSetup;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use UMA\DIC\Container;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -25,6 +31,26 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushHandler($handler);
 
             return $logger;
+        },
+        EntityManager::class => function (ContainerInterface $c) {
+            $settings = $c->get(SettingsInterface::class);
+
+            // Use the ArrayAdapter or the FilesystemAdapter depending on the value of the 'dev_mode' setting
+            // You can substitute the FilesystemAdapter for any other cache you prefer from the symfony/cache library
+            $cache = $settings['doctrine']['dev_mode'] ?
+                new ArrayAdapter() :
+                new FilesystemAdapter(directory: $settings['doctrine']['cache_dir']);
+
+            $config = ORMSetup::createAttributeMetadataConfiguration(
+                $settings['doctrine']['metadata_dirs'],
+                $settings['doctrine']['dev_mode'],
+                null,
+                $cache
+            );
+
+            $connection = DriverManager::getConnection($settings['doctrine']['connection']);
+
+            return new EntityManager($connection, $config);
         },
     ]);
 };

@@ -14,3 +14,20 @@ services:
     volumes:
       - .:/var/www
       - logs:/var/www/logs
+
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: toto
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 99:80
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=example
