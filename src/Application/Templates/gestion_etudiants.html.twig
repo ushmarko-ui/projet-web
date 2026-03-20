@@ -52,15 +52,15 @@
 				background-color: #72b1d5;
 				color: white;
 			}
+
 			.btn-delete,
 			.btn-edit {
 				background: none;
 				border: none;
-				opacity: 0.6;
 				transition: 0.3s;
-				font-size: 1.1rem;
-				text-decoration: none;
+				font-size: 20px;
 			}
+
 			.btn-delete:hover,
 			.btn-edit:hover {
 				opacity: 1;
@@ -119,7 +119,7 @@
 						{% for gestion_etudiant in gestion_etudiants %}
 							<tr>
 								<td class="text-center">
-									<form method="POST" action="/gestion_etudiants/supprimer/{{ gestion_etudiant.id }}" style="display:inline" onsubmit="return confirm('Supprimer cet étudiant ?')">
+									<form method="POST" action="/gestion_etudiants/supprimer/{{ gestion_etudiant.id }}" style="display:inline" onsubmit="return confirm('Supprimer ce compte étudiant ?')">
 										<button type="submit" class="btn-delete">🗑️</button>
 									</form>
 									<a href="/gestion_etudiants/modifier/{{ gestion_etudiant.id }}" class="btn-edit">✏️</a>

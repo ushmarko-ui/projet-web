@@ -78,9 +78,8 @@
 			.btn-edit {
 				background: none;
 				border: none;
-				opacity: 0.6;
 				transition: 0.3s;
-				font-size: 1.1rem;
+				font-size: 20px;
 			}
 
 			.btn-delete:hover,
@@ -108,28 +107,25 @@
 					<span class="fw-bold">ReadyToWork</span>
 				</a>
 			</div>
-			<div class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow border border-secondary border-opacity-10">
+			<form method="POST" action="/gestion_pilotes/ajouter" div class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow border border-secondary border-opacity-10">
 				<div class="col-auto">
 					<button class="btn btn-add-custom px-4 fw-bold shadow-sm" id="add-pilote-btn">
 						+
 					</button>
 				</div>
 				<div class="col-md-2">
-					<input type="text" id="pilote-id" class="form-control form-control-dark" placeholder="ID Pilote"/>
+					<input type="text" name="nom" id="pilote-last" class="form-control form-control-dark" placeholder="Nom Complet"/>
 				</div>
 				<div class="col-md-2">
-					<input type="text" id="pilote-last" class="form-control form-control-dark" placeholder="Nom Complet"/>
+					<input type="text" name="prenom" id="pilote-first" class="form-control form-control-dark" placeholder="Prenom"/>
 				</div>
 				<div class="col-md-2">
-					<input type="text" id="pilote-first" class="form-control form-control-dark" placeholder="Prenom"/>
+					<input type="text" name="lieu" id="pilote-centre" class="form-control form-control-dark" placeholder="Ville"/>
 				</div>
 				<div class="col-md-2">
-					<input type="text" id="pilote-centre" class="form-control form-control-dark" placeholder="Centre / Ville"/>
+					<input type="email" name="email" id="pilote-email" class="form-control form-control-dark" placeholder="E-mail Professionnel"/>
 				</div>
-				<div class="col-md-2">
-					<input type="email" id="pilote-email" class="form-control form-control-dark" placeholder="E-mail Professionnel"/>
-				</div>
-			</div>
+			</form>
 
 			<div class="table-responsive rounded">
 				<table class="table table-dark table-hover mb-0 table-custom">
@@ -147,13 +143,15 @@
 						{% for gestion_pilote in gestion_pilotes %}
 							<tr>
 								<td class="text-center">
-									<button class="btn-delete btn-supprimer">🗑️</button>
-									<button class="btn-edit btn-modifier">✏️</button>
+									<form method="POST" action="/gestion_pilotes/supprimer/{{ gestion_pilote.id }}" style="display:inline" onsubmit="return confirm('Supprimer ce compte pilote ?')">
+										<button type="submit" class="btn-delete">🗑️</button>
+									</form>
+									<a href="/gestion_pilotes/modifier/{{ gestion_pilote.id }}" class="btn-edit">✏️</a>
 								</td>
 								<td>{{ gestion_pilote.id }}</td>
-								<td>{{ gestion_pilote.Nom }}</td>
-								<td>{{ gestion_pilote.prenom }}</td>
-								<td>{{ gestion_pilote.ville }}</td>
+								<td>{{ gestion_pilote.nom}}</td>
+								<td>{{ gestion_pilote.prenom}}</td>
+								<td>{{ gestion_pilote.lieu}}</td>
 								<td>{{ gestion_pilote.email }}</td>
 							</tr>
 						{% endfor %}

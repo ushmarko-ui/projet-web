@@ -54,12 +54,12 @@ class Pilote
         $this->nom = $nom;
     }
 
-    public function getDomaine(): string
+    public function getPrenom(): string
     {
         return $this->prenom;
     }
 
-    public function setDomaine(string $prenom): void
+    public function setPrenom(string $prenom): void
     {
         $this->prenom = $prenom;
     }

@@ -74,9 +74,8 @@
 			.btn-edit {
 				background: none;
 				border: none;
-				opacity: 0.6;
 				transition: 0.3s;
-				font-size: 1.1rem;
+				font-size: 20px;
 			}
 
 			.btn-delete:hover,
@@ -148,7 +147,7 @@
 						{% for gestion_offre in gestion_offres %}
 							<tr>
 								<td class="text-center">
-									<form method="POST" action="/gestion_offres/supprimer/{{ gestion_offre.id }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
+									<form method="POST" action="/gestion_offres/supprimer/{{ gestion_offre.id }}" style="display:inline" onsubmit="return confirm('Supprimer cette offre ?')">
 										<button type="submit" class="btn-delete">🗑️</button>
 									</form>
 									<a href="/gestion_offres/modifier/{{ gestion_offre.id }}" class="btn-edit">✏️</a>
