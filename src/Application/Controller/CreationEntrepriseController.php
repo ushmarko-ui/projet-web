@@ -23,9 +23,9 @@ class CreationEntrepriseController
         $view = Twig::fromRequest($request);
         $repository = $this->em->getRepository(Entreprise::class);
 
-        $perPage = 10;
-        $page = isset($args['page']) ? (int)$args['page'] : 1;
-        $offset = ($page - 1) * $perPage;
+        $page = (int)($request->getQueryParams()['page'] ?? 1);
+        $parPage = 9;
+        $offset = ($page - 1) * $parPage;
 
         $totalEntreprises = $repository->createQueryBuilder('e')
             ->select('COUNT(e.id)')
@@ -35,11 +35,11 @@ class CreationEntrepriseController
         $creation_entreprises = $repository->createQueryBuilder('e')
             ->orderBy('e.id', 'ASC')
             ->setFirstResult($offset)
-            ->setMaxResults($perPage)
+            ->setMaxResults($parPage)
             ->getQuery()
             ->getResult();
 
-        $totalPages = (int)ceil($totalEntreprises / $perPage);
+        $totalPages = (int)ceil($totalEntreprises / $parPage);
 
         return $view->render($response, 'creation_entreprise.html.twig', [
             'creation_entreprises' => $creation_entreprises,

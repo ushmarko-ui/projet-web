@@ -104,34 +104,31 @@
 					<span class="fw-bold">ReadyToWork</span>
 				</a>
 			</div>
-			<div class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+			<form method="POST" action="/gestion_offres/ajouter" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
 				<div class="col-auto">
-					<button class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
+					<button type="submit" class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
 						+
 					</button>
 				</div>
 				<div class="col">
-					<input type="text" id="input-id" class="form-control form-control-dark" placeholder="ID"/>
+					<input type="text" name="nom" id="input-fname" class="form-control form-control-dark" placeholder="Nom entreprise"/>
 				</div>
 				<div class="col">
-					<input type="text" id="input-fname" class="form-control form-control-dark" placeholder="Nom entreprise"/>
+					<input type="text" name="domaine" id="input-lname" class="form-control form-control-dark" placeholder="Domaine"/>
 				</div>
 				<div class="col">
-					<input type="text" id="input-lname" class="form-control form-control-dark" placeholder="Domaine"/>
+					<input type="text" name="lieu" id="input-user" class="form-control form-control-dark" placeholder="Lieux"/>
 				</div>
 				<div class="col">
-					<input type="text" id="input-user" class="form-control form-control-dark" placeholder="Lieux"/>
+					<input type="email" name="email" id="input-email" class="form-control form-control-dark" placeholder="E-mail"/>
 				</div>
 				<div class="col">
-					<input type="email" id="input-email" class="form-control form-control-dark" placeholder="E-mail"/>
+					<input type="text" name="description" id="input-description" class="form-control form-control-dark" placeholder="Description"/>
 				</div>
 				<div class="col">
-					<input type="text" id="input-description" class="form-control form-control-dark" placeholder="Description"/>
+					<input type="text" name="duree" id="input-offres" class="form-control form-control-dark" placeholder="Duree stage"/>
 				</div>
-				<div class="col">
-					<input type="text" id="input-age" class="form-control form-control-dark" placeholder="Duree stage"/>
-				</div>
-			</div>
+			</form>
 
 			<div class="table-responsive rounded">
 				<table class="table table-dark table-hover mb-0 table-custom">
@@ -139,9 +136,9 @@
 						<tr>
 							<th class="text-center">Actions</th>
 							<th>ID</th>
-							<th>Name</th>
-							<th>Domain</th>
-							<th>Username</th>
+							<th>Nom</th>
+							<th>Domaine</th>
+							<th>Lieux</th>
 							<th>E-mail</th>
 							<th>Description</th>
 							<th>Time</th>
@@ -151,8 +148,10 @@
 						{% for gestion_offre in gestion_offres %}
 							<tr>
 								<td class="text-center">
-									<button class="btn-delete btn-supprimer">🗑️</button>
-									<button class="btn-edit btn-modifier">✏️</button>
+									<form method="POST" action="/gestion_offres/supprimer/{{ gestion_offre.id }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
+										<button type="submit" class="btn-delete">🗑️</button>
+									</form>
+									<a href="/gestion_offres/modifier/{{ gestion_offre.id }}" class="btn-edit">✏️</a>
 								</td>
 								<td>{{ gestion_offre.id }}</td>
 								<td>{{ gestion_offre.nom }}</td>

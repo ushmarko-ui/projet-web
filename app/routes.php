@@ -31,7 +31,6 @@ return function (App $app) {
     $app->get('/role', [HomeController::class, 'role']);
     $app->get('/gestion_etudiants', [EtudiantController::class, 'gestion_etudiants']);
     $app->get('/gestion_pilotes', [PiloteController::class, 'gestion_pilotes']);
-    $app->get('/gestion_offres', [OffreController::class, 'gestion_offres']);
     $app->get('/creation_compte', [HomeController::class, 'creation_compte']);
     $app->get('/mentions', [HomeController::class, 'mentions']);
     $app->get('/connexion',  [ConnexionController::class, 'afficher']);
@@ -44,4 +43,9 @@ return function (App $app) {
     $app->get('/creation_entreprise/modifier/{id}', [CreationEntrepriseController::class, 'modifier'])->setName('modifier-entreprise');
     $app->post('/creation_entreprise/modifier/{id}', [CreationEntrepriseController::class, 'modifier']);
     $app->post('/creation_entreprise/supprimer/{id}', [CreationEntrepriseController::class, 'supprimer'])->setName('supprimer-entreprise');
+    $app->get('/gestion_offres', [OffreController::class, 'gestion_offres'])->setName('gestion_offres');
+    $app->post('/gestion_offres/ajouter', [OffreController::class, 'ajoute']);
+    $app->get('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier'])->setName('modifier-offres');
+    $app->post('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier']);
+    $app->post('/gestion_offres/supprimer/{id}', [OffreController::class, 'supprimer'])->setName('supprimer-offres');
 };
