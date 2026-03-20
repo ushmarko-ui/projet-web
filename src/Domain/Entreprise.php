@@ -1,6 +1,6 @@
 <?php
 
-// src/Domain/User.php
+namespace App\Domain;
 
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping\Column;
@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity, Table(name: 'entreprises')]
-final class Entreprise
+class Entreprise
 {
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $id;
@@ -18,12 +18,24 @@ final class Entreprise
     #[Column(type: 'string', nullable: false)]
     private string $nom;
 
+    #[Column(type: 'string', nullable: false)]
+    private string $domaine;
+
+    #[Column(type: 'string', nullable: false)]
+    private string $lieu;
+
+    #[Column(type: 'string', nullable: false)]
+    private string $email;
+
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom)
+    public function __construct(string $nom, string $domaine, string $lieu, string $email)
     {
         $this->nom = $nom;
+        $this->domaine = $domaine;
+        $this->lieu = $lieu;
+        $this->email = $email;
         $this->createdAt = new DateTimeImmutable('now');
     }
 
@@ -35,6 +47,41 @@ final class Entreprise
     public function getNom(): string
     {
         return $this->nom;
+    }
+
+    public function setNom(string $nom): void
+    {
+        $this->nom = $nom;
+    }
+
+    public function getDomaine(): string
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(string $domaine): void
+    {
+        $this->domaine = $domaine;
+    }
+
+    public function getLieu(): string
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(string $lieu): void
+    {
+        $this->lieu = $lieu;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
     public function getCreatedAt(): DateTimeImmutable

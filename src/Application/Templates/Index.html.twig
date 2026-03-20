@@ -30,70 +30,75 @@
 
 	<main class="container py-5 text-center">
 		<h2 class="mb-5">Offres Récentes</h2>
-		<div class="row g-4 justify-content-center carousel slide">
+		<div class="row g-4 justify-content-center">
 			{% for offre in offres %}
 				<div class="col-md-4">
-					<div class="offre-card p-4 text-white mb-3 carousel-item active">
-						<div class="fw-bold fs-5 mb-2">{{ offre.nom }}</div>
-						<div class="mb-2">{{ offre.domaine }}</div>
-						<div>📍
-							{{ offre.lieu }}</div>
-						<div>✉️
-							{{ offre.email }}</div>
-						<div>⏱️
-							{{ offre.duree }}</div>
-						<div class="mt-2">{{ offre.description }}</div>
-						<a href="/postule" class="btn btn-primary mt-2" role="button" aria-pressed="true">Postule</a>
-						<a href="/souhait" class="btn btn-primary mt-2" role="button" aria-pressed="true">Enregistre</a>
-						<a href="/souhait" class="btn btn-primary mt-2" role="button" aria-pressed="true">Statistique</a>
-
-						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
+					<div id="carousel-{{ offre.id }}" class="carousel slide offre-card p-4 text-white mb-3">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<div class="fw-bold fs-5 mb-2">{{ offre.nom }}</div>
+								<div class="mb-2">{{ offre.domaine }}</div>
+								<div>📍
+									{{ offre.lieu }}</div>
+								<div>✉️
+									{{ offre.email }}</div>
+								<div>⏱️
+									{{ offre.duree }}</div>
+								<div class="mt-2">{{ offre.description }}</div>
+								<a href="/postule" class="btn btn-primary mt-2">Postule</a>
+								<a href="/souhait" class="btn btn-primary mt-2">Enregistre</a>
+								<a href="/souhait" class="btn btn-primary mt-2">Statistique</a>
+							</div>
+							<div class="carousel-item">
+								{% if loop.first %}
+									<h1>feur</h1>
+								{% endif %}
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ offre.id }}" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon"></span>
 						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
+						<button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ offre.id }}" data-bs-slide="next">
+							<span class="carousel-control-next-icon"></span>
 						</button>
 					</div>
 				</div>
 			{% endfor %}
-		</div>
 
-		<div class="row g-5 align-items-center mb-5">
-			<div class="col-lg-6">
-				<img src="./image/SuivreCanditatures.png" class="img-fluid rounded-4 glass p-2"/>
-			</div>
-			<div class="col-lg-6 glass p-5">
-				<h3>Suivez votre candidature</h3>
-				<p class="text-light">
-					Gardez le contrôle à chaque étape. Postulez en toute sérénité et																																																																																																																												                recevez des notifications en temps réel.
-				</p>
-				<button class="btn btn-light rounded-pill px-4 fw-bold">Voir mes candidatures</button>
-			</div>
+			<div class="row g-5 align-items-center mb-5">
+				<div class="col-lg-6">
+					<img src="./image/SuivreCanditatures.png" class="img-fluid rounded-4 glass p-2"/>
+				</div>
+				<div class="col-lg-6 glass p-5">
+					<h3>Suivez votre candidature</h3>
+					<p class="text-light">
+						Gardez le contrôle à chaque étape. Postulez en toute sérénité et																																																																																																																												                recevez des notifications en temps réel.
+					</p>
+					<button class="btn btn-light rounded-pill px-4 fw-bold">Voir mes candidatures</button>
+				</div>
 
-			<div class="col-lg-6">
-				<img src="./image/TrouverStage.png" class="img-fluid rounded-4 glass p-2"/>
-			</div>
-			<div class="col-lg-6 glass p-5">
-				<h3>Trouver mon stage</h3>
-				<p class="text-light">
-					Rémunération, télétravail, avantages… Toutes les informations
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												                essentielles sont claires dès le départ pour vous aider à faire le bon choix.
-				</p>
-				<a href="/stage" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les offres</a>
-			</div>
+				<div class="col-lg-6">
+					<img src="./image/TrouverStage.png" class="img-fluid rounded-4 glass p-2"/>
+				</div>
+				<div class="col-lg-6 glass p-5">
+					<h3>Trouver mon stage</h3>
+					<p class="text-light">
+						Rémunération, télétravail, avantages… Toutes les informations
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												                essentielles sont claires dès le départ pour vous aider à faire le bon choix.
+					</p>
+					<a href="/stage" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les offres</a>
+				</div>
 
-			<div class="col-lg-6">
-				<img src="./image/TrouverEntreprise.jpg" class="img-fluid rounded-4 glass p-2" style="max-width: 277px; min-height: 220px"/>
+				<div class="col-lg-6">
+					<img src="./image/TrouverEntreprise.jpg" class="img-fluid rounded-4 glass p-2" style="max-width: 277px; min-height: 220px"/>
+				</div>
+				<div class="col-lg-6 glass p-5">
+					<h3>Trouver les entreprises qui me correspondent</h3>
+					<p class="text-light">
+						Processus de recrutement, délais de réponse, conditions de travail…																																																																																																																																																																																																																																																																																																																																															Accédez à des informations fiables et gagnez du temps dans votre recherche.
+					</p>
+					<a href="/entreprise" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les entreprises</a>
+				</div>
 			</div>
-			<div class="col-lg-6 glass p-5">
-				<h3>Trouver les entreprises qui me correspondent</h3>
-				<p class="text-light">
-					Processus de recrutement, délais de réponse, conditions de travail…																																																																																																																																																																																																																																																																																																																																															Accédez à des informations fiables et gagnez du temps dans votre recherche.
-				</p>
-				<a href="/entreprise" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les entreprises</a>
-			</div>
-		</div>
-	</main>
-{% endblock %}
+		</main>
+	{% endblock %}

@@ -104,28 +104,25 @@
 					<span class="fw-bold">ReadyToWork</span>
 				</a>
 			</div>
-			<div class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+			<form method="POST" action="/creation_entreprise/ajouter" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
 				<div class="col-auto">
-					<button class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
+					<button type="submit" class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
 						+
 					</button>
 				</div>
 				<div class="col">
-					<input type="text" id="input-id" class="form-control form-control-dark" placeholder="ID"/>
+					<input type="text" name="nom" class="form-control form-control-dark" placeholder="Nom entreprise"/>
 				</div>
 				<div class="col">
-					<input type="text" id="input-fname" class="form-control form-control-dark" placeholder="Nom entreprise"/>
+					<input type="text" name="domaine" class="form-control form-control-dark" placeholder="Domaine"/>
 				</div>
 				<div class="col">
-					<input type="text" id="input-lname" class="form-control form-control-dark" placeholder="Domaine"/>
+					<input type="text" name="lieu" class="form-control form-control-dark" placeholder="Lieux"/>
 				</div>
 				<div class="col">
-					<input type="text" id="input-user" class="form-control form-control-dark" placeholder="Lieux"/>
+					<input type="email" name="email" class="form-control form-control-dark" placeholder="E-mail"/>
 				</div>
-				<div class="col">
-					<input type="email" id="input-email" class="form-control form-control-dark" placeholder="E-mail"/>
-				</div>
-			</div>
+			</form>
 
 			<div class="table-responsive rounded">
 				<table class="table table-dark table-hover mb-0 table-custom">
@@ -133,75 +130,77 @@
 						<tr>
 							<th class="text-center">Actions</th>
 							<th>ID</th>
-							<th>Name</th>
-							<th>Domain</th>
-							<th>Username</th>
+							<th>Nom</th>
+							<th>Domaine</th>
+							<th>Lieux</th>
 							<th>E-mail</th>
 						</tr>
 					</thead>
 					<tbody id="table-body">
-						{% for gestion_entreprise in gestion_entreprises %}
+						{% for creation_entreprise in creation_entreprises %}
 							<tr>
 								<td class="text-center">
-									<button class="btn-delete btn-supprimer">🗑️</button>
-									<button class="btn-edit btn-modifier">✏️</button>
+									<form method="POST" action="/creation_entreprise/supprimer/{{ creation_entreprise.id }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
+										<button type="submit" class="btn-delete">🗑️</button>
+									</form>
+									<a href="/creation_entreprise/modifier/{{ creation_entreprise.id }}" class="btn-edit">✏️</a>
 								</td>
-								<td>{{ gestion_entreprise.id }}</td>
-								<td>{{ gestion_entreprise.nom}}</td>
-								<td>{{ gestion_entreprise.domaine }}</td>
-								<td>{{ gestion_entreprise.lieu }}</td>
-								<td>{{ gestion_entreprise.email }}</td>
+								<td>{{ creation_entreprise.id }}</td>
+								<td>{{ creation_entreprise.nom }}</td>
+								<td>{{ creation_entreprise.domaine }}</td>
+								<td>{{ creation_entreprise.lieu }}</td>
+								<td>{{ creation_entreprise.email }}</td>
 							</tr>
 						{% endfor %}
 					</tbody>
 				</table>
 			</div>
-			<div class="mt-5">
-				<nav aria-label="Pagination">
-					<ul class="pagination mb-0 justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="?page=1">
-								&laquo; Page précédente
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=1">1</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=2">2</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=3">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=4">4</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=5">5</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=6">6</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=7">7</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=8">8</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=9">9</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=10">10</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="?page=2">
-								Page suivante &raquo;
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</body>
+		</div>
+		<div class="mt-5">
+			<nav aria-label="Pagination">
+				<ul class="pagination mb-0 justify-content-center">
+					<li class="page-item">
+						<a class="page-link" href="?page=1">
+							&laquo; Page précédente
+						</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=1">1</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=2">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=3">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=4">4</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=5">5</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=6">6</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=7">7</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=8">8</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=9">9</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=10">10</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="?page=2">
+							Page suivante &raquo;
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	</body>
 </html>
