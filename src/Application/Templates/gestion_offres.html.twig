@@ -103,7 +103,7 @@
 					<span class="fw-bold">ReadyToWork</span>
 				</a>
 			</div>
-			<form method="POST" action="/gestion_offres/ajouter" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+			<form method="POST" action="{{ url_for('ajout-offres') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
 				<div class="col-auto">
 					<button type="submit" class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
 						+
@@ -147,10 +147,10 @@
 						{% for gestion_offre in gestion_offres %}
 							<tr>
 								<td class="text-center">
-									<form method="POST" action="/gestion_offres/supprimer/{{ gestion_offre.id }}" style="display:inline" onsubmit="return confirm('Supprimer cette offre ?')">
+									<form method="POST" action="{{ url_for('supprimer-offres', { 'id': gestion_offre.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer cette offre ?')">
 										<button type="submit" class="btn-delete">🗑️</button>
 									</form>
-									<a href="/gestion_offres/modifier/{{ gestion_offre.id }}" class="btn-edit">✏️</a>
+									<a href="{{ url_for('modifier-offres', { 'id': gestion_offre.id }) }}" class="btn-edit">✏️</a>
 								</td>
 								<td>{{ gestion_offre.id }}</td>
 								<td>{{ gestion_offre.nom }}</td>

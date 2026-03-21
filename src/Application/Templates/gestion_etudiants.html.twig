@@ -85,7 +85,7 @@
 				</a>
 			</div>
 
-			<form method="POST" action="/gestion_etudiants/ajouter" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+			<form method="POST" action="{{ url_for('ajout-etudiants') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
 				<div class="col-auto">
 					<button type="submit" class="btn btn-add-custom px-4 fw-bold">+</button>
 				</div>
@@ -119,10 +119,10 @@
 						{% for gestion_etudiant in gestion_etudiants %}
 							<tr>
 								<td class="text-center">
-									<form method="POST" action="/gestion_etudiants/supprimer/{{ gestion_etudiant.id }}" style="display:inline" onsubmit="return confirm('Supprimer ce compte étudiant ?')">
+									<form method="POST" action="{{ url_for('supprimer-etudiants', { 'id': gestion_etudiant.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer ce compte étudiant ?')">
 										<button type="submit" class="btn-delete">🗑️</button>
 									</form>
-									<a href="/gestion_etudiants/modifier/{{ gestion_etudiant.id }}" class="btn-edit">✏️</a>
+									<a href="{{ url_for('modifier-etudiants', { 'id': gestion_etudiant.id }) }}" class="btn-edit">✏️</a>
 								</td>
 								<td>{{ gestion_etudiant.id }}</td>
 								<td>{{ gestion_etudiant.prenom }}</td>

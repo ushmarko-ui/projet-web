@@ -103,7 +103,7 @@
 					<span class="fw-bold">ReadyToWork</span>
 				</a>
 			</div>
-			<form method="POST" action="/creation_entreprise/ajouter" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+			<form method="POST" action="{{ url_for('ajout-entreprise') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
 				<div class="col-auto">
 					<button type="submit" class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
 						+
@@ -139,10 +139,10 @@
 						{% for creation_entreprise in creation_entreprises %}
 							<tr>
 								<td class="text-center">
-									<form method="POST" action="/creation_entreprise/supprimer/{{ creation_entreprise.id }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
+									<form method="POST" action="{{ url_for('supprimer-entreprise', { 'id': creation_entreprise.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
 										<button type="submit" class="btn-delete">🗑️</button>
 									</form>
-									<a href="/creation_entreprise/modifier/{{ creation_entreprise.id }}" class="btn-edit">✏️</a>
+									<a href="{{ url_for('modifier-entreprise', { 'id': creation_entreprise.id }) }}" class="btn-edit">✏️</a>
 								</td>
 								<td>{{ creation_entreprise.id }}</td>
 								<td>{{ creation_entreprise.nom }}</td>
