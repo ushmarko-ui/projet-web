@@ -14,7 +14,7 @@ use App\Application\Controller\OffreController;
 use App\Application\Controller\EtudiantController;
 use App\Application\Controller\PiloteController;
 use App\Application\Controller\ConnexionController;
-use App\Application\Controller\CreationEntrepriseController;
+use App\Application\Controller\GestionEntreprise;
 use App\Application\Controller\PostuleController;
 use App\Application\Controller\SouhaitController;
 use App\Application\Controller\StageController;
@@ -36,12 +36,12 @@ return function (App $app) {
     $app->get('/postule',  [PostuleController::class, 'afficher2']);
     $app->post('/postule', [PostuleController::class, 'traiter']);
 
-    $app->get('/creation_entreprise', [CreationEntrepriseController::class, 'creation_entreprise'])->setName('creation_entreprise');
-    $app->post('/creation_entreprise/ajouter', [CreationEntrepriseController::class, 'ajoute']);
-    $app->get('/creation_entreprise/ajouter', [CreationEntrepriseController::class, 'ajoute'])->setName('ajout-entreprise');
-    $app->get('/creation_entreprise/modifier/{id}', [CreationEntrepriseController::class, 'modifier'])->setName('modifier-entreprise');
-    $app->post('/creation_entreprise/modifier/{id}', [CreationEntrepriseController::class, 'modifier']);
-    $app->post('/creation_entreprise/supprimer/{id}', [CreationEntrepriseController::class, 'supprimer'])->setName('supprimer-entreprise');
+    $app->get('/gestion_entreprises', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
+    $app->post('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute']);
+    $app->get('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute'])->setName('ajout-entreprise');
+    $app->get('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier'])->setName('modifier-entreprise');
+    $app->post('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier']);
+    $app->post('/gestion_entreprises/supprimer/{id}', [GestionEntreprise::class, 'supprimer'])->setName('supprimer-entreprise');
 
     $app->get('/gestion_offres', [OffreController::class, 'gestion_offres'])->setName('gestion_offres');
     $app->post('/gestion_offres/ajouter', [OffreController::class, 'ajoute']);

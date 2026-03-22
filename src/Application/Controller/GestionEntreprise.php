@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use Slim\Routing\RouteContext;
 
-class CreationEntrepriseController
+class GestionEntreprise
 {
     private EntityManager $em;
 
@@ -18,7 +18,7 @@ class CreationEntrepriseController
         $this->em = $em;
     }
 
-    public function creation_entreprise(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    public function gestion_entreprises(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
         $repository = $this->em->getRepository(Entreprise::class);
@@ -32,7 +32,7 @@ class CreationEntrepriseController
             ->getQuery()
             ->getSingleScalarResult();
 
-        $creation_entreprises = $repository->createQueryBuilder('e')
+        $gestion_entreprises = $repository->createQueryBuilder('e')
             ->orderBy('e.id', 'ASC')
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
@@ -41,8 +41,8 @@ class CreationEntrepriseController
 
         $totalPages = (int)ceil($totalEntreprises / $parPage);
 
-        return $view->render($response, 'creation_entreprise.html.twig', [
-            'creation_entreprises' => $creation_entreprises,
+        return $view->render($response, 'gestion_entreprises.html.twig', [
+            'gestion_entreprises' => $gestion_entreprises,
             'page' => $page,
             'totalPages' => $totalPages,
         ]);
@@ -65,7 +65,7 @@ class CreationEntrepriseController
         }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-        $url = $routeParser->urlFor('creation_entreprise');
+        $url = $routeParser->urlFor('gestion_entreprises');
         return $response->withHeader('Location', $url)->withStatus(302);
     }
 
@@ -95,11 +95,11 @@ class CreationEntrepriseController
             }
 
             $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            $url = $routeParser->urlFor('creation_entreprise');
+            $url = $routeParser->urlFor('gestion_entreprises');
             return $response->withHeader('Location', $url)->withStatus(302);
         }
 
-        return $view->render($response, 'creation_entreprise.html.twig', [
+        return $view->render($response, 'gestion_entreprises.html.twig', [
             'entreprise' => $entreprise,
         ]);
     }
@@ -115,7 +115,7 @@ class CreationEntrepriseController
         }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-        $url = $routeParser->urlFor('creation_entreprise');
+        $url = $routeParser->urlFor('gestion_entreprises');
         return $response->withHeader('Location', $url)->withStatus(302);
     }
 }

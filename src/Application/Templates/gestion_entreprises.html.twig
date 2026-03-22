@@ -1,0 +1,58 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Gestion des Entreprises
+{% endblock %}
+{% block heading %}Gestion des Entreprises
+{% endblock %}
+{% block content %}
+	<form method="POST" action="{{ url_for('ajout-entreprise') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+		<div class="col-auto">
+			<button type="submit" class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
+				+
+			</button>
+		</div>
+		<div class="col">
+			<input type="text" name="nom" class="form-control form-control-dark" placeholder="Nom entreprise"/>
+		</div>
+		<div class="col">
+			<input type="text" name="domaine" class="form-control form-control-dark" placeholder="Domaine"/>
+		</div>
+		<div class="col">
+			<input type="text" name="lieu" class="form-control form-control-dark" placeholder="Lieux"/>
+		</div>
+		<div class="col">
+			<input type="email" name="email" class="form-control form-control-dark" placeholder="E-mail"/>
+		</div>
+	</form>
+
+	<div class="table-responsive rounded">
+		<table class="table table-dark table-hover mb-0 table-custom">
+			<thead>
+				<tr>
+					<th class="text-center">Actions</th>
+					<th>ID</th>
+					<th>Nom</th>
+					<th>Domaine</th>
+					<th>Lieux</th>
+					<th>E-mail</th>
+				</tr>
+			</thead>
+			<tbody id="table-body">
+				{% for gestion_entreprise in gestion_entreprises %}
+					<tr>
+						<td class="text-center">
+							<form method="POST" action="{{ url_for('supprimer-entreprise', { 'id': gestion_entreprise.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
+								<button type="submit" class="btn-delete">🗑️</button>
+							</form>
+							<a href="{{ url_for('modifier-entreprise', { 'id': gestion_entreprise.id }) }}" class="btn-edit">✏️</a>
+						</td>
+						<td>{{ gestion_entreprise.id }}</td>
+						<td>{{ gestion_entreprise.nom }}</td>
+						<td>{{ gestion_entreprise.domaine }}</td>
+						<td>{{ gestion_entreprise.lieu }}</td>
+						<td>{{ gestion_entreprise.email }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
