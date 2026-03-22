@@ -23,7 +23,7 @@ class EtudiantController
         $view = Twig::fromRequest($request);
         $repository = $this->em->getRepository(Etudiant::class);
 
-        $page = (int)($request->getQueryParams()['page'] ?? 1);
+        $page = isset($args['page']) ? (int)$args['page'] : 1;
         $parPage = 9;
         $offset = ($page - 1) * $parPage;
 

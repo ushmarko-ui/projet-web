@@ -24,8 +24,8 @@ return function (App $app) {
         return $response;
     });
     $app->get('/', [HomeController::class, 'home']);
-    $app->get('/stage', [StageController::class, 'stage']);
-    $app->get('/entreprise', [EntrepriseController::class, 'entreprise']);
+    $app->get('/stage[/{page:\d+}]', [StageController::class, 'stage'])->setName('stage');
+    $app->get('/entreprise[/{page:\d+}]', [EntrepriseController::class, 'entreprise'])->setName('entreprise');
     $app->get('/souhait', [SouhaitController::class, 'souhait']);
     $app->get('/politique', [HomeController::class, 'politique']);
     $app->get('/role', [HomeController::class, 'role']);
@@ -36,28 +36,28 @@ return function (App $app) {
     $app->get('/postule',  [PostuleController::class, 'afficher2']);
     $app->post('/postule', [PostuleController::class, 'traiter']);
 
-    $app->get('/gestion_entreprises', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
+    $app->get('/gestion_entreprises[/{page:\d+}]', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
     $app->post('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute']);
-    $app->get('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute'])->setName('ajout-entreprise');
-    $app->get('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier'])->setName('modifier-entreprise');
+    $app->get('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute'])->setName('ajout-entreprises');
+    $app->get('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier'])->setName('modifier-entreprises');
     $app->post('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier']);
-    $app->post('/gestion_entreprises/supprimer/{id}', [GestionEntreprise::class, 'supprimer'])->setName('supprimer-entreprise');
+    $app->post('/gestion_entreprises/supprimer/{id}', [GestionEntreprise::class, 'supprimer'])->setName('supprimer-entreprises');
 
-    $app->get('/gestion_offres', [OffreController::class, 'gestion_offres'])->setName('gestion_offres');
+    $app->get('/gestion_offres[/{page:\d+}]', [OffreController::class, 'gestion_offres'])->setName('gestion_offres');
     $app->post('/gestion_offres/ajouter', [OffreController::class, 'ajoute']);
     $app->get('/gestion_offres/ajouter', [OffreController::class, 'ajoute'])->setName('ajout-offres');
     $app->get('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier'])->setName('modifier-offres');
     $app->post('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier']);
     $app->post('/gestion_offres/supprimer/{id}', [OffreController::class, 'supprimer'])->setName('supprimer-offres');
 
-    $app->get('/gestion_etudiants', [EtudiantController::class, 'gestion_etudiants'])->setName('gestion_etudiants');
+    $app->get('/gestion_etudiants[/{page:\d+}]', [EtudiantController::class, 'gestion_etudiants'])->setName('gestion_etudiants');
     $app->post('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute']);
     $app->get('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute'])->setName('ajout-etudiants');
     $app->get('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier'])->setName('modifier-etudiants');
     $app->post('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier']);
     $app->post('/gestion_etudiants/supprimer/{id}', [EtudiantController::class, 'supprimer'])->setName('supprimer-etudiants');
 
-    $app->get('/gestion_pilotes', [PiloteController::class, 'gestion_pilotes'])->setName('gestion_pilotes');
+    $app->get('/gestion_pilotes[/{page:\d+}]', [PiloteController::class, 'gestion_pilotes'])->setName('gestion_pilotes');
     $app->post('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute']);
     $app->get('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute'])->setName('ajout-pilotes');
     $app->get('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier'])->setName('modifier-pilotes');

@@ -92,25 +92,6 @@
 			</div>
 
 			{% block content %}{% endblock %}
-			{% if totalPages is defined and totalPages > 0 %}
-				<div class="mt-5">
-					<nav aria-label="Pagination">
-						<ul class="pagination mb-0 justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="?page={{ page > 1 ? page - 1 : 1 }}">&laquo; Précédente</a>
-							</li>
-							{% for i in 1..totalPages %}
-								<li class="page-item {{ i == page ? 'active' : '' }}">
-									<a class="page-link" href="?page={{ i }}">{{ i }}</a>
-								</li>
-							{% endfor %}
-							<li class="page-item">
-								<a class="page-link" href="?page={{ page < totalPages ? page + 1 : totalPages }}">Suivante &raquo;</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			{% endif %}
 		</div>
 	</body>
 </html>

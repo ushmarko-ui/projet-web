@@ -4,7 +4,7 @@
 {% block heading %}Gestion des Entreprises
 {% endblock %}
 {% block content %}
-	<form method="POST" action="{{ url_for('ajout-entreprise') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+	<form method="POST" action="{{ url_for('ajout-entreprises') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
 		<div class="col-auto">
 			<button type="submit" class="btn btn-add-custom px-4 fw-bold" id="add-student-btn">
 				+
@@ -40,10 +40,10 @@
 				{% for gestion_entreprise in gestion_entreprises %}
 					<tr>
 						<td class="text-center">
-							<form method="POST" action="{{ url_for('supprimer-entreprise', { 'id': gestion_entreprise.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
+							<form method="POST" action="{{ url_for('supprimer-entreprises', { 'id': gestion_entreprise.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer cette entreprise ?')">
 								<button type="submit" class="btn-delete">🗑️</button>
 							</form>
-							<a href="{{ url_for('modifier-entreprise', { 'id': gestion_entreprise.id }) }}" class="btn-edit">✏️</a>
+							<a href="{{ url_for('modifier-entreprises', { 'id': gestion_entreprise.id }) }}" class="btn-edit">✏️</a>
 						</td>
 						<td>{{ gestion_entreprise.id }}</td>
 						<td>{{ gestion_entreprise.nom }}</td>
@@ -54,5 +54,25 @@
 				{% endfor %}
 			</tbody>
 		</table>
+		{% if totalPages > 1 %}
+			<nav class="mt-3">
+				<ul class="pagination justify-content-center">
+
+					<li class="page-item {{ page <= 1 ? 'disabled' : '' }}">
+						<a class="page-link" href="{{ url_for('gestion_entreprises', {'page': page - 1}) }}">&laquo; Précédent</a>
+					</li>
+
+					{% for p in 1..totalPages %}
+						<li class="page-item {% if p == page %}active{% endif %}">
+							<a class="page-link" href="{{ url_for('gestion_entreprises', {'page': p}) }}">{{ p }}</a>
+						</li>
+					{% endfor %}
+
+					<li class="page-item {{ page >= totalPages ? 'disabled' : '' }}">
+						<a class="page-link" href="{{ url_for('gestion_entreprises', {'page': page + 1}) }}">Suivant &raquo;</a>
+					</li>
+				</ul>
+			</nav>
+		{% endif %}
 	</div>
 {% endblock %}
