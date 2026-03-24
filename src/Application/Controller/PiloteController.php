@@ -56,9 +56,10 @@ class PiloteController
             $prenom = trim($parsedBody['prenom'] ?? '');
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
+            $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
 
             if ($nom !== '' && $prenom !== '') {
-                $pilotes = new Pilote($nom, $prenom, $lieu, $email);
+                $pilotes = new Pilote($nom, $prenom, $lieu, $email, $mot_de_passe);
                 $this->em->persist($pilotes);
                 $this->em->flush();
             }
@@ -85,12 +86,14 @@ class PiloteController
             $prenom = trim($parsedBody['prenom'] ?? '');
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
+            $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
 
             if ($nom !== '' && $prenom !== '') {
                 $pilotes->setNom($nom);
                 $pilotes->setPrenom($prenom);
                 $pilotes->setLieu($lieu);
                 $pilotes->setEmail($email);
+                $pilotes->setMotDePasse($mot_de_passe);
                 $this->em->flush();
             }
 

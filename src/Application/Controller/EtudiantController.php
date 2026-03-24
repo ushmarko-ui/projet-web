@@ -56,9 +56,10 @@ class EtudiantController
             $prenom = trim($parsedBody['prenom'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
             $age = trim($parsedBody['age'] ?? '');
+            $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
 
             if ($nom !== '' && $email !== '') {
-                $etudiants = new Etudiant($nom, $prenom, $age, $email);
+                $etudiants = new Etudiant($nom, $prenom, $age, $email, $mot_de_passe);
                 $this->em->persist($etudiants);
                 $this->em->flush();
             }
@@ -85,6 +86,7 @@ class EtudiantController
             $etudiants->setDomaine(trim($parsedBody['prenom'] ?? ''));
             $etudiants->setLieu(trim($parsedBody['email'] ?? ''));
             $etudiants->setDescription(trim($parsedBody['age'] ?? ''));
+            $etudiants->setDescription(trim($parsedBody['mot_de_passe'] ?? ''));
 
             $this->em->flush();
 

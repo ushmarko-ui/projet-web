@@ -16,6 +16,9 @@
 			<input type="text" name="nom" class="form-control form-control-dark" placeholder="Nom"/>
 		</div>
 		<div class="col">
+			<input type="text" name="mot_de_passe" class="form-control form-control-dark" placeholder="Mot de passe"/>
+		</div>
+		<div class="col">
 			<input type="email" name="email" class="form-control form-control-dark" placeholder="E-mail"/>
 		</div>
 		<div class="col">
@@ -31,6 +34,7 @@
 					<th>ID</th>
 					<th>Prénom</th>
 					<th>Nom</th>
+					<th>Mot de passe</th>
 					<th>E-mail</th>
 					<th>Age</th>
 				</tr>
@@ -47,6 +51,7 @@
 						<td>{{ gestion_etudiant.id }}</td>
 						<td>{{ gestion_etudiant.prenom }}</td>
 						<td>{{ gestion_etudiant.nom }}</td>
+						<td>{{ gestion_etudiant.motdepasse }}</td>
 						<td>{{ gestion_etudiant.email }}</td>
 						<td>{{ gestion_etudiant.age }}</td>
 					</tr>

@@ -27,15 +27,19 @@ class Pilote
     #[Column(type: 'string', nullable: false)]
     private string $email;
 
+    #[Column(type: 'string', nullable: false)]
+    private string $mot_de_passe;
+
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $prenom, string $lieu, string $email)
+    public function __construct(string $nom, string $prenom, string $lieu, string $email, string $mot_de_passe)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->lieu = $lieu;
         $this->email = $email;
+        $this->mot_de_passe = $mot_de_passe;
         $this->createdAt = new DateTimeImmutable('now');
     }
 
@@ -83,6 +87,17 @@ class Pilote
     {
         $this->email = $email;
     }
+
+    public function getMotDePasse(): string
+    {
+        return $this->mot_de_passe;
+    }
+
+    public function setMotDePasse(string $mot_de_passe): void
+    {
+        $this->mot_de_passe = $mot_de_passe;
+    }
+
 
     public function getCreatedAt(): DateTimeImmutable
     {
