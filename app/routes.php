@@ -29,7 +29,6 @@ return function (App $app) {
     $app->get('/souhait', [SouhaitController::class, 'souhait']);
     $app->get('/politique', [HomeController::class, 'politique']);
     $app->get('/role', [HomeController::class, 'role']);
-    $app->get('/creation_entreprise', [CreationEntrepriseController::class, 'creation_entreprise']);
     $app->get('/gestion_etudiants', [EtudiantController::class, 'gestion_etudiants']);
     $app->get('/gestion_pilotes', [PiloteController::class, 'gestion_pilotes']);
     $app->get('/gestion_offres', [OffreController::class, 'gestion_offres']);
@@ -40,4 +39,9 @@ return function (App $app) {
     $app->get('/deconnexion', [ConnexionController::class, 'deconnecter']);
     $app->get('/postule',  [PostuleController::class, 'afficher2']);
     $app->post('/postule', [PostuleController::class, 'traiter']);
+    $app->get('/creation_entreprise', [CreationEntrepriseController::class, 'creation_entreprise'])->setName('creation_entreprise');
+    $app->post('/creation_entreprise/ajouter', [CreationEntrepriseController::class, 'ajoute']);
+    $app->get('/creation_entreprise/modifier/{id}', [CreationEntrepriseController::class, 'modifier'])->setName('modifier-entreprise');
+    $app->post('/creation_entreprise/modifier/{id}', [CreationEntrepriseController::class, 'modifier']);
+    $app->post('/creation_entreprise/supprimer/{id}', [CreationEntrepriseController::class, 'supprimer'])->setName('supprimer-entreprise');
 };
