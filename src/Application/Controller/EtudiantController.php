@@ -2,7 +2,7 @@
 
 namespace App\Application\Controller;
 
-use App\Domain\Etudiant;
+use App\Domain\Utilisateur;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,7 +21,7 @@ class EtudiantController
     public function gestion_etudiants(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        $repository = $this->em->getRepository(Etudiant::class);
+        $repository = $this->em->getRepository(Utilisateur::class);
 
         $page = isset($args['page']) ? (int)$args['page'] : 1;
         $parPage = 9;
@@ -33,6 +33,8 @@ class EtudiantController
             ->getSingleScalarResult();
 
         $gestion_etudiants = $repository->createQueryBuilder('o')
+            ->where('o.role = :role')
+            ->setParameter('role', 'Etudiant')
             ->orderBy('o.id', 'ASC')
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
@@ -55,11 +57,12 @@ class EtudiantController
             $nom = trim($parsedBody['nom'] ?? '');
             $prenom = trim($parsedBody['prenom'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
-            $age = trim($parsedBody['age'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
+            $role = trim($parsedBody['role'] ?? '');
+            $lieu = trim($parsedBody['lieu'] ?? '');
 
             if ($nom !== '' && $email !== '') {
-                $etudiants = new Etudiant($nom, $prenom, $age, $email, $mot_de_passe);
+                $etudiants = new Utilisateur($nom, $prenom, $lieu, $email, $mot_de_passe, $role);
                 $this->em->persist($etudiants);
                 $this->em->flush();
             }
@@ -74,7 +77,7 @@ class EtudiantController
     {
         $view = Twig::fromRequest($request);
         $id = (int)$args['id'];
-        $etudiants = $this->em->find(Etudiant::class, $id);
+        $etudiants = $this->em->find(Utilisateur::class, $id);
 
         if (!$etudiants) {
             return $response->withStatus(404);
@@ -82,17 +85,26 @@ class EtudiantController
 
         if ($request->getMethod() === 'POST') {
             $parsedBody = $request->getParsedBody();
-            $etudiants->setNom(trim($parsedBody['nom'] ?? ''));
-            $etudiants->setDomaine(trim($parsedBody['prenom'] ?? ''));
-            $etudiants->setLieu(trim($parsedBody['email'] ?? ''));
-            $etudiants->setDescription(trim($parsedBody['age'] ?? ''));
-            $etudiants->setDescription(trim($parsedBody['mot_de_passe'] ?? ''));
+            $nom = trim($parsedBody['nom'] ?? '');
+            $prenom = trim($parsedBody['prenom'] ?? '');
+            $email = trim($parsedBody['email'] ?? '');
+            $lieu = trim($parsedBody['lieu'] ?? '');
+            $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
+            $role = trim($parsedBody['role'] ?? '');
 
-            $this->em->flush();
+            if ($nom !== '' && $prenom !== '') {
+                $etudiants->setNom($nom);
+                $etudiants->setPrenom($prenom);
+                $etudiants->setLieu($lieu);
+                $etudiants->setEmail($email);
+                $etudiants->setMotDePasse($mot_de_passe);
+                $etudiants->setRole($role);
+                $this->em->flush();
 
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            $url = $routeParser->urlFor('gestion_etudiants');
-            return $response->withHeader('Location', $url)->withStatus(302);
+                $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+                $url = $routeParser->urlFor('gestion_etudiants');
+                return $response->withHeader('Location', $url)->withStatus(302);
+            }
         }
 
         return $view->render($response, 'modifier_etudiants.html.twig', [
@@ -103,7 +115,7 @@ class EtudiantController
     public function supprimer(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $id = (int)$args['id'];
-        $etudiants = $this->em->find(Etudiant::class, $id);
+        $etudiants = $this->em->find(Utilisateur::class, $id);
 
         if ($etudiants) {
             $this->em->remove($etudiants);

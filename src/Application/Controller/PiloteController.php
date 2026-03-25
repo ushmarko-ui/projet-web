@@ -2,7 +2,7 @@
 
 namespace App\Application\Controller;
 
-use App\Domain\Pilote;
+use App\Domain\Utilisateur;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,7 +21,7 @@ class PiloteController
     public function gestion_pilotes(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        $repository = $this->em->getRepository(Pilote::class);
+        $repository = $this->em->getRepository(Utilisateur::class);
 
         $page = isset($args['page']) ? (int)$args['page'] : 1;
         $parPage = 9;
@@ -33,6 +33,8 @@ class PiloteController
             ->getSingleScalarResult();
 
         $gestion_pilotes = $repository->createQueryBuilder('e')
+            ->where('e.role = :role')
+            ->setParameter('role', 'Pilote')
             ->orderBy('e.id', 'ASC')
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
@@ -57,9 +59,10 @@ class PiloteController
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
+            $role = trim($parsedBody['role'] ?? '');
 
             if ($nom !== '' && $prenom !== '') {
-                $pilotes = new Pilote($nom, $prenom, $lieu, $email, $mot_de_passe);
+                $pilotes = new Utilisateur($nom, $prenom, $lieu, $email, $mot_de_passe, $role);
                 $this->em->persist($pilotes);
                 $this->em->flush();
             }
@@ -74,7 +77,7 @@ class PiloteController
     {
         $view = Twig::fromRequest($request);
         $id = (int)$args['id'];
-        $pilotes = $this->em->find(Pilote::class, $id);
+        $pilotes = $this->em->find(Utilisateur::class, $id);
 
         if (!$pilotes) {
             return $response->withStatus(404);
@@ -87,6 +90,7 @@ class PiloteController
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
+            $role = trim($parsedBody['role'] ?? '');
 
             if ($nom !== '' && $prenom !== '') {
                 $pilotes->setNom($nom);
@@ -94,6 +98,7 @@ class PiloteController
                 $pilotes->setLieu($lieu);
                 $pilotes->setEmail($email);
                 $pilotes->setMotDePasse($mot_de_passe);
+                $pilotes->setRole($role);
                 $this->em->flush();
             }
 
@@ -110,7 +115,7 @@ class PiloteController
     public function supprimer(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $id = (int)$args['id'];
-        $pilotes = $this->em->find(Pilote::class, $id);
+        $pilotes = $this->em->find(Utilisateur::class, $id);
 
         if ($pilotes) {
             $this->em->remove($pilotes);

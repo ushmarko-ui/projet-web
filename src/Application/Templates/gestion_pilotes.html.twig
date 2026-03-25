@@ -10,20 +10,23 @@
 				+
 			</button>
 		</div>
-		<div class="col-md-2">
+		<div class="col">
 			<input type="text" name="nom" id="pilote-last" class="form-control form-control-dark" placeholder="Nom Complet"/>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md">
 			<input type="text" name="prenom" id="pilote-first" class="form-control form-control-dark" placeholder="Prenom"/>
 		</div>
-		<div class="col-md-2">
+		<div class="col">
 			<input type="text" name="mot_de_passe" id="pilote-first" class="form-control form-control-dark" placeholder="Mot de passe"/>
 		</div>
-		<div class="col-md-2">
+		<div class="col">
 			<input type="text" name="lieu" id="pilote-centre" class="form-control form-control-dark" placeholder="Ville"/>
 		</div>
-		<div class="col-md-2">
+		<div class="col">
 			<input type="email" name="email" id="pilote-email" class="form-control form-control-dark" placeholder="E-mail Professionnel"/>
+		</div>
+		<div class="col">
+			<input type="texte" name="role" id="pilote-email" class="form-control form-control-dark" placeholder="Role"/>
 		</div>
 	</form>
 
@@ -38,6 +41,8 @@
 					<th>Mot de passe</th>
 					<th>Centre / Ville</th>
 					<th>E-mail</th>
+					<th>Lieu</th>
+					<th>Role</th>
 				</tr>
 			</thead>
 			<tbody id="pilote-table-body">
@@ -55,6 +60,8 @@
 						<td>{{ gestion_pilote.motdepasse}}</td>
 						<td>{{ gestion_pilote.lieu}}</td>
 						<td>{{ gestion_pilote.email }}</td>
+						<td>{{ gestion_pilote.lieu }}</td>
+						<td>{{ gestion_pilote.role }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

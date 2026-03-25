@@ -83,18 +83,27 @@ class OffreController
 
         if ($request->getMethod() === 'POST') {
             $parsedBody = $request->getParsedBody();
-            $offre->setNom(trim($parsedBody['nom'] ?? ''));
-            $offre->setDomaine(trim($parsedBody['domaine'] ?? ''));
-            $offre->setLieu(trim($parsedBody['lieu'] ?? ''));
-            $offre->setEmail(trim($parsedBody['email'] ?? ''));
-            $offre->setDescription(trim($parsedBody['description'] ?? ''));
-            $offre->setDuree(trim($parsedBody['duree'] ?? ''));
 
-            $this->em->flush();
+            $nom = trim($parsedBody['nom'] ?? '');
+            $domaine = trim($parsedBody['domaine'] ?? '');
+            $lieu = trim($parsedBody['lieu'] ?? '');
+            $email = trim($parsedBody['email'] ?? '');
+            $description = trim($parsedBody['description'] ?? '');
+            $duree = trim($parsedBody['duree'] ?? '');
 
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            $url = $routeParser->urlFor('gestion_offres');
-            return $response->withHeader('Location', $url)->withStatus(302);
+            if ($nom !== '' && $description !== '') {
+                $offre->setNom($nom);
+                $offre->setDomaine($domaine);
+                $offre->setLieu($lieu);
+                $offre->setEmail($email);
+                $offre->setDescription($description);
+                $offre->setDuree($duree);
+                $this->em->flush();
+
+                $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+                $url = $routeParser->urlFor('gestion_offres');
+                return $response->withHeader('Location', $url)->withStatus(302);
+            }
         }
 
         return $view->render($response, 'modifier_offres.html.twig', [

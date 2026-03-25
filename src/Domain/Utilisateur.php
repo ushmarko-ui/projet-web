@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity, Table(name: 'pilotes')]
-class Pilote
+#[Entity, Table(name: 'utilisateurs')]
+class Utilisateur
 {
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $id;
@@ -30,16 +30,20 @@ class Pilote
     #[Column(type: 'string', nullable: false)]
     private string $mot_de_passe;
 
+    #[Column(type: 'string', nullable: false)]
+    private string $role;
+
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $prenom, string $lieu, string $email, string $mot_de_passe)
+    public function __construct(string $nom, string $prenom, string $lieu, string $email, string $mot_de_passe, string $role)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->lieu = $lieu;
         $this->email = $email;
         $this->mot_de_passe = $mot_de_passe;
+        $this->role = $role;
         $this->createdAt = new DateTimeImmutable('now');
     }
 
@@ -96,6 +100,16 @@ class Pilote
     public function setMotDePasse(string $mot_de_passe): void
     {
         $this->mot_de_passe = $mot_de_passe;
+    }
+
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 
 
