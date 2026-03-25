@@ -1,0 +1,34 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Modifier une Entreprise
+{% endblock %}
+{% block heading %}Modifier une Entreprise
+{% endblock %}
+
+{% block content %}
+	<div class="container mt-4 w-50">
+		<form method="POST" action="{{ url_for('modifier-pilotes', {'id': gestion_pilotes.id}) }}">
+			<div class="mb-3">
+				<label class="form-label">Prenom</label>
+				<input type="text" name="prenom" class="form-control form-control-dark" value="{{ gestion_pilotes.prenom }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Nom</label>
+				<input type="text" name="nom" class="form-control form-control-dark" value="{{ gestion_pilotes.nom }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Mot de passe</label>
+				<input type="text" name="mot_de_passe" class="form-control form-control-dark" value="{{ gestion_pilotes.motdepasse}}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Ville</label>
+				<input type="text" name="lieu" class="form-control form-control-dark" value="{{ gestion_pilotes.lieu }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">E-mail</label>
+				<input type="email" name="email" class="form-control form-control-dark" value="{{ gestion_pilotes.email }}" required/>
+			</div>
+			<button type="submit" class="btn btn-primary">Sauvegarder</button>
+			<a href="{{ url_for('gestion_pilotes') }}" class="btn btn-secondary">Annuler</a>
+		</form>
+	</div>
+{% endblock %}

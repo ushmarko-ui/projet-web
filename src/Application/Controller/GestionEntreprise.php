@@ -99,7 +99,7 @@ class GestionEntreprise
             return $response->withHeader('Location', $url)->withStatus(302);
         }
 
-        return $view->render($response, 'gestion_entreprises.html.twig', [
+        return $view->render($response, 'modifier_entreprises.html.twig', [
             'entreprise' => $entreprise,
         ]);
     }

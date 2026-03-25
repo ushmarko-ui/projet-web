@@ -95,7 +95,7 @@ class EtudiantController
             return $response->withHeader('Location', $url)->withStatus(302);
         }
 
-        return $view->render($response, 'gestion_etudiants.html.twig', [
+        return $view->render($response, 'modifier_etudiants.html.twig', [
             'gestion_etudiants' => $etudiants,
         ]);
     }

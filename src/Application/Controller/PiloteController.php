@@ -102,7 +102,7 @@ class PiloteController
             return $response->withHeader('Location', $url)->withStatus(302);
         }
 
-        return $view->render($response, 'gestion_pilotes.html.twig', [
+        return $view->render($response, 'modifier_pilotes.html.twig', [
             'gestion_pilotes' => $pilotes,
         ]);
     }

@@ -97,7 +97,7 @@ class OffreController
             return $response->withHeader('Location', $url)->withStatus(302);
         }
 
-        return $view->render($response, 'gestion_offres.html.twig', [
+        return $view->render($response, 'modifier_offres.html.twig', [
             'gestion_offres' => $offre,
         ]);
     }
