@@ -107,8 +107,9 @@
 									{{ stage.duree }}</div>
 								<div class="mt-2">{{ stage.description }}</div>
 								<a href="/postule" class="btn btn-primary mt-2" role="button" aria-pressed="true">Postule</a>
-								<a href="/souhait" class="btn btn-primary mt-2" role="button" aria-pressed="true">Enregistre</a>
-								<a href="/souhait" class="btn btn-primary mt-2" role="button" aria-pressed="true">Statistique</a>
+								<form method="POST" action="{{ url_for('ajouter-souhait', {'id': stage.id}) }}" style="display:inline">
+									<button type="submit" class="btn btn-primary mt-2">Enregistre</button>
+								</form>
 							</div>
 						</div>
 					{% endfor %}

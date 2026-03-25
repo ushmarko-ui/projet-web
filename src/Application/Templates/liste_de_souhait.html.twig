@@ -80,71 +80,48 @@
 					<th>Ville</th>
 					<th>Date du stage</th>
 					<th>Domaine</th>
-					<th>Niveau d'étude</th>
-					<th>Salaire</th>
+					<th>Description</th>
+					<th>Adresse Mail</th>
 				</tr>
 			</thead>
 			{% for souhait in souhaits %}
 				<tbody>
 					<tr>
 						<td class="text-center">
-							<button class="btn-delete btn-supprimer">🗑️</button>
+							<form method="POST" action="{{ url_for('supprimer-souhait', { 'id': souhait.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer ce souhait ?')">
+								<button type="submit" class="btn-delete">🗑️</button>
+							</form>
 						</td>
 						<td>{{ souhait.Nom }}</td>
-						<td>{{ souhait.Ville }}</td>
-						<td>{{ souhait.Date}}</td>
+						<td>{{ souhait.Lieu }}</td>
+						<td>{{ souhait.Duree}}</td>
 						<td>{{ souhait.Domaine }}</td>
-						<td>{{ souhait.Niveau }}</td>
-						<td>{{ souhait.Salaire }}</td>
+						<td>{{ souhait.Description }}</td>
+						<td>{{ souhait.Email }}</td>
 					</tr>
 				</tbody>
 			{% endfor %}
 		</table>
 	</div>
-	<div class="mt-5">
-		<nav aria-label="Pagination">
-			<ul class="pagination mb-0 justify-content-center">
-				<li class="page-item">
-					<a class="page-link" href="?page=1">
-						&laquo; Page précédente
-					</a>
+	{% if totalPages > 1 %}
+		<nav class="mt-3">
+			<ul class="pagination justify-content-center">
+
+				<li class="page-item {{ page <= 1 ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ url_for('souhait', {'page': page - 1}) }}">&laquo; Précédent</a>
 				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=1">1</a>
+
+				{% for p in 1..totalPages %}
+					<li class="page-item {% if p == page %}active{% endif %}">
+						<a class="page-link" href="{{ url_for('souhait', {'page': p}) }}">{{ p }}</a>
+					</li>
+				{% endfor %}
+
+				<li class="page-item {{ page >= totalPages ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ url_for('souhait', {'page': page + 1}) }}">Suivant &raquo;</a>
 				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=2">2</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=3">3</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=4">4</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=5">5</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=6">6</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=7">7</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=8">8</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=9">9</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=10">10</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=2">
-						Page suivante &raquo;
-					</a>
-				</li>
+
 			</ul>
 		</nav>
-	</div>
+	{% endif %}
 </main>{% endblock %}

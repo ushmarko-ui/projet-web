@@ -26,7 +26,6 @@ return function (App $app) {
     $app->get('/', [HomeController::class, 'home']);
     $app->get('/stage[/{page:\d+}]', [StageController::class, 'stage'])->setName('stage');
     $app->get('/entreprise[/{page:\d+}]', [EntrepriseController::class, 'entreprise'])->setName('entreprise');
-    $app->get('/souhait', [SouhaitController::class, 'souhait']);
     $app->get('/politique', [HomeController::class, 'politique']);
     $app->get('/role', [HomeController::class, 'role']);
     $app->get('/mentions', [HomeController::class, 'mentions']);
@@ -63,4 +62,8 @@ return function (App $app) {
     $app->get('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier'])->setName('modifier-pilotes');
     $app->post('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier']);
     $app->post('/gestion_pilotes/supprimer/{id}', [PiloteController::class, 'supprimer'])->setName('supprimer-pilotes');
+
+    $app->get('/souhait[/{page:\d+}]', [SouhaitController::class, 'souhait'])->setName('souhait');
+    $app->post('/souhait/ajouter/{id}', [SouhaitController::class, 'ajouter'])->setName('ajouter-souhait');
+    $app->post('/souhait/supprimer/{id}', [SouhaitController::class, 'supprimer'])->setName('supprimer-souhait');
 };
