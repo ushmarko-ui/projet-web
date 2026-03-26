@@ -4,7 +4,7 @@
 {% block heading %}Gestion des Pilotes
 {% endblock %}
 {% block content %}
-	<form method="POST" action="{{ url_for('ajout-pilotes') }}" div class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow border border-secondary border-opacity-10">
+	<form method="POST" action="{{ url_for('ajout-pilotes') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow border border-secondary border-opacity-10">
 		<div class="col-auto">
 			<button class="btn btn-add-custom px-4 fw-bold shadow-sm" id="add-pilote-btn">
 				+
@@ -41,7 +41,6 @@
 					<th>Mot de passe</th>
 					<th>Centre / Ville</th>
 					<th>E-mail</th>
-					<th>Lieu</th>
 					<th>Role</th>
 				</tr>
 			</thead>
@@ -60,7 +59,6 @@
 						<td>{{ gestion_pilote.motdepasse}}</td>
 						<td>{{ gestion_pilote.lieu}}</td>
 						<td>{{ gestion_pilote.email }}</td>
-						<td>{{ gestion_pilote.lieu }}</td>
 						<td>{{ gestion_pilote.role }}</td>
 					</tr>
 				{% endfor %}

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
+use App\Application\Controller\AccueilController;
 use App\Application\Controller\EntrepriseController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -24,7 +25,7 @@ return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
         return $response;
     });
-    $app->get('/', [HomeController::class, 'home']);
+    $app->get('/', [AccueilController::class, 'home']);
     $app->get('/stage[/{page:\d+}]', [StageController::class, 'stage'])->setName('stage');
     $app->get('/entreprise[/{page:\d+}]', [EntrepriseController::class, 'entreprise'])->setName('entreprise');
     $app->get('/politique', [HomeController::class, 'politique']);
