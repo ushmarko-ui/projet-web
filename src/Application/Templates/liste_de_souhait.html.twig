@@ -81,6 +81,8 @@
 						<th>Domaine</th>
 						<th>Description</th>
 						<th>Adresse Mail</th>
+						<th>Niveau</th>
+						<th>Salaire</th>
 					</tr>
 				</thead>
 				{% for souhait in souhaits %}
@@ -97,6 +99,8 @@
 							<td>{{ souhait.Domaine }}</td>
 							<td>{{ souhait.Description }}</td>
 							<td>{{ souhait.Email }}</td>
+							<td>{{ souhait.niveau }}</td>
+							<td>{{ souhait.salaire }}</td>
 						</tr>
 					</tbody>
 				{% endfor %}

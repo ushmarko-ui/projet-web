@@ -104,7 +104,9 @@
 								<div>✉️
 									{{ stage.email }}</div>
 								<div>⏱️
-									{{ stage.duree }}</div>
+									{{ stage.duree }}
+									|  💼{{ stage.niveau }}
+									|  💸{{ stage.salaire }}</div>
 								<div class="mt-2">{{ stage.description }}</div>
 								<a href="/postule" class="btn btn-primary mt-2" role="button" aria-pressed="true">Postule</a>
 								<form method="POST" action="{{ url_for('ajouter-souhait', {'id': stage.id}) }}" style="display:inline">

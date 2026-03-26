@@ -33,10 +33,16 @@ class Offres
     #[Column(type: 'string', nullable: false)]
     private string $duree;
 
+    #[Column(type: 'string', nullable: false)]
+    private string $niveau;
+
+    #[Column(type: 'string', nullable: false)]
+    private string $salaire;
+
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $domaine, string $lieu, string $email, string $description, string $duree)
+    public function __construct(string $nom, string $domaine, string $lieu, string $email, string $description, string $duree, string $niveau, string $salaire)
     {
         $this->nom = $nom;
         $this->domaine = $domaine;
@@ -44,6 +50,8 @@ class Offres
         $this->email = $email;
         $this->description = $description;
         $this->duree = $duree;
+        $this->niveau = $niveau;
+        $this->salaire = $salaire;
         $this->createdAt = new DateTimeImmutable('now');
     }
 
@@ -101,9 +109,30 @@ class Offres
     {
         return $this->duree;
     }
+
     public function setDuree(string $duree): void
     {
         $this->duree = $duree;
+    }
+
+    public function getNiveau(): string
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(string $niveau): void
+    {
+        $this->niveau = $niveau;
+    }
+
+    public function getSalaire(): string
+    {
+        return $this->salaire;
+    }
+
+    public function setSalaire(string $salaire): void
+    {
+        $this->salaire = $salaire;
     }
 
     public function getCreatedAt(): DateTimeImmutable

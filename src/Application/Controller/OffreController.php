@@ -58,9 +58,11 @@ class OffreController
             $email = trim($parsedBody['email'] ?? '');
             $description = trim($parsedBody['description'] ?? '');
             $duree = trim($parsedBody['duree'] ?? '');
+            $niveau = trim($parsedBody['niveau'] ?? '');
+            $salaire = trim($parsedBody['salaire'] ?? '');
 
             if ($nom !== '' && $description !== '') {
-                $offre = new Offres($nom, $domaine, $lieu, $email, $description, $duree);
+                $offre = new Offres($nom, $domaine, $lieu, $email, $description, $duree, $niveau, $salaire);
                 $this->em->persist($offre);
                 $this->em->flush();
             }
@@ -90,6 +92,8 @@ class OffreController
             $email = trim($parsedBody['email'] ?? '');
             $description = trim($parsedBody['description'] ?? '');
             $duree = trim($parsedBody['duree'] ?? '');
+            $niveau = trim($parsedBody['niveau'] ?? '');
+            $salaire = trim($parsedBody['salaire'] ?? '');
 
             if ($nom !== '' && $description !== '') {
                 $offre->setNom($nom);
@@ -98,6 +102,8 @@ class OffreController
                 $offre->setEmail($email);
                 $offre->setDescription($description);
                 $offre->setDuree($duree);
+                $offre->setNiveau($niveau);
+                $offre->setSalaire($salaire);
                 $this->em->flush();
 
                 $routeParser = RouteContext::fromRequest($request)->getRouteParser();

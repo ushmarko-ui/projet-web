@@ -26,6 +26,12 @@
 			<input type="text" name="description" id="input-description" class="form-control form-control-dark" placeholder="Description"/>
 		</div>
 		<div class="col">
+			<input type="text" name="niveau" id="input-niveau" class="form-control form-control-dark" placeholder="Niveau"/>
+		</div>
+		<div class="col">
+			<input type="text" name="salaire" id="input-salaire" class="form-control form-control-dark" placeholder="Salaire"/>
+		</div>
+		<div class="col">
 			<input type="text" name="duree" id="input-offres" class="form-control form-control-dark" placeholder="Duree stage"/>
 		</div>
 	</form>
@@ -41,7 +47,9 @@
 					<th>Lieux</th>
 					<th>E-mail</th>
 					<th>Description</th>
-					<th>Time</th>
+					<th>Niveau</th>
+					<th>Salaire/Mois</th>
+					<th>Duree</th>
 				</tr>
 			</thead>
 			<tbody id="table-body">
@@ -59,6 +67,8 @@
 						<td>{{ gestion_offre.lieu }}</td>
 						<td>{{ gestion_offre.email }}</td>
 						<td>{{ gestion_offre.description }}</td>
+						<td>{{ gestion_offre.niveau }}</td>
+						<td>{{ gestion_offre.salaire }}</td>
 						<td>{{ gestion_offre.duree }}</td>
 					</tr>
 				{% endfor %}

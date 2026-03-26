@@ -63,7 +63,9 @@ class SouhaitController
                 $offre->getLieu(),
                 $offre->getEmail(),
                 $offre->getDescription(),
-                $offre->getDuree()
+                $offre->getDuree(),
+                $offre->getNiveau(),
+                $offre->getSalaire()
             );
             $this->em->persist($souhait);
             $this->em->flush();
