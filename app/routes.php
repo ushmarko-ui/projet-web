@@ -18,6 +18,7 @@ use App\Application\Controller\GestionEntreprise;
 use App\Application\Controller\PostuleController;
 use App\Application\Controller\SouhaitController;
 use App\Application\Controller\StageController;
+use App\Application\Controller\VoirOffresController;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -34,6 +35,7 @@ return function (App $app) {
     $app->get('/deconnexion', [ConnexionController::class, 'deconnecter']);
     $app->get('/postule',  [PostuleController::class, 'afficher2']);
     $app->post('/postule', [PostuleController::class, 'traiter']);
+    $app->get('/offres/{nom}', [VoirOffresController::class, 'VoirOffres'])->setName('voir-offres');
 
     $app->get('/gestion_entreprises[/{page:\d+}]', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
     $app->post('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute']);

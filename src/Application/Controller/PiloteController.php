@@ -27,7 +27,7 @@ class PiloteController
         $parPage = 9;
         $offset = ($page - 1) * $parPage;
 
-        $totalEntreprises = $repository->createQueryBuilder('e')
+        $totalPilotes = $repository->createQueryBuilder('e')
             ->select('COUNT(e.id)')
             ->getQuery()
             ->getSingleScalarResult();
@@ -41,7 +41,7 @@ class PiloteController
             ->getQuery()
             ->getResult();
 
-        $totalPages = (int)ceil($totalEntreprises / $parPage);
+        $totalPages = (int)ceil($totalPilotes / $parPage);
 
         return $view->render($response, 'gestion_pilotes.html.twig', [
             'gestion_pilotes' => $gestion_pilotes,

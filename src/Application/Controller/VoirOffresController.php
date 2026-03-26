@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 
-class StageController
+class VoirOffresController
 {
     private EntityManager $em;
 
@@ -17,35 +17,38 @@ class StageController
         $this->em = $em;
     }
 
-    public function stage(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    public function VoirOffres(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        $session = $request->getAttribute('session');
+        $nom = $args['nom'];
         $repository = $this->em->getRepository(Offres::class);
 
         $page = isset($args['page']) ? (int)$args['page'] : 1;
         $parPage = 9;
         $offset = ($page - 1) * $parPage;
 
-        $totalStages = $repository->createQueryBuilder('e')
+        $totalOffres = $repository->createQueryBuilder('e')
             ->select('COUNT(e.id)')
             ->getQuery()
             ->getSingleScalarResult();
 
-        $stages = $repository->createQueryBuilder('e')
-            ->orderBy('e.nom', 'ASC')
+        $VoirOffres = $repository->createQueryBuilder('e')
+            ->where('e.nom = :nom')
+            ->setParameter('nom', $nom)
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
             ->getQuery()
             ->getResult();
 
-        $totalPages = (int)ceil($totalStages / $parPage);
+        $totalPages = (int)ceil($totalOffres / $parPage);
+        $session = $request->getAttribute('session');
 
-        return $view->render($response, 'Trouver_mon_stage.html.twig', [
+        return $view->render($response, 'Voir_les_offres.html.twig', [
             'role' => $session['userRole'] ?? '',
-            'stages' => $stages,
+            'VoirOffres' => $VoirOffres,
             'page' => $page,
             'totalPages' => $totalPages,
+            'nom' => $nom,
         ]);
     }
 }

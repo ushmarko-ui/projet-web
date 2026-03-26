@@ -27,7 +27,7 @@ class EtudiantController
         $parPage = 9;
         $offset = ($page - 1) * $parPage;
 
-        $totalOffres = $repository->createQueryBuilder('o')
+        $totalEtudiants = $repository->createQueryBuilder('o')
             ->select('COUNT(o.id)')
             ->getQuery()
             ->getSingleScalarResult();
@@ -41,7 +41,7 @@ class EtudiantController
             ->getQuery()
             ->getResult();
 
-        $totalPages = (int)ceil($totalOffres / $parPage);
+        $totalPages = (int)ceil($totalEtudiants / $parPage);
 
         return $view->render($response, 'gestion_etudiants.html.twig', [
             'gestion_etudiants' => $gestion_etudiants,
