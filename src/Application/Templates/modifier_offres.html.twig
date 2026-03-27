@@ -1,0 +1,46 @@
+{% extends 'base2.html.twig' %}
+{% block title %}Modifier une Offres
+{% endblock %}
+{% block heading %}Modifier une Offres
+{% endblock %}
+
+{% block content %}
+	<div class="container mt-4 w-50">
+		<form method="POST" action="{{ url_for('modifier-offres', {'id': gestion_offres.id}) }}">
+			<div class="mb-3">
+				<label class="form-label">Nom</label>
+				<input type="text" name="nom" class="form-control form-control-dark" value="{{ gestion_offres.nom }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Domaine</label>
+				<input type="text" name="domaine" class="form-control form-control-dark" value="{{ gestion_offres.domaine }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Lieu</label>
+				<input type="text" name="lieu" class="form-control form-control-dark" value="{{ gestion_offres.lieu }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">E-mail</label>
+				<input type="email" name="email" class="form-control form-control-dark" value="{{ gestion_offres.email }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Description</label>
+				<input type="text" name="description" class="form-control form-control-dark" value="{{ gestion_offres.description }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Niveau</label>
+				<input type="text" name="niveau" class="form-control form-control-dark" value="{{ gestion_offres.niveau }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Salaire</label>
+				<input type="text" name="salaire" class="form-control form-control-dark" value="{{ gestion_offres.salaire }}" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Time</label>
+				<input type="text" name="duree" class="form-control form-control-dark" value="{{ gestion_offres.duree }}" required/>
+			</div>
+			<button type="submit" class="btn btn-primary">Sauvegarder</button>
+			<a href="{{ url_for('gestion_offres') }}" class="btn btn-secondary">Annuler</a>
+		</form>
+	</div>
+{% endblock %}

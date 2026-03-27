@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity, Table(name: 'offres')]
-class Offres
+#[Entity, Table(name: 'souhait')]
+class Souhait
 {
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $id;
@@ -38,6 +38,7 @@ class Offres
 
     #[Column(type: 'string', nullable: false)]
     private string $salaire;
+
 
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
@@ -109,7 +110,6 @@ class Offres
     {
         return $this->duree;
     }
-
     public function setDuree(string $duree): void
     {
         $this->duree = $duree;
@@ -134,6 +134,7 @@ class Offres
     {
         $this->salaire = $salaire;
     }
+
 
     public function getCreatedAt(): DateTimeImmutable
     {

@@ -9,9 +9,17 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use Slim\Routing\RouteContext;
+use Slim\Routing\RouteContext;
 
 class SouhaitController
 {
+    private EntityManager $em;
+
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     private EntityManager $em;
 
     public function __construct(EntityManager $em)
@@ -59,5 +67,45 @@ class SouhaitController
         // Redirection vers la liste
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
         return $response->withHeader('Location', $routeParser->urlFor('souhait'))->withStatus(302);
+    }
+
+    public function ajouter(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $id = (int)$args['id'];
+        $offre = $this->em->find(Offres::class, $id);
+
+        if ($offre) {
+            $souhait = new Souhait(
+                $offre->getNom(),
+                $offre->getDomaine(),
+                $offre->getLieu(),
+                $offre->getEmail(),
+                $offre->getDescription(),
+                $offre->getDuree(),
+                $offre->getNiveau(),
+                $offre->getSalaire()
+            );
+            $this->em->persist($souhait);
+            $this->em->flush();
+        }
+
+        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+        $url = $routeParser->urlFor('souhait');
+        return $response->withHeader('Location', $url)->withStatus(302);
+    }
+
+    public function supprimer(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $id = (int)$args['id'];
+        $souhait = $this->em->find(Souhait::class, $id);
+
+        if ($souhait) {
+            $this->em->remove($souhait);
+            $this->em->flush();
+        }
+
+        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+        $url = $routeParser->urlFor('souhait');
+        return $response->withHeader('Location', $url)->withStatus(302);
     }
 }

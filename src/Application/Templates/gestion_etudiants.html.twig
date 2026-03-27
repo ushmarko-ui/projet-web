@@ -16,10 +16,16 @@
 			<input type="text" name="nom" class="form-control form-control-dark" placeholder="Nom"/>
 		</div>
 		<div class="col">
+			<input type="text" name="mot_de_passe" class="form-control form-control-dark" placeholder="Mot de passe"/>
+		</div>
+		<div class="col">
+			<input type="text" name="lieu" class="form-control form-control-dark" placeholder="Lieu"/>
+		</div>
+		<div class="col">
 			<input type="email" name="email" class="form-control form-control-dark" placeholder="E-mail"/>
 		</div>
 		<div class="col">
-			<input type="number" name="age" class="form-control form-control-dark" placeholder="Age"/>
+			<input type="text" name="role" class="form-control form-control-dark" placeholder="Role"/>
 		</div>
 	</form>
 
@@ -31,8 +37,10 @@
 					<th>ID</th>
 					<th>Prénom</th>
 					<th>Nom</th>
+					<th>Mot de passe</th>
+					<th>Lieu</th>
 					<th>E-mail</th>
-					<th>Age</th>
+					<th>Role</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -47,31 +55,33 @@
 						<td>{{ gestion_etudiant.id }}</td>
 						<td>{{ gestion_etudiant.prenom }}</td>
 						<td>{{ gestion_etudiant.nom }}</td>
+						<td>{{ gestion_etudiant.motdepasse }}</td>
+						<td>{{ gestion_etudiant.lieu }}</td>
 						<td>{{ gestion_etudiant.email }}</td>
-						<td>{{ gestion_etudiant.age }}</td>
+						<td>{{ gestion_etudiant.role }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>
-		</table>
-		{% if totalPages > 1 %}
-			<nav class="mt-3">
-				<ul class="pagination justify-content-center">
+		</tbody>
+	</table>
+	{% if totalPages > 1 %}
+		<nav class="mt-3">
+			<ul class="pagination justify-content-center">
 
-					<li class="page-item {{ page <= 1 ? 'disabled' : '' }}">
-						<a class="page-link" href="{{ url_for('gestion_etudiants', {'page': page - 1}) }}">&laquo; Précédent</a>
+				<li class="page-item {{ page <= 1 ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ url_for('gestion_etudiants', {'page': page - 1}) }}">&laquo; Précédent</a>
+				</li>
+
+				{% for p in 1..totalPages %}
+					<li class="page-item {% if p == page %}active{% endif %}">
+						<a class="page-link" href="{{ url_for('gestion_etudiants', {'page': p}) }}">{{ p }}</a>
 					</li>
+				{% endfor %}
 
-					{% for p in 1..totalPages %}
-						<li class="page-item {% if p == page %}active{% endif %}">
-							<a class="page-link" href="{{ url_for('gestion_etudiants', {'page': p}) }}">{{ p }}</a>
-						</li>
-					{% endfor %}
-
-					<li class="page-item {{ page >= totalPages ? 'disabled' : '' }}">
-						<a class="page-link" href="{{ url_for('gestion_etudiants', {'page': page + 1}) }}">Suivant &raquo;</a>
-					</li>
-				</ul>
-			</nav>
-		{% endif %}
-	</div>
-{% endblock %}
+				<li class="page-item {{ page >= totalPages ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ url_for('gestion_etudiants', {'page': page + 1}) }}">Suivant &raquo;</a>
+				</li>
+			</ul>
+		</nav>
+	{% endif %}
+</div>{% endblock %}

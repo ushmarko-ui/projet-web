@@ -37,7 +37,7 @@ class PostuleController
             $error = 'le nom est obligatoire';
         } elseif (preg_match("/([^A-Za-z])/", $nom)) {
             $error = "Votre nom ne doit contenir que des lettres.";
-        } elseif (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "L'adresse email '$email' n'est pas valide";
         } elseif (empty($telephone)) {
             $error = "le numero est obligatoire";

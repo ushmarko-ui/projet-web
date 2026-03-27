@@ -2,7 +2,7 @@
 
 namespace App\Application\Controller;
 
-use App\Domain\Pilote;
+use App\Domain\Utilisateur;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,25 +21,27 @@ class PiloteController
     public function gestion_pilotes(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        $repository = $this->em->getRepository(Pilote::class);
+        $repository = $this->em->getRepository(Utilisateur::class);
 
         $page = isset($args['page']) ? (int)$args['page'] : 1;
         $parPage = 9;
         $offset = ($page - 1) * $parPage;
 
-        $totalEntreprises = $repository->createQueryBuilder('e')
+        $totalPilotes = $repository->createQueryBuilder('e')
             ->select('COUNT(e.id)')
             ->getQuery()
             ->getSingleScalarResult();
 
         $gestion_pilotes = $repository->createQueryBuilder('e')
+            ->where('e.role = :role')
+            ->setParameter('role', 'Pilote')
             ->orderBy('e.id', 'ASC')
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
             ->getQuery()
             ->getResult();
 
-        $totalPages = (int)ceil($totalEntreprises / $parPage);
+        $totalPages = (int)ceil($totalPilotes / $parPage);
 
         return $view->render($response, 'gestion_pilotes.html.twig', [
             'gestion_pilotes' => $gestion_pilotes,
@@ -56,9 +58,11 @@ class PiloteController
             $prenom = trim($parsedBody['prenom'] ?? '');
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
+            $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
+            $role = trim($parsedBody['role'] ?? '');
 
             if ($nom !== '' && $prenom !== '') {
-                $pilotes = new Pilote($nom, $prenom, $lieu, $email);
+                $pilotes = new Utilisateur($nom, $prenom, $lieu, $email, $mot_de_passe, $role);
                 $this->em->persist($pilotes);
                 $this->em->flush();
             }
@@ -73,7 +77,7 @@ class PiloteController
     {
         $view = Twig::fromRequest($request);
         $id = (int)$args['id'];
-        $pilotes = $this->em->find(Pilote::class, $id);
+        $pilotes = $this->em->find(Utilisateur::class, $id);
 
         if (!$pilotes) {
             return $response->withStatus(404);
@@ -85,12 +89,16 @@ class PiloteController
             $prenom = trim($parsedBody['prenom'] ?? '');
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
+            $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
+            $role = trim($parsedBody['role'] ?? '');
 
             if ($nom !== '' && $prenom !== '') {
                 $pilotes->setNom($nom);
                 $pilotes->setPrenom($prenom);
                 $pilotes->setLieu($lieu);
                 $pilotes->setEmail($email);
+                $pilotes->setMotDePasse($mot_de_passe);
+                $pilotes->setRole($role);
                 $this->em->flush();
             }
 
@@ -99,7 +107,7 @@ class PiloteController
             return $response->withHeader('Location', $url)->withStatus(302);
         }
 
-        return $view->render($response, 'gestion_pilotes.html.twig', [
+        return $view->render($response, 'modifier_pilotes.html.twig', [
             'gestion_pilotes' => $pilotes,
         ]);
     }
@@ -107,7 +115,7 @@ class PiloteController
     public function supprimer(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $id = (int)$args['id'];
-        $pilotes = $this->em->find(Pilote::class, $id);
+        $pilotes = $this->em->find(Utilisateur::class, $id);
 
         if ($pilotes) {
             $this->em->remove($pilotes);

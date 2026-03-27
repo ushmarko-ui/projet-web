@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
+use App\Application\Controller\AccueilController;
 use App\Application\Controller\EntrepriseController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -18,15 +19,15 @@ use App\Application\Controller\GestionEntreprise;
 use App\Application\Controller\PostuleController;
 use App\Application\Controller\SouhaitController;
 use App\Application\Controller\StageController;
+use App\Application\Controller\VoirOffresController;
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
         return $response;
     });
-    $app->get('/', [HomeController::class, 'home']);
+    $app->get('/', [AccueilController::class, 'home']);
     $app->get('/stage[/{page:\d+}]', [StageController::class, 'stage'])->setName('stage');
     $app->get('/entreprise[/{page:\d+}]', [EntrepriseController::class, 'entreprise'])->setName('entreprise');
-    $app->get('/souhait', [SouhaitController::class, 'souhait']);
     $app->get('/politique', [HomeController::class, 'politique']);
     $app->get('/role', [HomeController::class, 'role']);
     $app->get('/mentions', [HomeController::class, 'mentions']);
@@ -35,6 +36,8 @@ return function (App $app) {
     $app->get('/deconnexion', [ConnexionController::class, 'deconnecter']);
     $app->get('/postule',  [PostuleController::class, 'afficher2']);
     $app->post('/postule', [PostuleController::class, 'traiter']);
+    $app->get('/offres/{nom}', [VoirOffresController::class, 'VoirOffres'])->setName('voir-offres');
+    $app->get('/candidature', [HomeController::class, 'candidature']);
 
     $app->get('/gestion_entreprises[/{page:\d+}]', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
     $app->post('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute']);
@@ -63,4 +66,8 @@ return function (App $app) {
     $app->get('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier'])->setName('modifier-pilotes');
     $app->post('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier']);
     $app->post('/gestion_pilotes/supprimer/{id}', [PiloteController::class, 'supprimer'])->setName('supprimer-pilotes');
+
+    $app->get('/souhait[/{page:\d+}]', [SouhaitController::class, 'souhait'])->setName('souhait');
+    $app->post('/souhait/ajouter/{id}', [SouhaitController::class, 'ajouter'])->setName('ajouter-souhait');
+    $app->post('/souhait/supprimer/{id}', [SouhaitController::class, 'supprimer'])->setName('supprimer-souhait');
 };

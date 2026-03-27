@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity, Table(name: 'etudiants')]
-class Etudiant
+#[Entity, Table(name: 'utilisateurs')]
+class Utilisateur
 {
     #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private int $id;
@@ -21,21 +21,34 @@ class Etudiant
     #[Column(type: 'string', nullable: false)]
     private string $prenom;
 
+    // Ajout du champ mot de passe
     #[Column(type: 'string', nullable: false)]
-    private string $age;
+    private string $password;
+
+    #[Column(type: 'string', nullable: false)]
+    private string $lieu;
 
     #[Column(type: 'string', nullable: false)]
     private string $email;
 
+    #[Column(type: 'string', nullable: false)]
+    private string $mot_de_passe;
+
+    #[Column(type: 'string', nullable: false)]
+    private string $role;
+
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $prenom, string $age, string $email)
+    public function __construct(string $nom, string $prenom, string $password, string $lieu, string $email)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->age = $age;
+        $this->password = $password; // Initialisation du mot de passe
+        $this->lieu = $lieu;
         $this->email = $email;
+        $this->mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+        $this->role = $role;
         $this->createdAt = new DateTimeImmutable('now');
     }
 
@@ -64,14 +77,25 @@ class Etudiant
         $this->prenom = $prenom;
     }
 
-    public function getAge(): string
+    // Getter et Setter pour le mot de passe
+    public function getPassword(): string
     {
-        return $this->age;
+        return $this->password;
     }
 
-    public function setAge(string $age): void
+    public function setPassword(string $password): void
     {
-        $this->age = $age;
+        $this->password = $password;
+    }
+
+    public function getLieu(): string
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(string $lieu): void
+    {
+        $this->lieu = $lieu;
     }
 
     public function getEmail(): string
@@ -83,6 +107,27 @@ class Etudiant
     {
         $this->email = $email;
     }
+
+    public function getMotDePasse(): string
+    {
+        return $this->mot_de_passe;
+    }
+
+    public function setMotDePasse(string $mot_de_passe): void
+    {
+        $this->mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+    }
+
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
+    }
+
 
     public function getCreatedAt(): DateTimeImmutable
     {

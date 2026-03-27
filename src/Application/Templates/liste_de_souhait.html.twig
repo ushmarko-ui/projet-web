@@ -7,19 +7,17 @@
 
 	<style>
 
-		/* Titre avec contour cyan */
 		.titre_souhait {
 			text-align: center;
 			margin-top: 50px;
 			margin-bottom: 50px;
-			font-size: 50px; /* Responsive font size */
+			font-size: 50px;
 			font-weight: 800;
 			color: white;
 			-webkit-text-stroke-width: 2px;
 			-webkit-text-stroke-color: rgb(26, 189, 230);
 		}
 
-		/* Style du tableau */
 		.tableau-container {
 			background: rgba(0, 0, 0, 0.4);
 			border-radius: 15px;
@@ -68,85 +66,66 @@
 			transform: scale(1.2);
 		}
 	</style>
-</head>
 
-<main class="container mb-5">
-	<h1 class="titre_souhait">⭐ Voici votre liste de souhaits</h1>
+	<main class="container mb-5">
+		<h1 class="titre_souhait">⭐ Voici votre liste de souhaits</h1>
 
-	<div class="tableau-container table-responsive shadow-lg">
-		<table class="table-souhaits">
-			<thead>
-				<tr>
-					<th>Action</th>
-					<th>Nom entreprise</th>
-					<th>Ville</th>
-					<th>Date du stage</th>
-					<th>Domaine</th>
-					<th>Niveau d'étude</th>
-					<th>Salaire</th>
-				</tr>
-			</thead>
-			{% for souhait in souhaits %}
-				<tbody>
+		<div class="tableau-container table-responsive shadow-lg">
+			<table class="table-souhaits">
+				<thead>
 					<tr>
-						<td class="text-center">
-							<button class="btn-delete btn-supprimer">🗑️</button>
-						</td>
-						<td>{{ souhait.Nom }}</td>
-						<td>{{ souhait.Ville }}</td>
-						<td>{{ souhait.Date}}</td>
-						<td>{{ souhait.Domaine }}</td>
-						<td>{{ souhait.Niveau }}</td>
-						<td>{{ souhait.Salaire }}</td>
+						<th>Action</th>
+						<th>Nom entreprise</th>
+						<th>Ville</th>
+						<th>Date du stage</th>
+						<th>Domaine</th>
+						<th>Description</th>
+						<th>Adresse Mail</th>
+						<th>Niveau</th>
+						<th>Salaire</th>
 					</tr>
-				</tbody>
-			{% endfor %}
-		</table>
-	</div>
-	<div class="mt-5">
-		<nav aria-label="Pagination">
-			<ul class="pagination mb-0 justify-content-center">
-				<li class="page-item">
-					<a class="page-link" href="?page=1">
-						&laquo; Page précédente
-					</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=1">1</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=2">2</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=3">3</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=4">4</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=5">5</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=6">6</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=7">7</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=8">8</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=9">9</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=10">10</a>
-				</li>
-				<li class="page-item">
-					<a class="page-link" href="?page=2">
-						Page suivante &raquo;
-					</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
-</main>{% endblock %}
+				</thead>
+				{% for souhait in souhaits %}
+					<tbody>
+						<tr>
+							<td class="text-center">
+								<form method="POST" action="{{ url_for('supprimer-souhait', { 'id': souhait.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer ce souhait ?')">
+									<button type="submit" class="btn-delete">🗑️</button>
+								</form>
+							</td>
+							<td>{{ souhait.Nom }}</td>
+							<td>{{ souhait.Lieu }}</td>
+							<td>{{ souhait.Duree}}</td>
+							<td>{{ souhait.Domaine }}</td>
+							<td>{{ souhait.Description }}</td>
+							<td>{{ souhait.Email }}</td>
+							<td>{{ souhait.niveau }}</td>
+							<td>{{ souhait.salaire }}</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+			</table>
+		</div>
+		{% if totalPages > 1 %}
+			<nav class="mt-3">
+				<ul class="pagination justify-content-center">
+
+					<li class="page-item {{ page <= 1 ? 'disabled' : '' }}">
+						<a class="page-link" href="{{ url_for('souhait', {'page': page - 1}) }}">&laquo; Précédent</a>
+					</li>
+
+					{% for p in 1..totalPages %}
+						<li class="page-item {% if p == page %}active{% endif %}">
+							<a class="page-link" href="{{ url_for('souhait', {'page': p}) }}">{{ p }}</a>
+						</li>
+					{% endfor %}
+
+					<li class="page-item {{ page >= totalPages ? 'disabled' : '' }}">
+						<a class="page-link" href="{{ url_for('souhait', {'page': page + 1}) }}">Suivant &raquo;</a>
+					</li>
+
+				</ul>
+			</nav>
+		{% endif %}
+	</main>
+{% endblock %}

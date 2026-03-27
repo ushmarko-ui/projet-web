@@ -4,23 +4,29 @@
 {% block heading %}Gestion des Pilotes
 {% endblock %}
 {% block content %}
-	<form method="POST" action="{{ url_for('ajout-pilotes') }}" div class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow border border-secondary border-opacity-10">
+	<form method="POST" action="{{ url_for('ajout-pilotes') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow border border-secondary border-opacity-10">
 		<div class="col-auto">
 			<button class="btn btn-add-custom px-4 fw-bold shadow-sm" id="add-pilote-btn">
 				+
 			</button>
 		</div>
-		<div class="col-md-2">
+		<div class="col">
 			<input type="text" name="nom" id="pilote-last" class="form-control form-control-dark" placeholder="Nom Complet"/>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md">
 			<input type="text" name="prenom" id="pilote-first" class="form-control form-control-dark" placeholder="Prenom"/>
 		</div>
-		<div class="col-md-2">
+		<div class="col">
+			<input type="text" name="mot_de_passe" id="pilote-first" class="form-control form-control-dark" placeholder="Mot de passe"/>
+		</div>
+		<div class="col">
 			<input type="text" name="lieu" id="pilote-centre" class="form-control form-control-dark" placeholder="Ville"/>
 		</div>
-		<div class="col-md-2">
+		<div class="col">
 			<input type="email" name="email" id="pilote-email" class="form-control form-control-dark" placeholder="E-mail Professionnel"/>
+		</div>
+		<div class="col">
+			<input type="texte" name="role" id="pilote-email" class="form-control form-control-dark" placeholder="Role"/>
 		</div>
 	</form>
 
@@ -32,8 +38,10 @@
 					<th>ID</th>
 					<th>Nom Complet</th>
 					<th>Prenom</th>
+					<th>Mot de passe</th>
 					<th>Centre / Ville</th>
 					<th>E-mail</th>
+					<th>Role</th>
 				</tr>
 			</thead>
 			<tbody id="pilote-table-body">
@@ -48,8 +56,10 @@
 						<td>{{ gestion_pilote.id }}</td>
 						<td>{{ gestion_pilote.nom}}</td>
 						<td>{{ gestion_pilote.prenom}}</td>
+						<td>{{ gestion_pilote.motdepasse}}</td>
 						<td>{{ gestion_pilote.lieu}}</td>
 						<td>{{ gestion_pilote.email }}</td>
+						<td>{{ gestion_pilote.role }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

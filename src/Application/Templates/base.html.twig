@@ -114,18 +114,18 @@
 				<a href="/stage" class="glass nav-link-custom">Stage</a>
 				<a href="/entreprise" class="glass nav-link-custom">Entreprise</a>
 				<a href="/souhait" class="glass nav-link-custom">Liste de souhaits</a>
+				<a href="/candidature" class="glass nav-link-custom">Ma Candidature</a>
 
 				{% if role== 'admin' %}
 					<a href="/gestion_etudiants" id="btn-ajout-etudiant" class="nav-link-custom bg-primary">Gestion Étudiants</a>
-					<a href="/creation_entreprise" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
+					<a href="/gestion_entreprises" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
 					<a href="/gestion_pilotes" id="btn-ajout-pilote" class="nav-link-custom bg-info">Gestion Pilotes</a>
 					<a href="/gestion_offres" id="btn-ajout-offres" class="nav-link-custom bg-dark">Gestion Offres</a>
 				{% endif %}
 
 				{% if role== 'pilote' %}
 					<a href="/gestion_etudiants" id="btn-ajout-etudiant" class="nav-link-custom bg-primary">Gestion Étudiants</a>
-					<a href="/creation_entreprise" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
-					<a href="/gestion_pilotes" id="btn-ajout-pilote" class="nav-link-custom bg-info">Gestion Pilotes</a>
+					<a href="/gestion_entreprises" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
 					<a href="/gestion_offres" id="btn-ajout-offres" class="nav-link-custom bg-dark">Gestion Offres</a>
 				{% endif %}
 

@@ -58,9 +58,11 @@ class OffreController
             $email = trim($parsedBody['email'] ?? '');
             $description = trim($parsedBody['description'] ?? '');
             $duree = trim($parsedBody['duree'] ?? '');
+            $niveau = trim($parsedBody['niveau'] ?? '');
+            $salaire = trim($parsedBody['salaire'] ?? '');
 
             if ($nom !== '' && $description !== '') {
-                $offre = new Offres($nom, $domaine, $lieu, $email, $description, $duree);
+                $offre = new Offres($nom, $domaine, $lieu, $email, $description, $duree, $niveau, $salaire);
                 $this->em->persist($offre);
                 $this->em->flush();
             }
@@ -83,21 +85,34 @@ class OffreController
 
         if ($request->getMethod() === 'POST') {
             $parsedBody = $request->getParsedBody();
-            $offre->setNom(trim($parsedBody['nom'] ?? ''));
-            $offre->setDomaine(trim($parsedBody['domaine'] ?? ''));
-            $offre->setLieu(trim($parsedBody['lieu'] ?? ''));
-            $offre->setEmail(trim($parsedBody['email'] ?? ''));
-            $offre->setDescription(trim($parsedBody['description'] ?? ''));
-            $offre->setDuree(trim($parsedBody['duree'] ?? ''));
 
-            $this->em->flush();
+            $nom = trim($parsedBody['nom'] ?? '');
+            $domaine = trim($parsedBody['domaine'] ?? '');
+            $lieu = trim($parsedBody['lieu'] ?? '');
+            $email = trim($parsedBody['email'] ?? '');
+            $description = trim($parsedBody['description'] ?? '');
+            $duree = trim($parsedBody['duree'] ?? '');
+            $niveau = trim($parsedBody['niveau'] ?? '');
+            $salaire = trim($parsedBody['salaire'] ?? '');
 
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            $url = $routeParser->urlFor('gestion_offres');
-            return $response->withHeader('Location', $url)->withStatus(302);
+            if ($nom !== '' && $description !== '') {
+                $offre->setNom($nom);
+                $offre->setDomaine($domaine);
+                $offre->setLieu($lieu);
+                $offre->setEmail($email);
+                $offre->setDescription($description);
+                $offre->setDuree($duree);
+                $offre->setNiveau($niveau);
+                $offre->setSalaire($salaire);
+                $this->em->flush();
+
+                $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+                $url = $routeParser->urlFor('gestion_offres');
+                return $response->withHeader('Location', $url)->withStatus(302);
+            }
         }
 
-        return $view->render($response, 'gestion_offres.html.twig', [
+        return $view->render($response, 'modifier_offres.html.twig', [
             'gestion_offres' => $offre,
         ]);
     }
