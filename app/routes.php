@@ -60,6 +60,9 @@ return function (App $app) {
     $app->get('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier'])->setName('modifier-etudiants');
     $app->post('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier']);
     $app->post('/gestion_etudiants/supprimer/{id}', [EtudiantController::class, 'supprimer'])->setName('supprimer-etudiants');
+    $app->post('/offre/avis/{id}', [App\Application\Controller\AvisController::class, 'laisser_avis'])->setName('laisser_avis');
+
+
 
     $app->get('/gestion_pilotes[/{page:\d+}]', [PiloteController::class, 'gestion_pilotes'])->setName('gestion_pilotes');
     $app->post('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute']);

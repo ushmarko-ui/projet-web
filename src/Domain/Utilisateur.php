@@ -21,6 +21,10 @@ class Utilisateur
     #[Column(type: 'string', nullable: false)]
     private string $prenom;
 
+    // Ajout du champ mot de passe
+    #[Column(type: 'string', nullable: false)]
+    private string $password;
+
     #[Column(type: 'string', nullable: false)]
     private string $lieu;
 
@@ -36,10 +40,11 @@ class Utilisateur
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $prenom, string $lieu, string $email, string $mot_de_passe, string $role)
+    public function __construct(string $nom, string $prenom, string $password, string $lieu, string $email)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
+        $this->password = $password; // Initialisation du mot de passe
         $this->lieu = $lieu;
         $this->email = $email;
         $this->mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
@@ -70,6 +75,17 @@ class Utilisateur
     public function setPrenom(string $prenom): void
     {
         $this->prenom = $prenom;
+    }
+
+    // Getter et Setter pour le mot de passe
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 
     public function getLieu(): string
