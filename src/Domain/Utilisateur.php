@@ -42,7 +42,7 @@ class Utilisateur
         $this->prenom = $prenom;
         $this->lieu = $lieu;
         $this->email = $email;
-        $this->mot_de_passe = $mot_de_passe;
+        $this->mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
         $this->role = $role;
         $this->createdAt = new DateTimeImmutable('now');
     }
@@ -99,7 +99,7 @@ class Utilisateur
 
     public function setMotDePasse(string $mot_de_passe): void
     {
-        $this->mot_de_passe = $mot_de_passe;
+        $this->mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
     }
 
     public function getRole(): string

@@ -52,4 +52,10 @@ class HomeController
         $view = Twig::fromRequest($request);
         return $view->render($response, 'mentions.html.twig', []);
     }
+
+    public function candidature(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $view = Twig::fromRequest($request);
+        return $view->render($response, 'MaCandidature.html.twig', []);
+    }
 }
