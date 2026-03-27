@@ -4,79 +4,124 @@ namespace App\Application\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Doctrine\ORM\EntityManager;
+use App\Domain\Candidature;
+use App\Domain\Offres;
 use Slim\Views\Twig;
+use Slim\Routing\RouteContext;
 
 class PostuleController
 {
+    private EntityManager $em;
+
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     public function afficher2(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'Formulaire_postule.html.twig', ['role' => $session['userRole'] ?? '']);
+
+        // On récupère l'ID de l'offre pour l'envoyer à la vue (pour le bouton submit)
+        $idOffre = $args['id'] ?? null;
+
+        return $view->render($response, 'Formulaire_postule.html.twig', [
+            'id' => $idOffre
+        ]);
     }
 
     public function traiter(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-
-        $data        = $request->getParsedBody();
+        $data = $request->getParsedBody();
         $uploadedFiles = $request->getUploadedFiles();
+        $idOffre = (int)$args['id'];
 
+        // Nettoyage des données
         $prenom      = htmlspecialchars($data['prenom']      ?? '', ENT_QUOTES, 'UTF-8');
         $nom         = htmlspecialchars($data['nom']         ?? '', ENT_QUOTES, 'UTF-8');
         $email       = filter_var($data['email'] ?? '', FILTER_SANITIZE_EMAIL);
         $description = htmlspecialchars($data['description'] ?? '', ENT_QUOTES, 'UTF-8');
-        $telephone = htmlspecialchars($data['telephone'] ?? '', ENT_QUOTES, 'UTF-8');
+        $telephone   = htmlspecialchars($data['telephone']   ?? '', ENT_QUOTES, 'UTF-8');
 
         $error   = null;
         $success = null;
 
+        //VALIDATIONS
         if (empty($prenom)) {
-            $error = "le prenom est obligatoire";
-        } elseif (preg_match("/([^A-Za-z])/", $prenom)) {
+            $error = "Le prénom est obligatoire.";
+        } elseif (preg_match("/[^A-Za-zÀ-ÿ\s-]/", $prenom)) {
             $error = "Votre prénom ne doit contenir que des lettres.";
         } elseif (empty($nom)) {
-            $error = 'le nom est obligatoire';
-        } elseif (preg_match("/([^A-Za-z])/", $nom)) {
+            $error = "Le nom est obligatoire.";
+        } elseif (preg_match("/[^A-Za-zÀ-ÿ\s-]/", $nom)) {
             $error = "Votre nom ne doit contenir que des lettres.";
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error = "L'adresse email '$email' n'est pas valide";
+        } elseif (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = "L'adresse email '$email' n'est pas valide.";
         } elseif (empty($telephone)) {
-            $error = "le numero est obligatoire";
+            $error = "Le numéro est obligatoire.";
         } elseif (!preg_match("/^[0-9]+$/", $telephone)) {
-            $error = "Votre numero ne doit pas contenir de lettre.";
+            $error = "Votre numéro ne doit contenir que des chiffres.";
         }
-        // Gestion fichier
+
+        //TRAITEMENT SI PAS D'ERREUR
         if ($error === null) {
-            if (isset($uploadedFiles['fichier'])) {
+            if (isset($uploadedFiles['fichier']) && $uploadedFiles['fichier']->getError() === UPLOAD_ERR_OK) {
                 $fichier  = $uploadedFiles['fichier'];
                 $mimeType = $fichier->getClientMediaType();
 
-                if ($fichier->getError() !== UPLOAD_ERR_OK) {
-                    $error = "Erreur lors de l'upload du fichier.";
-                } elseif ($mimeType !== 'application/pdf') {
+                if ($mimeType !== 'application/pdf') {
                     $error = "Type de fichier non autorisé (PDF uniquement).";
                 } elseif ($fichier->getSize() > 2 * 1024 * 1024) {
                     $error = "Fichier trop volumineux (max 2MB).";
                 } else {
+                    // 1. Sauvegarde physique du fichier
                     $uploadDir = __DIR__ . '/../../../public/uploads/';
+                    if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
-                    $filename = basename($fichier->getClientFilename());
+                    $filename = uniqid() . "_" . basename($fichier->getClientFilename());
                     $fichier->moveTo($uploadDir . $filename);
-                    $success = "Candidature envoyée avec succès, $prenom $nom !";
+
+                    // 2. ENREGISTREMENT EN BASE DE DONNÉES
+                    $offre = $this->em->find(Offres::class, $idOffre);
+
+                    if ($offre) {
+                        $candidature = new Candidature(
+                            $offre->getNom(),
+                            $offre->getDomaine(),
+                            $offre->getLieu(),
+                            $offre->getEmail(),
+                            $offre->getDescription(),
+                            $offre->getDuree(),
+                            $offre->getNiveau(),
+                            $offre->getSalaire()
+                        );
+
+                        $this->em->persist($candidature);
+                        $this->em->flush();
+
+                        // Redirection vers la liste des candidatures après succès
+                        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+                        return $response->withHeader('Location', $routeParser->urlFor('candidature'))->withStatus(302);
+                    } else {
+                        $error = "Offre introuvable en base de données.";
+                    }
                 }
             } else {
-                $error = "Aucun fichier reçu.";
+                $error = "Veuillez joindre votre CV (PDF).";
             }
         }
 
+        // Si on arrive ici, c'est qu'il y a une erreur, on réaffiche le formulaire
         $view = Twig::fromRequest($request);
         return $view->render($response, 'Formulaire_postule.html.twig', [
             'error'       => $error,
-            'success'     => $success,
             'prenom'      => $prenom,
             'nom'         => $nom,
             'email'       => $email,
             'description' => $description,
-            'telephone' => $telephone,
+            'telephone'   => $telephone,
+            'id'          => $idOffre
         ]);
     }
 }

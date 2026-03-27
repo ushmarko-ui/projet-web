@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Application\Controller\AccueilController;
+use App\Application\Controller\CandidatureController;
 use App\Application\Controller\EntrepriseController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -34,10 +35,10 @@ return function (App $app) {
     $app->get('/connexion',  [ConnexionController::class, 'afficher']);
     $app->post('/connexion', [ConnexionController::class, 'connecter']);
     $app->get('/deconnexion', [ConnexionController::class, 'deconnecter']);
-    $app->get('/postule',  [PostuleController::class, 'afficher2']);
-    $app->post('/postule', [PostuleController::class, 'traiter']);
+    $app->get('/postule/{id}',  [PostuleController::class, 'afficher2']);
+    $app->post('/postule/{id}', [PostuleController::class, 'traiter']);
     $app->get('/offres/{nom}', [VoirOffresController::class, 'VoirOffres'])->setName('voir-offres');
-    $app->get('/candidature', [HomeController::class, 'candidature']);
+    $app->get('/candidature', [CandidatureController::class, 'candidature'])->setName('candidature');
 
     $app->get('/gestion_entreprises[/{page:\d+}]', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
     $app->post('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute']);
