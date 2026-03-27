@@ -17,73 +17,45 @@
 			border-radius: 15px;
 		}
 	</style>
-</head>
+	<main class="container py-5 text-center">
+		<h2 class="text-center fw-bold mb-5 py-3">
+			Trouver l'entreprise parfaite à vos besoins !
+		</h2>
 
-
-<main class="container py-5 text-center">
-	<h2 class="text-center fw-bold mb-5 py-3">
-		Trouver l'entreprise parfaite à vos besoins !
-	</h2>
-
-	<div class="row g-4 justify-content-center">
-		{% for entreprise in entreprises %}
-			<div class="col-md-4">
-				<div class="offre-card p-4 text-white">
-					<div class="fw-bold fs-5 mb-2">{{ entreprise.nom }}</div>
-					<div class="mb-2">{{ entreprise.domaine }}</div>
-					<div>📍
-						{{ entreprise.lieu }}</div>
-					<div>✉️
-						{{ entreprise.email }}</div>
-					<a href="/postule" class="btn btn-primary mt-2">Postule</a>
+		<div class="row g-4 justify-content-center">
+			{% for entreprise in entreprises %}
+				<div class="col-md-4">
+					<div class="offre-card p-4 text-white">
+						<div class="fw-bold fs-5 mb-2">{{ entreprise.nom }}</div>
+						<div class="mb-2">{{ entreprise.domaine }}</div>
+						<div>📍
+							{{ entreprise.lieu }}</div>
+						<div>✉️
+							{{ entreprise.email }}</div>
+						<a href="/postule" class="btn btn-primary mt-2">Postule</a>
+					</div>
 				</div>
-			</div>
-		{% endfor %}
-		<div class="mt-5">
-			<nav aria-label="Pagination">
-				<ul class="pagination mb-0 justify-content-center">
-					<li class="page-item">
-						<a class="page-link" href="?page={{ page - 1 }}">
-							&laquo; Page précédente
-						</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=1">1</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=2">2</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=3">3</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=4">4</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=5">5</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=6">6</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=7">7</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=8">8</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=9">9</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page=10">10</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="?page={{ page + 1 }}">
-							Page suivante &raquo;
-						</a>
-					</li>
-				</li>
-			</ul>
-		</nav>
-	</div>
-</main>{% endblock %}
+			{% endfor %}
+			{% if totalPages > 1 %}
+				<nav class="mt-3">
+					<ul class="pagination justify-content-center">
+
+						<li class="page-item">
+							<a class="page-link" href="{{ url_for('entreprise', {'page': page - 1}) }}">&laquo; Précédent</a>
+						</li>
+
+						{% for p in 1..totalPages %}
+							<li class="page-item {% if p == page %}active{% endif %}">
+								<a class="page-link" href="{{ url_for('entreprise', {'page': p}) }}">{{ p }}</a>
+							</li>
+						{% endfor %}
+
+						<li class="page-item">
+							<a class="page-link" href="{{ url_for('entreprise', {'page': page + 1}) }}">Suivant &raquo;</a>
+						</li>
+
+					</ul>
+				</nav>
+			{% endif %}
+		</main>
+	{% endblock %}

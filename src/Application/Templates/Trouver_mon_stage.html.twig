@@ -94,18 +94,18 @@
 			<section class="col-lg-9 text-center bg-white bg-opacity-10 rounded p-4 shadow">
 				<h2 class="mb-4 fw-bold">Offres</h2>
 				<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 justify-content-center">
-					{% for offre in offres %}
+					{% for stage in stages %}
 						<div class="col-md-3">
 							<div class="offre-card p-4 text-white">
-								<div class="fw-bold fs-5 mb-2">{{ offre.nom }}</div>
-								<div class="mb-2">{{ offre.domaine }}</div>
+								<div class="fw-bold fs-5 mb-2">{{ stage.nom }}</div>
+								<div class="mb-2">{{ stage.domaine }}</div>
 								<div>📍
-									{{ offre.lieu }}</div>
+									{{ stage.lieu }}</div>
 								<div>✉️
-									{{ offre.email }}</div>
+									{{ stage.email }}</div>
 								<div>⏱️
-									{{ offre.duree }}</div>
-								<div class="mt-2">{{ offre.description }}</div>
+									{{ stage.duree }}</div>
+								<div class="mt-2">{{ stage.description }}</div>
 								<a href="/postule" class="btn btn-primary mt-2" role="button" aria-pressed="true">Postule</a>
 								<a href="/souhait" class="btn btn-primary mt-2" role="button" aria-pressed="true">Enregistre</a>
 								<a href="/souhait" class="btn btn-primary mt-2" role="button" aria-pressed="true">Statistique</a>
@@ -113,53 +113,27 @@
 						</div>
 					{% endfor %}
 				</div>
+				{% if totalPages > 1 %}
+					<nav class="mt-3">
+						<ul class="pagination justify-content-center">
 
-				<div class="mt-5">
-					<nav aria-label="Pagination">
-						<ul class="pagination mb-0 justify-content-center">
 							<li class="page-item">
-								<a class="page-link" href="?page=1">
-									&laquo; Page précédente
-								</a>
+								<a class="page-link" href="{{ url_for('stage', {'page': page - 1}) }}">&laquo; Précédent</a>
 							</li>
+
+							{% for p in 1..totalPages %}
+								<li class="page-item {% if p == page %}active{% endif %}">
+									<a class="page-link" href="{{ url_for('stage', {'page': p}) }}">{{ p }}</a>
+								</li>
+							{% endfor %}
+
 							<li class="page-item">
-								<a class="page-link" href="?page=1">1</a>
+								<a class="page-link" href="{{ url_for('stage', {'page': page + 1}) }}">Suivant &raquo;</a>
 							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=2">2</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=3">3</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=4">4</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=5">5</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=6">6</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=7">7</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=8">8</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=9">9</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=10">10</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="?page=2">
-									Page suivante &raquo;
-								</a>
-							</li>
+
 						</ul>
 					</nav>
-				</div>
+				{% endif %}
 			</section>
 		</div>
 	</main>
