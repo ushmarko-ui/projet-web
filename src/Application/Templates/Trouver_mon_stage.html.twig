@@ -108,7 +108,7 @@
 									|  💼{{ stage.niveau }}
 									|  💸{{ stage.salaire }}</div>
 								<div class="mt-2">{{ stage.description }}</div>
-								<a href="/postule/{{ stage.id }}" class="btn btn-primary mt-2" role="button" aria-pressed="true">Postule</a>
+								<a href="{{ url_for('postule', {'id': stage.id}) }}" class="btn btn-primary mt-2" role="button" aria-pressed="true">Postule</a>
 								<form method="POST" action="{{ url_for('ajouter-souhait', {'id': stage.id}) }}" style="display:inline">
 									<button type="submit" class="btn btn-primary mt-2">Enregistre</button>
 								</form>

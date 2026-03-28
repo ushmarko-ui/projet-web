@@ -35,7 +35,7 @@
 							|  💼{{ VoirOffre.niveau }}
 							|  💸{{ VoirOffre.salaire }}</div>
 						<div>{{ VoirOffre.description }}</div>
-						<a href="/postule" class="btn btn-primary mt-2">Postule</a>
+						<a href="{{ url_for('postule', {'id': VoirOffre.id})}}" class="btn btn-primary mt-2">Postule</a>
 					</div>
 				</div>
 			{% endfor %}

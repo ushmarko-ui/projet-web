@@ -3,6 +3,7 @@
 namespace App\Application\Controller;
 
 use App\Domain\Utilisateur;
+use App\Domain\Role;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -34,7 +35,7 @@ class EtudiantController
 
         $gestion_etudiants = $repository->createQueryBuilder('o')
             ->where('o.role = :role')
-            ->setParameter('role', 'Etudiant')
+            ->setParameter('role', Role::ETUDIANT)
             ->orderBy('o.id', 'ASC')
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
@@ -58,7 +59,8 @@ class EtudiantController
             $prenom = trim($parsedBody['prenom'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
-            $role = trim($parsedBody['role'] ?? '');
+            $roleStr = trim($parsedBody['role'] ?? 'pilote');
+            $role = Role::from($roleStr);
             $lieu = trim($parsedBody['lieu'] ?? '');
 
             if ($nom !== '' && $email !== '') {
@@ -90,7 +92,8 @@ class EtudiantController
             $email = trim($parsedBody['email'] ?? '');
             $lieu = trim($parsedBody['lieu'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
-            $role = trim($parsedBody['role'] ?? '');
+            $roleStr = trim($parsedBody['role'] ?? 'pilote');
+            $role = Role::from($roleStr);
 
             if ($nom !== '' && $prenom !== '') {
                 $etudiants->setNom($nom);

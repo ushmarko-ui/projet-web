@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Doctrine\DBAL\Types\Types;
 
 #[Entity, Table(name: 'utilisateurs')]
 class Utilisateur
@@ -30,13 +31,13 @@ class Utilisateur
     #[Column(type: 'string', nullable: false)]
     private string $mot_de_passe;
 
-    #[Column(type: 'string', nullable: false)]
-    private string $role;
+    #[Column(type: Types::STRING, enumType: Role::class)]
+    private Role $role = Role::ETUDIANT;
 
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $prenom, string $lieu, string $email, string $mot_de_passe, string $role)
+    public function __construct(string $nom, string $prenom, string $lieu, string $email, string $mot_de_passe, Role $role = Role::ETUDIANT)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -101,13 +102,12 @@ class Utilisateur
     {
         $this->mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
     }
-
-    public function getRole(): string
+    public function getRole(): Role
     {
         return $this->role;
     }
 
-    public function setRole(string $role): void
+    public function setRole(Role $role): void
     {
         $this->role = $role;
     }

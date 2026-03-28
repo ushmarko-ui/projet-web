@@ -2,41 +2,47 @@
 
 namespace App\Application\Controller;
 
+use App\Domain\Utilisateur;
+use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 
 class ConnexionController
 {
+    private EntityManager $em;
+
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     public function afficher(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $role = $request->getQueryParams()['role'] ?? '';
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'page_connexion.html.twig', ['role' => $role]);
+        return $view->render($response, 'page_connexion.html.twig', []);
     }
 
     public function connecter(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $data     = $request->getParsedBody();
-        $role     = $data['role']     ?? '';
-        $username = $data['username'] ?? '';
+        $data = $request->getParsedBody();
+        $email = $data['email'] ?? '';
         $password = $data['password'] ?? '';
 
-        if ($role === 'admin' && $username === 'admin_user' && $password === 'admin123') {
-            $_SESSION['userRole'] = 'admin';
-            return $response->withHeader('Location', '/')->withStatus(302);
+        $user = $this->em->getRepository(Utilisateur::class)->findOneBy(['email' => $email]);
+
+        if ($user === null) {
+            $view = Twig::fromRequest($request);
+            return $view->render($response, 'page_connexion.html.twig', ['error' => 'Email introuvable']);
         }
 
-        if ($role === 'pilote' && $username === 'pilote_user' && $password === 'pilote123') {
-            $_SESSION['userRole'] = 'pilote';
-            return $response->withHeader('Location', '/')->withStatus(302);
+        if (!password_verify($password, $user->getMotDePasse())) {
+            $view = Twig::fromRequest($request);
+            return $view->render($response, 'page_connexion.html.twig', ['error' => 'Mot de passe incorrect']);
         }
 
-        $view = Twig::fromRequest($request);
-        return $view->render($response, 'page_connexion.html.twig', [
-            'role'  => $role,
-            'error' => 'Identifiants incorrects !',
-        ]);
+        $_SESSION['user_id'] = $user->getId();
+        return $response->withHeader('Location', '/')->withStatus(302);
     }
 
     public function deconnecter(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface

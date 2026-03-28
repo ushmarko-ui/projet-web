@@ -21,54 +21,68 @@ use App\Application\Controller\PostuleController;
 use App\Application\Controller\SouhaitController;
 use App\Application\Controller\StageController;
 use App\Application\Controller\VoirOffresController;
+use App\Domain\Role;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Slim\Routing\RouteCollectorProxy;
+use App\Application\Middleware\RoleCheckMiddleware;
+use App\Application\Middleware\LoggedMiddleware;
 
 return function (App $app) {
+    $factory = $app->getContainer()->get(ResponseFactoryInterface::class);
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
         return $response;
     });
-    $app->get('/', [AccueilController::class, 'home']);
+    $app->get('/', [AccueilController::class, 'home'])->setName('accueil');
     $app->get('/stage[/{page:\d+}]', [StageController::class, 'stage'])->setName('stage');
     $app->get('/entreprise[/{page:\d+}]', [EntrepriseController::class, 'entreprise'])->setName('entreprise');
-    $app->get('/politique', [HomeController::class, 'politique']);
-    $app->get('/role', [HomeController::class, 'role']);
-    $app->get('/mentions', [HomeController::class, 'mentions']);
-    $app->get('/connexion',  [ConnexionController::class, 'afficher']);
+    $app->get('/politique', [HomeController::class, 'politique'])->setName('politique');
+    $app->get('/mentions', [HomeController::class, 'mentions'])->setName('mentions');
+    $app->get('/connexion',  [ConnexionController::class, 'afficher'])->setName('connexion');
     $app->post('/connexion', [ConnexionController::class, 'connecter']);
-    $app->get('/deconnexion', [ConnexionController::class, 'deconnecter']);
-    $app->get('/postule/{id}',  [PostuleController::class, 'afficher2']);
-    $app->post('/postule/{id}', [PostuleController::class, 'traiter']);
+    $app->get('/deconnexion', [ConnexionController::class, 'deconnecter'])->setName('deconnexion');
     $app->get('/offres/{nom}', [VoirOffresController::class, 'VoirOffres'])->setName('voir-offres');
-    $app->get('/candidature', [CandidatureController::class, 'candidature'])->setName('candidature');
 
-    $app->get('/gestion_entreprises[/{page:\d+}]', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
-    $app->post('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute']);
-    $app->get('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute'])->setName('ajout-entreprises');
-    $app->get('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier'])->setName('modifier-entreprises');
-    $app->post('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier']);
-    $app->post('/gestion_entreprises/supprimer/{id}', [GestionEntreprise::class, 'supprimer'])->setName('supprimer-entreprises');
+    // Admin seulement
+    $app->group('', function (RouteCollectorProxy $group) {
+        $group->get('/gestion_pilotes[/{page:\d+}]', [PiloteController::class, 'gestion_pilotes'])->setName('gestion_pilotes');
+        $group->post('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute']);
+        $group->get('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute'])->setName('ajout-pilotes');
+        $group->get('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier'])->setName('modifier-pilotes');
+        $group->post('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier']);
+        $group->post('/gestion_pilotes/supprimer/{id}', [PiloteController::class, 'supprimer'])->setName('supprimer-pilotes');
+    })->add(new RoleCheckMiddleware($factory, [Role::ADMIN]));
 
-    $app->get('/gestion_offres[/{page:\d+}]', [OffreController::class, 'gestion_offres'])->setName('gestion_offres');
-    $app->post('/gestion_offres/ajouter', [OffreController::class, 'ajoute']);
-    $app->get('/gestion_offres/ajouter', [OffreController::class, 'ajoute'])->setName('ajout-offres');
-    $app->get('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier'])->setName('modifier-offres');
-    $app->post('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier']);
-    $app->post('/gestion_offres/supprimer/{id}', [OffreController::class, 'supprimer'])->setName('supprimer-offres');
+    // Admin + Pilote
+    $app->group('', function (RouteCollectorProxy $group) {
+        $group->get('/gestion_etudiants[/{page:\d+}]', [EtudiantController::class, 'gestion_etudiants'])->setName('gestion_etudiants');
+        $group->post('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute']);
+        $group->get('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute'])->setName('ajout-etudiants');
+        $group->get('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier'])->setName('modifier-etudiants');
+        $group->post('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier']);
+        $group->post('/gestion_etudiants/supprimer/{id}', [EtudiantController::class, 'supprimer'])->setName('supprimer-etudiants');
 
-    $app->get('/gestion_etudiants[/{page:\d+}]', [EtudiantController::class, 'gestion_etudiants'])->setName('gestion_etudiants');
-    $app->post('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute']);
-    $app->get('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute'])->setName('ajout-etudiants');
-    $app->get('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier'])->setName('modifier-etudiants');
-    $app->post('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier']);
-    $app->post('/gestion_etudiants/supprimer/{id}', [EtudiantController::class, 'supprimer'])->setName('supprimer-etudiants');
+        $group->get('/gestion_offres[/{page:\d+}]', [OffreController::class, 'gestion_offres'])->setName('gestion_offres');
+        $group->post('/gestion_offres/ajouter', [OffreController::class, 'ajoute']);
+        $group->get('/gestion_offres/ajouter', [OffreController::class, 'ajoute'])->setName('ajout-offres');
+        $group->get('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier'])->setName('modifier-offres');
+        $group->post('/gestion_offres/modifier/{id}', [OffreController::class, 'modifier']);
+        $group->post('/gestion_offres/supprimer/{id}', [OffreController::class, 'supprimer'])->setName('supprimer-offres');
 
-    $app->get('/gestion_pilotes[/{page:\d+}]', [PiloteController::class, 'gestion_pilotes'])->setName('gestion_pilotes');
-    $app->post('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute']);
-    $app->get('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute'])->setName('ajout-pilotes');
-    $app->get('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier'])->setName('modifier-pilotes');
-    $app->post('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier']);
-    $app->post('/gestion_pilotes/supprimer/{id}', [PiloteController::class, 'supprimer'])->setName('supprimer-pilotes');
+        $group->get('/gestion_entreprises[/{page:\d+}]', [GestionEntreprise::class, 'gestion_entreprises'])->setName('gestion_entreprises');
+        $group->post('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute']);
+        $group->get('/gestion_entreprises/ajouter', [GestionEntreprise::class, 'ajoute'])->setName('ajout-entreprises');
+        $group->get('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier'])->setName('modifier-entreprises');
+        $group->post('/gestion_entreprises/modifier/{id}', [GestionEntreprise::class, 'modifier']);
+        $group->post('/gestion_entreprises/supprimer/{id}', [GestionEntreprise::class, 'supprimer'])->setName('supprimer-entreprises');
+    })->add(new RoleCheckMiddleware($factory, [Role::ADMIN, Role::PILOTE]));
 
-    $app->get('/souhait[/{page:\d+}]', [SouhaitController::class, 'souhait'])->setName('souhait');
-    $app->post('/souhait/ajouter/{id}', [SouhaitController::class, 'ajouter'])->setName('ajouter-souhait');
-    $app->post('/souhait/supprimer/{id}', [SouhaitController::class, 'supprimer'])->setName('supprimer-souhait');
+
+    $app->group('', function (RouteCollectorProxy $group) {
+        $group->get('/souhait[/{page:\d+}]', [SouhaitController::class, 'souhait'])->setName('souhait');
+        $group->post('/souhait/ajouter/{id}', [SouhaitController::class, 'ajouter'])->setName('ajouter-souhait');
+        $group->post('/souhait/supprimer/{id}', [SouhaitController::class, 'supprimer'])->setName('supprimer-souhait');
+        $group->get('/candidature', [CandidatureController::class, 'candidature'])->setName('candidature');
+        $group->get('/postule/{id}', [PostuleController::class, 'afficher2'])->setName('postule');
+        $group->post('/postule/{id}', [PostuleController::class, 'traiter']);
+    })->add(new LoggedMiddleware($factory));
 };

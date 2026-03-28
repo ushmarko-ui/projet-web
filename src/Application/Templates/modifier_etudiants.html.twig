@@ -29,7 +29,7 @@
 			</div>
 			<div class="mb-3">
 				<label class="form-label">Role</label>
-				<input type="text" name="role" class="form-control form-control-dark" value="{{ gestion_etudiants.role }}" required/>
+				<input type="text" name="role" class="form-control form-control-dark" value="{{ gestion_etudiant.role.value }}" required/>
 			</div>
 			<button type="submit" class="btn btn-primary">Sauvegarder</button>
 			<a href="{{ url_for('gestion_etudiants') }}" class="btn btn-secondary">Annuler</a>

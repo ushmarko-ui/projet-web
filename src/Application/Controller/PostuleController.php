@@ -27,7 +27,7 @@ class PostuleController
         $idOffre = $args['id'] ?? null;
 
         return $view->render($response, 'Formulaire_postule.html.twig', [
-            'id' => $idOffre
+            'offre_id' => $idOffre
         ]);
     }
 
@@ -47,7 +47,7 @@ class PostuleController
         $error   = null;
         $success = null;
 
-        //VALIDATIONS
+        //validations probleme peut etre sur email mais a changer facon
         if (empty($prenom)) {
             $error = "Le prénom est obligatoire.";
         } elseif (preg_match("/[^A-Za-zÀ-ÿ\s-]/", $prenom)) {
@@ -64,7 +64,7 @@ class PostuleController
             $error = "Votre numéro ne doit contenir que des chiffres.";
         }
 
-        //TRAITEMENT SI PAS D'ERREUR
+        //si pas erreur
         if ($error === null) {
             if (isset($uploadedFiles['fichier']) && $uploadedFiles['fichier']->getError() === UPLOAD_ERR_OK) {
                 $fichier  = $uploadedFiles['fichier'];
@@ -75,14 +75,13 @@ class PostuleController
                 } elseif ($fichier->getSize() > 2 * 1024 * 1024) {
                     $error = "Fichier trop volumineux (max 2MB).";
                 } else {
-                    // 1. Sauvegarde physique du fichier
                     $uploadDir = __DIR__ . '/../../../public/uploads/';
                     if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
                     $filename = uniqid() . "_" . basename($fichier->getClientFilename());
                     $fichier->moveTo($uploadDir . $filename);
 
-                    // 2. ENREGISTREMENT EN BASE DE DONNÉES
+                    //enregistre dans la bdd
                     $offre = $this->em->find(Offres::class, $idOffre);
 
                     if ($offre) {
@@ -112,7 +111,7 @@ class PostuleController
             }
         }
 
-        // Si on arrive ici, c'est qu'il y a une erreur, on réaffiche le formulaire
+        // si erreur remet formulaire
         $view = Twig::fromRequest($request);
         return $view->render($response, 'Formulaire_postule.html.twig', [
             'error'       => $error,

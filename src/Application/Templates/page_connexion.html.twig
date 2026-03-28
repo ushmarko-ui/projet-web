@@ -89,28 +89,19 @@
 	</head>
 	<body>
 		<div class="container d-flex flex-column align-items-center">
-			<img src="./image/ReadyToWork.png" alt="logo" class="logo-login"/>
+			<img src="/image/ReadyToWork.png" alt="logo" class="logo-login"/>
 
 			<div class="glass-container text-center">
 				<h2 class="text-white mb-4 fw-bold">S'identifier</h2>
 
-				<form method="POST" action="/connexion">
-					<input type="hidden" name="role" value="{{ role ?? '' }}">
-
+				<form method="POST" action="{{ url_for('connexion') }}">
 					<div class="mb-3">
-						<input type="text" name="username" class="form-control input-glass" placeholder="Prenom"/>
+						<input type="email" name="email" placeholder="Email" class="form-control input-glass"/>
 					</div>
-
-					<div class="mb-3">
-						<input type="text" name="username" class="form-control input-glass" placeholder="Nom"/>
-					</div>
-
-					<div class="mb-3">
-						<input type="password" name="password" class="form-control input-glass" placeholder="Mot de passe"/>
-					</div>
+					<input type="password" name="password" placeholder="Mot de passe" class="form-control input-glass"/>
 
 					{% if error is defined %}
-						<span id="error-message">{{ error }}</span>
+						<span>{{ error }}</span>
 					{% endif %}
 
 					<div class="mt-4">

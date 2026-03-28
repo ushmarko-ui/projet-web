@@ -58,12 +58,12 @@
 
 		<header class="container-fluid py-3">
 			<div class="d-flex justify-content-between align-items-center px-lg-5">
-				<a href="/" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white">
-					<img src="./image/ReadyToWork.png" alt="Logo" height="35" class="me-2"/>
+				<a href="{{ url_for('accueil') }}" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white">
+					<img src="/image/ReadyToWork.png" alt="Logo" height="35" class="me-2"/>
 					<span class="fw-bold">ReadyToWork</span>
 				</a>
-				<a href="/role" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white">
-					<img src="image/image_reunion.avif" alt="Profil" class="rounded-circle me-2" width="30" height="30"/>
+				<a href="{{ url_for('connexion') }}" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white">
+					<img src="/image/image_reunion.avif" alt="Profil" class="rounded-circle me-2" width="30" height="30"/>
 					<span>Mon Profil</span>
 				</a>
 			</div>
@@ -75,19 +75,19 @@
 		<nav class="container-fluid px-lg-5">
 			<hr class="border-2 opacity-50"/>
 			<div class="d-flex flex-wrap justify-content-center gap-3 py-2">
-				<a href="/stage" class="glass nav-link-custom">Stage</a>
-				<a href="/entreprise" class="glass nav-link-custom">Entreprise</a>
-				<a href="/souhait" class="glass nav-link-custom">Liste de souhaits</a>
-				<a href="/gestion_etudiants" id="btn-ajout-etudiant" class="nav-link-custom bg-primary d-none">Gestion Étudiants</a>
-				<a href="/creation_entreprise" id="btn-ajout-entreprise" class="nav-link-custom bg-warning d-none">Gestion Entreprise</a>
-				<a href="/gestion_pilotes" id="btn-ajout-pilote" class="nav-link-custom bg-info d-none">Gestion Pilotes</a>
-				<a href="/gestion_offres" id="btn-ajout-offres" class="nav-link-custom bg-dark d-none">Gestion Offres</a>
-				<a href="/connexion" id="btn-login" class="glass nav-link-custom border-primary d-none">Se connecter</a>
-				<a href="/deconnexion" id="btn-logout" class="nav-link-custom bg-danger d-none">Déconnexion</a>
+				<a href="{{ url_for('stage') }}" class="glass nav-link-custom">Stage</a>
+				<a href="{{ url_for('entreprise') }}" class="glass nav-link-custom">Entreprise</a>
+				<a href="{{ url_for('souhait') }}" class="glass nav-link-custom">Liste de souhaits</a>
+				<a href="{{ url_for('gestion_etudiants') }}" id="btn-ajout-etudiant" class="nav-link-custom bg-primary d-none">Gestion Étudiants</a>
+				<a href="{{ url_for('gestion_entreprises') }}" id="btn-ajout-entreprise" class="nav-link-custom bg-warning d-none">Gestion Entreprise</a>
+				<a href="{{ url_for('gestion_pilotes') }}" id="btn-ajout-pilote" class="nav-link-custom bg-info d-none">Gestion Pilotes</a>
+				<a href="{{ url_for('gestion_offres') }}" id="btn-ajout-offres" class="nav-link-custom bg-dark d-none">Gestion Offres</a>
+				<a href="{{ url_for('connexion') }}" id="btn-login" class="glass nav-link-custom border-primary d-none">Se connecter</a>
+				<a href="{{ url_for('deconnexion') }}" id="btn-logout" class="nav-link-custom bg-danger d-none">Déconnexion</a>
 			</div>
 			<hr class="border-2 opacity-50"/>
 		</nav>
-		<form action="/postule/{{ id }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ url_for('postule', {'id': offre_id}) }}" method="POST" enctype="multipart/form-data">
 			<div class="container glass mt-5 py-4 w-50 d-flex flex-column align-items-center">
 				<div class="mb-3">
 					<h1>Postule<h1></div>
@@ -128,8 +128,8 @@
 				</form>
 				<footer class="glass mt-5 py-4">
 					<div class="container d-flex justify-content-center gap-4">
-						<a href="/politique" class="text-white-50 text-decoration-none small hover-warning">Politique de confidentialité</a>
-						<a href="/mentions" class="text-white-50 text-decoration-none small hover-warning">Mentions légales</a>
+						<a href="{{ url_for('politique') }}" class="text-white-50 text-decoration-none small hover-warning">Politique de confidentialité</a>
+						<a href="{{ url_for('mentions') }}" class="text-white-50 text-decoration-none small hover-warning">Mentions légales</a>
 					</div>
 					<div class="text-center">
 						<p class="text-white-50 small mb-0">
