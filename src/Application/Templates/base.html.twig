@@ -87,6 +87,9 @@
 				background: rgba(255, 255, 255, 0.2);
 				transform: translateY(-2px);
 			}
+			.navbar-toggler {
+				border: 2px solid white !important;
+			}
 		</style>
 	</head>
 	<body>
@@ -94,7 +97,7 @@
 
 		<header class="container-fluid py-3">
 			<div class="d-flex justify-content-between align-items-center px-lg-5">
-				<a href="/" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white">
+				<a href="{{ url_for('accueil') }}" class="glass d-flex align-items-center p-2 px-3 text-decoration-none text-white d-none d-lg-flex">
 					<img src="/image/ReadyToWork.png" alt="Logo" height="35" class="me-2"/>
 					<span class="fw-bold">ReadyToWork</span>
 				</a>
@@ -103,40 +106,44 @@
 					<span>Mon Profil</span>
 				</a>
 			</div>
-			<h1 class="text-center mt-5 fw-bold text-uppercase ls-5">
-				ReadyToWork
-			</h1>
+			<a href="{{ url_for('accueil') }}" class="text-decoration-none text-white">
+				<h1 class="text-center mt-5 fw-bold text-uppercase ls-5">
+					ReadyToWork
+				</h1>
+			</a>
 		</header>
 
-		<nav class="container-fluid px-lg-5">
-			<hr class="border-2 opacity-50"/>
-			<div class="d-flex flex-wrap justify-content-center gap-3 py-2">
-				<a href="{{ url_for('stage') }}" class="glass nav-link-custom">Stage</a>
-				<a href="{{ url_for('entreprise') }}" class="glass nav-link-custom">Entreprise</a>
-				<a href="{{ url_for('souhait') }}" class="glass nav-link-custom">Liste de souhaits</a>
-				<a href="{{ url_for('candidature') }}" class="glass nav-link-custom">Ma Candidature</a>
+		{# Pour le menu burger #}
+		<hr class="border-2 opacity-50"/>
+		<nav class="navbar navbar-dark container-fluid px-sm-5 justify-content-center">
 
-				{% if user and user.role.value == 'admin' %}
-					<a href="{{ url_for('gestion_etudiants') }}" id="btn-ajout-etudiant" class="nav-link-custom bg-primary">Gestion Étudiants</a>
-					<a href="{{ url_for('gestion_entreprises') }}" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
-					<a href="{{ url_for('gestion_pilotes') }}" id="btn-ajout-pilote" class="nav-link-custom bg-info">Gestion Pilotes</a>
-					<a href="{{ url_for('gestion_offres') }}" id="btn-ajout-offres" class="nav-link-custom bg-dark">Gestion Offres</a>
-				{% endif %}
-
-				{% if user and user.role.value == 'pilote' %}
-					<a href="{{ url_for('gestion_etudiants') }}" id="btn-ajout-etudiant" class="nav-link-custom bg-primary">Gestion Étudiants</a>
-					<a href="{{ url_for('gestion_entreprises') }}" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
-					<a href="{{ url_for('gestion_offres') }}" id="btn-ajout-offres" class="nav-link-custom bg-dark">Gestion Offres</a>
-				{% endif %}
-
-				{% if user %}
-					<a href="{{ url_for('deconnexion') }}" id="btn-logout" class="nav-link-custom bg-danger">Déconnexion</a>
-					<a href="{{ url_for('connexion') }}" id="btn-login" class="glass nav-link-custom border-primary d-none">Se connecter</a>
-				{% endif %}
-
+			<div class="d-flex d-sm-none py-2">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+					<span class="navbar-toggler-icon "></span>
+				</button>
 			</div>
-			<hr class="border-2 opacity-50"/>
+
+			<div class="collapse navbar-collapse d-sm-block" id="navMenu">
+				<div class="d-flex flex-column flex-sm-row flex-wrap justify-content-center gap-3 py-2">
+					<a href="{{ url_for('stage') }}" class="glass nav-link-custom d-flex justify-content-center">Stage</a>
+					<a href="{{ url_for('entreprise') }}" class="glass nav-link-custom d-flex justify-content-center">Entreprise</a>
+					<a href="{{ url_for('souhait') }}" class="glass nav-link-custom d-flex justify-content-center">Liste de souhaits</a>
+					<a href="{{ url_for('candidature') }}" class="glass nav-link-custom d-flex justify-content-center">Ma Candidature</a>
+
+					{% if user and user.role.value == 'admin' or user.role.value == 'pilote' %}
+						<a href="{{ url_for('gestion_utilisateurs') }}" id="btn-ajout-etudiant" class="nav-link-custom bg-primary">Gestion Utilisateurs</a>
+						<a href="{{ url_for('gestion_entreprises') }}" id="btn-ajout-entreprise" class="nav-link-custom bg-warning">Gestion Entreprise</a>
+						<a href="{{ url_for('gestion_offres') }}" id="btn-ajout-offres" class="nav-link-custom bg-dark">Gestion Offres</a>
+					{% endif %}
+
+					{% if user %}
+						<a href="{{ url_for('deconnexion') }}" id="btn-logout" class="nav-link-custom bg-danger">Déconnexion</a>
+						<a href="{{ url_for('connexion') }}" id="btn-login" class="glass nav-link-custom border-primary d-none">Se connecter</a>
+					{% endif %}
+				</div>
+			</div>
 		</nav>
+		<hr class="border-2 opacity-50"/>
 		<div class="container">
 			<div class="recherche-container">
 				<form class="d-flex flex-wrap justify-content-center gap-3 px-3">
@@ -161,4 +168,4 @@
 			{% endblock %}
 		</footer>
 	</body>
-</html>
+</html></body></html>

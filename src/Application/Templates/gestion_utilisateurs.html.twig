@@ -1,11 +1,11 @@
 {% extends 'base2.html.twig' %}
 {% block title %}Gestion des Etudiants
 {% endblock %}
-{% block heading %}Gestion des Etudiants
+{% block heading %}Gestion des Utilisateurs
 {% endblock %}
 {% block content %}
 
-	<form method="POST" action="{{ url_for('ajout-etudiants') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
+	<form method="POST" action="{{ url_for('ajout-utilisateurs') }}" class="row g-2 mb-4 align-items-center bg-dark p-3 rounded shadow-sm border border-secondary border-opacity-25">
 		<div class="col-auto">
 			<button type="submit" class="btn btn-add-custom px-4 fw-bold">+</button>
 		</div>
@@ -44,21 +44,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for gestion_etudiant in gestion_etudiants %}
+				{% for gestion_utilisateur in gestion_utilisateurs %}
 					<tr>
 						<td class="text-center">
-							<form method="POST" action="{{ url_for('supprimer-etudiants', { 'id': gestion_etudiant.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer ce compte étudiant ?')">
+							<form method="POST" action="{{ url_for('supprimer-utilisateurs', { 'id': gestion_utilisateur.id }) }}" style="display:inline" onsubmit="return confirm('Supprimer ce compte étudiant ?')">
 								<button type="submit" class="btn-delete">🗑️</button>
 							</form>
-							<a href="{{ url_for('modifier-etudiants', { 'id': gestion_etudiant.id }) }}" class="btn-edit">✏️</a>
+							<a href="{{ url_for('modifier-utilisateurs', { 'id': gestion_utilisateur.id }) }}" class="btn-edit">✏️</a>
 						</td>
-						<td>{{ gestion_etudiant.id }}</td>
-						<td>{{ gestion_etudiant.prenom }}</td>
-						<td>{{ gestion_etudiant.nom }}</td>
-						<td>{{ gestion_etudiant.motdepasse }}</td>
-						<td>{{ gestion_etudiant.lieu }}</td>
-						<td>{{ gestion_etudiant.email }}</td>
-						<td>{{ gestion_etudiant.role.value }}</td>
+						<td>{{ gestion_utilisateur.id }}</td>
+						<td>{{ gestion_utilisateur.prenom }}</td>
+						<td>{{ gestion_utilisateur.nom }}</td>
+						<td>{{ gestion_utilisateur.motdepasse }}</td>
+						<td>{{ gestion_utilisateur.lieu }}</td>
+						<td>{{ gestion_utilisateur.email }}</td>
+						<td>{{ gestion_utilisateur.role.value }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

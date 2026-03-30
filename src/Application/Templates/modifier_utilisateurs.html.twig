@@ -6,22 +6,22 @@
 
 {% block content %}
 	<div class="container mt-4 w-50">
-		<form method="POST" action="{{ url_for('modifier-etudiants', {'id': gestion_etudiants.id}) }}">
+		<form method="POST" action="{{ url_for('modifier-utilisateurs', {'id': gestion_utilisateurs.id}) }}">
 			<div class="mb-3">
 				<label class="form-label">Prenom</label>
-				<input type="text" name="prenom" class="form-control form-control-dark" value="{{ gestion_etudiants.prenom }}" required/>
+				<input type="text" name="prenom" class="form-control form-control-dark" value="{{ gestion_utilisateurs.prenom }}" required/>
 			</div>
 			<div class="mb-3">
 				<label class="form-label">Nom</label>
-				<input type="text" name="nom" class="form-control form-control-dark" value="{{ gestion_etudiants.nom }}" required/>
+				<input type="text" name="nom" class="form-control form-control-dark" value="{{ gestion_utilisateurs.nom }}" required/>
 			</div>
 			<div class="mb-3">
 				<label class="form-label">Mot de passe</label>
-				<input type="text" name="mot_de_passe" class="form-control form-control-dark" value="{{ gestion_etudiants.motdepasse}}" required/>
+				<input type="text" name="mot_de_passe" class="form-control form-control-dark" value="{{ gestion_utilisateurs.motdepasse}}" required/>
 			</div>
 			<div class="mb-3">
 				<label class="form-label">E-mail</label>
-				<input type="email" name="email" class="form-control form-control-dark" value="{{ gestion_etudiants.email }}" required/>
+				<input type="email" name="email" class="form-control form-control-dark" value="{{ gestion_utilisateurs.email }}" required/>
 			</div>
 			<div class="mb-3">
 				<label class="form-label">Lieu</label>
@@ -29,10 +29,10 @@
 			</div>
 			<div class="mb-3">
 				<label class="form-label">Role</label>
-				<input type="text" name="role" class="form-control form-control-dark" value="{{ gestion_etudiant.role.value }}" required/>
+				<input type="text" name="role" class="form-control form-control-dark" value="{{ gestion_utilisateurs.role.value }}" required/>
 			</div>
 			<button type="submit" class="btn btn-primary">Sauvegarder</button>
-			<a href="{{ url_for('gestion_etudiants') }}" class="btn btn-secondary">Annuler</a>
+			<a href="{{ url_for('gestion_utilisateurs') }}" class="btn btn-secondary">Annuler</a>
 		</form>
 	</div>
 {% endblock %}

@@ -20,6 +20,7 @@ use App\Application\Controller\GestionEntreprise;
 use App\Application\Controller\PostuleController;
 use App\Application\Controller\SouhaitController;
 use App\Application\Controller\StageController;
+use App\Application\Controller\UtilisateurController;
 use App\Application\Controller\VoirOffresController;
 use App\Domain\Role;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -42,24 +43,14 @@ return function (App $app) {
     $app->get('/deconnexion', [ConnexionController::class, 'deconnecter'])->setName('deconnexion');
     $app->get('/offres/{nom}', [VoirOffresController::class, 'VoirOffres'])->setName('voir-offres');
 
-    // Admin seulement
-    $app->group('', function (RouteCollectorProxy $group) {
-        $group->get('/gestion_pilotes[/{page:\d+}]', [PiloteController::class, 'gestion_pilotes'])->setName('gestion_pilotes');
-        $group->post('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute']);
-        $group->get('/gestion_pilotes/ajouter', [PiloteController::class, 'ajoute'])->setName('ajout-pilotes');
-        $group->get('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier'])->setName('modifier-pilotes');
-        $group->post('/gestion_pilotes/modifier/{id}', [PiloteController::class, 'modifier']);
-        $group->post('/gestion_pilotes/supprimer/{id}', [PiloteController::class, 'supprimer'])->setName('supprimer-pilotes');
-    })->add(new RoleCheckMiddleware($factory, [Role::ADMIN]));
-
     // Admin + Pilote
     $app->group('', function (RouteCollectorProxy $group) {
-        $group->get('/gestion_etudiants[/{page:\d+}]', [EtudiantController::class, 'gestion_etudiants'])->setName('gestion_etudiants');
-        $group->post('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute']);
-        $group->get('/gestion_etudiants/ajouter', [EtudiantController::class, 'ajoute'])->setName('ajout-etudiants');
-        $group->get('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier'])->setName('modifier-etudiants');
-        $group->post('/gestion_etudiants/modifier/{id}', [EtudiantController::class, 'modifier']);
-        $group->post('/gestion_etudiants/supprimer/{id}', [EtudiantController::class, 'supprimer'])->setName('supprimer-etudiants');
+        $group->get('/gestion_utilisateurs[/{page:\d+}]', [UtilisateurController::class, 'gestion_utilisateurs'])->setName('gestion_utilisateurs');
+        $group->post('/gestion_utilisateurs/ajouter', [UtilisateurController::class, 'ajoute']);
+        $group->get('/gestion_utilisateurs/ajouter', [UtilisateurController::class, 'ajoute'])->setName('ajout-utilisateurs');
+        $group->get('/gestion_utilisateurs/modifier/{id}', [UtilisateurController::class, 'modifier'])->setName('modifier-utilisateurs');
+        $group->post('/gestion_utilisateurs/modifier/{id}', [UtilisateurController::class, 'modifier']);
+        $group->post('/gestion_utilisateurs/supprimer/{id}', [UtilisateurController::class, 'supprimer'])->setName('supprimer-utilisateurs');
 
         $group->get('/gestion_offres[/{page:\d+}]', [OffreController::class, 'gestion_offres'])->setName('gestion_offres');
         $group->post('/gestion_offres/ajouter', [OffreController::class, 'ajoute']);

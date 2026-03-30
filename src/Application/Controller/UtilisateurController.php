@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 use Slim\Routing\RouteContext;
 
-class PiloteController
+class UtilisateurController
 {
     private EntityManager $em;
 
@@ -19,7 +19,7 @@ class PiloteController
         $this->em = $em;
     }
 
-    public function gestion_pilotes(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    public function gestion_utilisateurs(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
         $repository = $this->em->getRepository(Utilisateur::class);
@@ -28,24 +28,24 @@ class PiloteController
         $parPage = 9;
         $offset = ($page - 1) * $parPage;
 
-        $totalPilotes = $repository->createQueryBuilder('e')
-            ->select('COUNT(e.id)')
+        $totalUtilisateurs = $repository->createQueryBuilder('o')
+            ->select('COUNT(o.id)')
             ->getQuery()
             ->getSingleScalarResult();
 
-        $gestion_pilotes = $repository->createQueryBuilder('e')
-            ->where('e.role = :role')
-            ->setParameter('role', Role::PILOTE)
-            ->orderBy('e.id', 'ASC')
+        $gestion_utilisateurs = $repository->createQueryBuilder('o')
+            ->where('o.role IN (:roles)')
+            ->setParameter('roles', [Role::ETUDIANT->value, Role::PILOTE->value])
+            ->orderBy('o.id', 'ASC')
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
             ->getQuery()
             ->getResult();
 
-        $totalPages = (int)ceil($totalPilotes / $parPage);
+        $totalPages = (int)ceil($totalUtilisateurs / $parPage);
 
-        return $view->render($response, 'gestion_pilotes.html.twig', [
-            'gestion_pilotes' => $gestion_pilotes,
+        return $view->render($response, 'gestion_utilisateurs.html.twig', [
+            'gestion_utilisateurs' => $gestion_utilisateurs,
             'page' => $page,
             'totalPages' => $totalPages,
         ]);
@@ -57,21 +57,21 @@ class PiloteController
             $parsedBody = $request->getParsedBody();
             $nom = trim($parsedBody['nom'] ?? '');
             $prenom = trim($parsedBody['prenom'] ?? '');
-            $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
-            $roleStr = trim($parsedBody['role'] ?? 'etudiant');
+            $roleStr = trim($parsedBody['role'] ?? 'pilote');
             $role = Role::from($roleStr);
+            $lieu = trim($parsedBody['lieu'] ?? '');
 
-            if ($nom !== '' && $prenom !== '') {
-                $pilotes = new Utilisateur($nom, $prenom, $lieu, $email, $mot_de_passe, $role);
-                $this->em->persist($pilotes);
+            if ($nom !== '' && $email !== '') {
+                $utilisateurs = new Utilisateur($nom, $prenom, $lieu, $email, $mot_de_passe, $role);
+                $this->em->persist($utilisateurs);
                 $this->em->flush();
             }
         }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-        $url = $routeParser->urlFor('gestion_pilotes');
+        $url = $routeParser->urlFor('gestion_utilisateurs');
         return $response->withHeader('Location', $url)->withStatus(302);
     }
 
@@ -79,9 +79,9 @@ class PiloteController
     {
         $view = Twig::fromRequest($request);
         $id = (int)$args['id'];
-        $pilotes = $this->em->find(Utilisateur::class, $id);
+        $utilisateurs = $this->em->find(Utilisateur::class, $id);
 
-        if (!$pilotes) {
+        if (!$utilisateurs) {
             return $response->withStatus(404);
         }
 
@@ -89,44 +89,44 @@ class PiloteController
             $parsedBody = $request->getParsedBody();
             $nom = trim($parsedBody['nom'] ?? '');
             $prenom = trim($parsedBody['prenom'] ?? '');
-            $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
+            $lieu = trim($parsedBody['lieu'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
-            $roleStr = trim($parsedBody['role'] ?? 'etudiant');
+            $roleStr = trim($parsedBody['role'] ?? 'pilote');
             $role = Role::from($roleStr);
 
             if ($nom !== '' && $prenom !== '') {
-                $pilotes->setNom($nom);
-                $pilotes->setPrenom($prenom);
-                $pilotes->setLieu($lieu);
-                $pilotes->setEmail($email);
-                $pilotes->setMotDePasse($mot_de_passe);
-                $pilotes->setRole($role);
+                $utilisateurs->setNom($nom);
+                $utilisateurs->setPrenom($prenom);
+                $utilisateurs->setLieu($lieu);
+                $utilisateurs->setEmail($email);
+                $utilisateurs->setMotDePasse($mot_de_passe);
+                $utilisateurs->setRole($role);
                 $this->em->flush();
-            }
 
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            $url = $routeParser->urlFor('gestion_pilotes');
-            return $response->withHeader('Location', $url)->withStatus(302);
+                $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+                $url = $routeParser->urlFor('gestion_utilisateurs');
+                return $response->withHeader('Location', $url)->withStatus(302);
+            }
         }
 
-        return $view->render($response, 'modifier_pilotes.html.twig', [
-            'gestion_pilotes' => $pilotes,
+        return $view->render($response, 'modifier_utilisateurs.html.twig', [
+            'gestion_utilisateurs' => $utilisateurs,
         ]);
     }
 
     public function supprimer(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $id = (int)$args['id'];
-        $pilotes = $this->em->find(Utilisateur::class, $id);
+        $etudiants = $this->em->find(Utilisateur::class, $id);
 
-        if ($pilotes) {
-            $this->em->remove($pilotes);
+        if ($etudiants) {
+            $this->em->remove($etudiants);
             $this->em->flush();
         }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-        $url = $routeParser->urlFor('gestion_pilotes');
+        $url = $routeParser->urlFor('gestion_utilisateurs');
         return $response->withHeader('Location', $url)->withStatus(302);
     }
 }
