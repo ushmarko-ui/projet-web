@@ -1,0 +1,14 @@
+<?php if (!$cookiesAccepted): ?>
+<div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-body">
+        <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site.</p>
+        <form method="post">
+          <button type="submit" name="accept_cookies" class="btn btn-success">Accepter</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
