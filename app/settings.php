@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use App\Application\Settings\Settings;
@@ -23,7 +24,7 @@ return function (ContainerBuilder $containerBuilder) {
                 'doctrine' => [
                     'dev_mode'      => true,
                     'cache_dir'     => APP_ROOT . '/var/doctrine',
-                    'metadata_dirs' => [APP_ROOT . '/src/Domain'],
+                    'metadata_dirs' => [APP_ROOT . '/../src/Domain'],
                     'connection'    => [
                         'driver'   => 'pdo_mysql',
                         'host'     => '127.0.0.1',

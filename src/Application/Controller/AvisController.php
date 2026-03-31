@@ -8,21 +8,36 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 
-
-
-public function laisser_avis(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+class AvisController
 {
-    
-    $donnees = $request->getParsedBody();
-    $commentaire = $donnees['commentaire'] ?? '';
-    $note = (int)($donnees['note'] ?? 5);
-    $offreId = (int)$args['id'];
+    private EntityManager $em;
 
-    
-    $avis = new \App\Domain\Avis($commentaire, $note, $offreId);
-    $this->em->persist($avis);
-    $this->em->flush();
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
 
-  
-    return $response->withHeader('Location', '/stage')->withStatus(302);
+    public function avis(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+
+        $donnees = $request->getParsedBody();
+        $commentaire = $donnees['commentaire'] ?? '';
+        $note = (int)($donnees['note'] ?? 0);
+        $entrepriseId = (int)$args['id'];
+
+
+        $avis = new Avis($commentaire, $note, $entrepriseId);
+        $this->em->persist($avis);
+        $this->em->flush();
+
+
+        return $response->withHeader('Location', '/entreprise')->withStatus(302);
+    }
+
+    public function afficher(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $view = Twig::fromRequest($request);
+        $entreprise = (int)$args['id'];
+        return $view->render($response, 'Avis.html.twig', ['entrepriseId' => $entreprise]);
+    }
 }

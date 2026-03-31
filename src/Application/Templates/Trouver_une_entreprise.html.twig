@@ -32,7 +32,7 @@
 							{{ entreprise.lieu }}</div>
 						<div>✉️
 							{{ entreprise.email }}</div>
-						<a href="{{ url_for('postule', {'id': entreprise.id}) }}" class="btn btn-primary mt-2">Postule</a>
+						<a href="{{ url_for('voir-avis', {'id': entreprise.id}) }}" class="btn btn-primary mt-2">Evaluer</a>
 						<a href="{{ url_for('voir-offres', {'nom': entreprise.nom}) }}" class="btn btn-primary mt-2">Voir Offres</a>
 					</div>
 				</div>

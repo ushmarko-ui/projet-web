@@ -36,6 +36,7 @@ class PostuleController
         $data = $request->getParsedBody();
         $uploadedFiles = $request->getUploadedFiles();
         $idOffre = (int)$args['id'];
+        $user = $request->getAttribute('user');
 
         // Nettoyage des données
         $prenom      = htmlspecialchars($data['prenom']      ?? '', ENT_QUOTES, 'UTF-8');
@@ -84,7 +85,7 @@ class PostuleController
                     //enregistre dans la bdd
                     $offre = $this->em->find(Offres::class, $idOffre);
 
-                    if ($offre) {
+                    if ($offre && $user) {
                         $candidature = new Candidature(
                             $offre->getNom(),
                             $offre->getDomaine(),
@@ -93,7 +94,8 @@ class PostuleController
                             $offre->getDescription(),
                             $offre->getDuree(),
                             $offre->getNiveau(),
-                            $offre->getSalaire()
+                            $offre->getSalaire(),
+                            $user
                         );
 
                         $this->em->persist($candidature);

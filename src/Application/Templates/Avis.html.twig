@@ -4,22 +4,25 @@
 {% endblock %}
 
 {% block content %}
-	<div style="background: white; color: black; padding: 10px; border-radius: 8px; margin-top: 10px; text-align: left;">
-		<p style="font-weight: bold; margin-bottom: 5px;">Donner une note :</p>
+	<div class="d-flex justify-content-center">
+		<div class="bg-light w-50 p-3 rounded mt-3 text-start">
+			<p class="text-dark fw-bold">Donner une note :</p>
 
-		<form action="{{ url_for('laisser-avis', {id: stage.id}) }}" method="post">
-			<select name="note" class="form-select form-select-sm mb-2">
-				<option value="5">⭐⭐⭐⭐⭐</option>
-				<option value="4">⭐⭐⭐⭐</option>
-				<option value="3">⭐⭐⭐</option>
-				<option value="2">⭐⭐</option>
-				<option value="1">⭐</option>
-			</select>
+			<form action="{{ url_for('avis', {id: entrepriseId}) }}" method="post">
+				<select name="note" class="form-select form-select-sm mb-2 h-75">
+					<option value="5">⭐⭐⭐⭐⭐</option>
+					<option value="4">⭐⭐⭐⭐</option>
+					<option value="3">⭐⭐⭐</option>
+					<option value="2">⭐⭐</option>
+					<option value="1">⭐</option>
+				</select>
 
-			<input type="text" name="commentaire" class="form-control form-control-sm mb-2" placeholder="Votre avis..." required>
+				<label for="Description">Message</label>
+				<textarea class="form-control" name="commentaire" id="textarea" rows="5" placeholder="Message"></textarea>
 
-			<button type="submit" class="btn btn-primary btn-sm w-100">Envoyer</button>
-		</form>
+				<button type="submit" class="btn btn-primary btn-sm w-100 mt-3">Envoyer</button>
+			</form>
+		</div>
 	</div>
 
 {% endblock %}

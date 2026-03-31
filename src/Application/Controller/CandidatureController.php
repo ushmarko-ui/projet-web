@@ -20,7 +20,11 @@ class CandidatureController
     public function candidature(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-        $candidatures = $this->em->getRepository(Candidature::class)->findAll();
+        $user = $request->getAttribute('user');
+
+        $candidatures = $this->em->getRepository(Candidature::class)->findBy([
+            'utilisateur' => $user
+        ]);
 
         return $view->render($response, 'MaCandidature.html.twig', [
             'candidatures' => $candidatures,

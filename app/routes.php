@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Application\Controller\AccueilController;
+use App\Application\Controller\AvisController;
 use App\Application\Controller\CandidatureController;
 use App\Application\Controller\EntrepriseController;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -42,6 +43,8 @@ return function (App $app) {
     $app->post('/connexion', [ConnexionController::class, 'connecter']);
     $app->get('/deconnexion', [ConnexionController::class, 'deconnecter'])->setName('deconnexion');
     $app->get('/offres/{nom}', [VoirOffresController::class, 'VoirOffres'])->setName('voir-offres');
+    $app->post('/avis/{id}', [AvisController::class, 'avis'])->setName('avis');
+    $app->get('/avis/{id}', [AvisController::class, 'afficher'])->setName('voir-avis');
 
     // Admin + Pilote
     $app->group('', function (RouteCollectorProxy $group) {
