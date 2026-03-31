@@ -23,6 +23,7 @@ class SouhaitController
     {
         $view = Twig::fromRequest($request);
         $session = $request->getAttribute('session');
+        $user = $request->getAttribute('user');
         $repository = $this->em->getRepository(Souhait::class);
 
         $page = isset($args['page']) ? (int)$args['page'] : 1;
@@ -31,10 +32,14 @@ class SouhaitController
 
         $total = $repository->createQueryBuilder('s')
             ->select('COUNT(s.id)')
+            ->where('s.utilisateur = :user') // AJOUT : Filtre sur la colonne utilisateur
+            ->setParameter('user', $user)    // AJOUT : Liaison avec l'objet user connecté
             ->getQuery()
             ->getSingleScalarResult();
 
         $souhaits = $repository->createQueryBuilder('s')
+            ->where('s.utilisateur = :user') // AJOUT : Même filtre ici
+            ->setParameter('user', $user)    // AJOUT
             ->orderBy('s.id', 'DESC')
             ->setFirstResult($offset)
             ->setMaxResults($parPage)
@@ -55,8 +60,9 @@ class SouhaitController
     {
         $id = (int)$args['id'];
         $offre = $this->em->find(Offres::class, $id);
+        $user = $request->getAttribute('user');
 
-        if ($offre) {
+        if ($offre && $user) {
             $souhait = new Souhait(
                 $offre->getNom(),
                 $offre->getDomaine(),
@@ -65,7 +71,8 @@ class SouhaitController
                 $offre->getDescription(),
                 $offre->getDuree(),
                 $offre->getNiveau(),
-                $offre->getSalaire()
+                $offre->getSalaire(),
+                $user
             );
             $this->em->persist($souhait);
             $this->em->flush();

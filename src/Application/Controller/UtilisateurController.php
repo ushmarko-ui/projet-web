@@ -19,37 +19,42 @@ class UtilisateurController
         $this->em = $em;
     }
 
-    public function gestion_utilisateurs(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-    {
-        $view = Twig::fromRequest($request);
-        $repository = $this->em->getRepository(Utilisateur::class);
+   public function gestion_utilisateurs(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+{
+    $view = Twig::fromRequest($request);
+    $repository = $this->em->getRepository(Utilisateur::class);
 
-        $page = isset($args['page']) ? (int)$args['page'] : 1;
-        $parPage = 9;
-        $offset = ($page - 1) * $parPage;
+    $page = isset($args['page']) ? (int)$args['page'] : 1;
+    $parPage = 9;
+    $offset = ($page - 1) * $parPage;
+    $userConnecte = $request->getAttribute('user');
+    $roleConnecte = $userConnecte->getRole();
 
-        $totalUtilisateurs = $repository->createQueryBuilder('o')
-            ->select('COUNT(o.id)')
-            ->getQuery()
-            ->getSingleScalarResult();
-
-        $gestion_utilisateurs = $repository->createQueryBuilder('o')
-            ->where('o.role IN (:roles)')
-            ->setParameter('roles', [Role::ETUDIANT->value, Role::PILOTE->value])
-            ->orderBy('o.id', 'ASC')
-            ->setFirstResult($offset)
-            ->setMaxResults($parPage)
-            ->getQuery()
-            ->getResult();
-
-        $totalPages = (int)ceil($totalUtilisateurs / $parPage);
-
-        return $view->render($response, 'gestion_utilisateurs.html.twig', [
-            'gestion_utilisateurs' => $gestion_utilisateurs,
-            'page' => $page,
-            'totalPages' => $totalPages,
-        ]);
+    $qb = $repository->createQueryBuilder('o');
+    if ($roleConnecte !== Role::ADMIN) {
+        $qb->where('o.role = :role')
+           ->setParameter('role', Role::ETUDIANT->value);
     }
+    $totalUtilisateurs = (clone $qb)
+        ->select('COUNT(o.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+    $gestion_utilisateurs = $qb
+        ->select('o')
+        ->orderBy('o.id', 'ASC')
+        ->setFirstResult($offset)
+        ->setMaxResults($parPage)
+        ->getQuery()
+        ->getResult();
+
+    $totalPages = (int)ceil($totalUtilisateurs / $parPage);
+
+    return $view->render($response, 'gestion_utilisateurs.html.twig', [
+        'gestion_utilisateurs' => $gestion_utilisateurs,
+        'page' => $page,
+        'totalPages' => $totalPages,
+    ]);
+}
 
     public function ajoute(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {

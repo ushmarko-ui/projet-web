@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityManager;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 use Twig\Extension\DebugExtension;
+use App\Application\Middleware\RoleCheckMiddleware;
+use App\Domain\Role;
 return function (App $app) {
      $twig = Twig::create(__DIR__ . '/../src/Application/Templates', ['cache' => false, 'debug' => true ]);
     $twig->getEnvironment()->addExtension(new DebugExtension());
@@ -16,3 +18,9 @@ return function (App $app) {
      $app->add(new UserTwigMiddleware($twig, $app->getContainer()->get(EntityManager::class)));
     $app->add(SessionMiddleware::class);
 };
+$adminOnly = new RoleCheckMiddleware($responseFactory, [Role::ADMIN]);
+
+$adminOrPilote = new RoleCheckMiddleware(
+    $responseFactory,
+    [Role::ADMIN, Role::PILOTE]
+);

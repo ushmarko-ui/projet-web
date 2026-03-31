@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 #[Entity, Table(name: 'souhait')]
 class Souhait
@@ -39,11 +41,14 @@ class Souhait
     #[Column(type: 'string', nullable: false)]
     private string $salaire;
 
+    #[ManyToOne(targetEntity: Utilisateur::class)]
+    #[JoinColumn(nullable: false)]
+    private Utilisateur $utilisateur;
 
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $domaine, string $lieu, string $email, string $description, string $duree, string $niveau, string $salaire)
+    public function __construct(string $nom, string $domaine, string $lieu, string $email, string $description, string $duree, string $niveau, string $salaire, Utilisateur $utilisateur)
     {
         $this->nom = $nom;
         $this->domaine = $domaine;
@@ -53,6 +58,7 @@ class Souhait
         $this->duree = $duree;
         $this->niveau = $niveau;
         $this->salaire = $salaire;
+        $this->utilisateur = $utilisateur;
         $this->createdAt = new DateTimeImmutable('now');
     }
 
@@ -135,6 +141,10 @@ class Souhait
         $this->salaire = $salaire;
     }
 
+    public function getUtilisateur(): Utilisateur
+    {
+        return $this->utilisateur;
+    }
 
     public function getCreatedAt(): DateTimeImmutable
     {
