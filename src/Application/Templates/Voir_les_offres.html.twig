@@ -36,6 +36,9 @@
 							|  💸{{ VoirOffre.salaire }}</div>
 						<div>{{ VoirOffre.description }}</div>
 						<a href="{{ url_for('postule', {'id': VoirOffre.id})}}" class="btn btn-primary mt-2">Postule</a>
+						<form method="POST" action="{{ url_for('ajouter-souhait', {'id': VoirOffre.id}) }}" style="display:inline">
+							<button type="submit" class="btn btn-primary mt-2">Enregistre</button>
+						</form>
 					</div>
 				</div>
 			{% endfor %}

@@ -22,6 +22,12 @@
 		<div class="col">
 			<input type="email" name="email" class="form-control form-control-dark" placeholder="E-mail" required/>
 		</div>
+		<div class="col">
+			<input type="tel" name="telephone" class="form-control form-control-dark" placeholder="Telephone" required/>
+		</div>
+		<div class="col">
+			<input type="description" name="description" class="form-control form-control-dark" placeholder="Description" required/>
+		</div>
 	</form>
 
 	<div class="table-responsive rounded">
@@ -34,6 +40,8 @@
 					<th>Domaine</th>
 					<th>Lieux</th>
 					<th>E-mail</th>
+					<th>Telephone</th>
+					<th>Description</th>
 				</tr>
 			</thead>
 			<tbody id="table-body">
@@ -50,6 +58,8 @@
 						<td>{{ gestion_entreprise.domaine }}</td>
 						<td>{{ gestion_entreprise.lieu }}</td>
 						<td>{{ gestion_entreprise.email }}</td>
+						<td>{{ gestion_entreprise.telephone }}</td>
+						<td>{{ gestion_entreprise.description }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

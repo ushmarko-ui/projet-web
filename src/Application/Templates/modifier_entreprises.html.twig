@@ -23,6 +23,14 @@
 				<label class="form-label">E-mail</label>
 				<input type="email" name="email" class="form-control form-control-dark" value="{{ entreprise.email }}" required/>
 			</div>
+			<div class="mb-3">
+				<label class="form-label">Telephone</label>
+				<input type="tel" name="telephone" class="form-control form-control-dark" value="{{ entreprise.telephone }}" placeholder="Telephone" required/>
+			</div>
+			<div class="mb-3">
+				<label class="form-label">Description</label>
+				<input type="description" name="description" class="form-control form-control-dark" value="{{ entreprise.description }}" placeholder="Description" required/>
+			</div>
 			<button type="submit" class="btn btn-primary">Sauvegarder</button>
 			<a href="{{ url_for('gestion_entreprises') }}" class="btn btn-secondary">Annuler</a>
 		</form>

@@ -22,6 +22,12 @@ class Entreprise
     private string $domaine;
 
     #[Column(type: 'string', nullable: false)]
+    private string $telephone;
+
+    #[Column(type: 'string', nullable: false)]
+    private string $description;
+
+    #[Column(type: 'string', nullable: false)]
     private string $lieu;
 
     #[Column(type: 'string', nullable: false)]
@@ -30,12 +36,14 @@ class Entreprise
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $domaine, string $lieu, string $email)
+    public function __construct(string $nom, string $domaine, string $lieu, string $email, string $telephone, string $description)
     {
         $this->nom = $nom;
         $this->domaine = $domaine;
         $this->lieu = $lieu;
         $this->email = $email;
+        $this->telephone = $telephone;
+        $this->description = $description;
         $this->createdAt = new DateTimeImmutable('now');
     }
 
@@ -82,6 +90,26 @@ class Entreprise
     public function setEmail(string $email): void
     {
         $this->email = $email;
+    }
+
+    public function getTelephone(): string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): void
+    {
+        $this->telephone = $telephone;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
     }
 
     public function getCreatedAt(): DateTimeImmutable

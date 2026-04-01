@@ -41,11 +41,25 @@ class EntrepriseController
 
         $totalPages = (int)ceil($totalEntreprises / $parPage);
 
+        $avisRepo = $this->em->getRepository(\App\Domain\Avis::class);
+
+        $moyennes = [];
+        foreach ($entreprises as $entreprise) {
+            $result = $avisRepo->createQueryBuilder('a')
+                ->select('AVG(a.note)')
+                ->where('a.entrepriseId = :id')
+                ->setParameter('id', $entreprise->getId())
+                ->getQuery()
+                ->getSingleScalarResult();
+            $moyennes[$entreprise->getId()] = $result ? round($result, 1) : null;
+        }
+
         return $view->render($response, 'Trouver_une_entreprise.html.twig', [
             'role' => $session['userRole'] ?? '',
             'entreprises' => $entreprises,
             'page' => $page,
             'totalPages' => $totalPages,
+            'moyennes' => $moyennes,
         ]);
     }
 }

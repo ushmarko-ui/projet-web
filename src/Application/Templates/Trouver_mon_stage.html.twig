@@ -99,14 +99,27 @@
 							<div class="offre-card p-4 text-white">
 								<div class="fw-bold fs-5 mb-2">{{ stage.nom }}</div>
 								<div class="mb-2">{{ stage.domaine }}</div>
-								<div>📍
+								<div>
+									<span class="text-danger">
+										<i class="bi bi-geo-alt-fill me-1"></i>
+									</span>
 									{{ stage.lieu }}</div>
-								<div>✉️
+								<div>
+									<i class="bi bi-envelope-fill"></i>
 									{{ stage.email }}</div>
-								<div>⏱️
+								<div>
+									<span style="color: #4f9de6">
+										<i class="bi bi-stopwatch-fill"></i>
+									</span>
 									{{ stage.duree }}
-									|  💼{{ stage.niveau }}
-									|  💸{{ stage.salaire }}</div>
+									|<span style="color: #9a5044">
+										<i class="bi bi-briefcase-fill"></i>
+									</span>
+									{{ stage.niveau }}
+									|<span style="color: #35a731">
+										<i class="bi bi-currency-exchange"></i>
+									</span>
+									{{ stage.salaire }}</div>
 								<div class="mt-2">{{ stage.description }}</div>
 								<a href="{{ url_for('postule', {'id': stage.id}) }}" class="btn btn-primary mt-2" role="button" aria-pressed="true">Postule</a>
 								<form method="POST" action="{{ url_for('ajouter-souhait', {'id': stage.id}) }}" style="display:inline">

@@ -56,8 +56,10 @@ class GestionEntreprise
             $domaine = trim($parsedBody['domaine'] ?? '');
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
+            $telephone = trim($parsedBody['telephone'] ?? '');
+            $description = trim($parsedBody['description'] ?? '');
 
-            $entreprise = new Entreprise($nom, $domaine, $lieu, $email);
+            $entreprise = new Entreprise($nom, $domaine, $lieu, $email, $telephone, $description);
             $this->em->persist($entreprise);
             $this->em->flush();
         }
@@ -83,11 +85,15 @@ class GestionEntreprise
             $domaine = trim($parsedBody['domaine'] ?? '');
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
+            $telephone = trim($parsedBody['telephone'] ?? '');
+            $description = trim($parsedBody['description'] ?? '');
 
             $entreprise->setNom($nom);
             $entreprise->setDomaine($domaine);
             $entreprise->setLieu($lieu);
             $entreprise->setEmail($email);
+            $entreprise->setTelephone($telephone);
+            $entreprise->setDescription($description);
             $this->em->flush();
 
 
