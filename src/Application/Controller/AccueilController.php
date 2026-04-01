@@ -3,6 +3,7 @@
 namespace App\Application\Controller;
 
 use App\Domain\Offres;
+use App\Domain\Candidature;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,9 +23,14 @@ class AccueilController
         $view = Twig::fromRequest($request);
         $session = $request->getAttribute('session');
         $repository = $this->em->getRepository(Offres::class);
+        $repoCandidatures = $this->em->getRepository(Candidature::class);
 
         $offres = $repository->findBy([], ['id' => 'ASC'], 3);
 
-        return $view->render($response, 'Index.html.twig', ['role' => $session['userRole'] ?? '', 'offres' => $offres]);
+        $totalOffres = $repository->count([]);
+
+        $totalPostulations = $repoCandidatures->count([]);
+
+        return $view->render($response, 'Index.html.twig', ['role' => $session['userRole'] ?? '', 'offres' => $offres, 'totalOffres' => $totalOffres, 'totalPostulations' => $totalPostulations]);
     }
 }

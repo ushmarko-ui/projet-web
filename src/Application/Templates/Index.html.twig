@@ -6,25 +6,32 @@
 {% block content %}
 	<style>
 
-		.card-img-custom {
-			transition: 0.4s;
-			border-radius: 15px;
-		}
-		.card-img-custom:hover {
-			transform: scale(1.05);
-		}
-
 		h2 {
 			-webkit-text-stroke-width: 2px;
 			-webkit-text-stroke-color: rgb(26, 189, 230);
 			font-size: 30px;
 			font-weight: bold;
 		}
+
 		.offre-card {
 			background: rgba(255, 255, 255, 0.15);
 			backdrop-filter: blur(10px);
 			border: 1px solid rgba(255, 255, 255, 0.3);
 			border-radius: 15px;
+		}
+
+		.carousel-inner {
+			background: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			border-radius: 15px;
+			min-height: 300px;
+			display: flex;
+			align-items: center;
+		}
+
+		#totalId {
+			font-size: 30px;
 		}
 	</style>
 
@@ -33,118 +40,105 @@
 		<div class="row g-4 justify-content-center">
 			{% for offre in offres %}
 				<div class="col-md-4">
-					<div id="carousel-{{ offre.id }}" class="carousel slide offre-card p-4 text-white mb-3">
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<div class="fw-bold fs-5 mb-2">{{ offre.nom }}</div>
-								<div class="mb-2">{{ offre.domaine }}</div>
-								<div>📍
-									{{ offre.lieu }}</div>
-								<div>✉️
-									{{ offre.email }}</div>
-								<div>⏱️
-									{{ offre.duree }}</div>
-								<div class="mt-2">{{ offre.description }}</div>
-								<a href="{{ url_for('postule', {'id': offre.id}) }}" class="btn btn-primary mt-2">Postule</a>
-								<form method="POST" action="{{ url_for('ajouter-souhait', {'id': offre.id}) }}" style="display:inline">
-									<button type="submit" class="btn btn-primary mt-2">Enregistre</button>
-								</form>
-							</div>
-							<div class="carousel-item">
-								{% if loop.first %}
-									<h1>feur</h1>
-								{% endif %}
-							</div>
-						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ offre.id }}" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon"></span>
-						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ offre.id }}" data-bs-slide="next">
-							<span class="carousel-control-next-icon"></span>
-						</button>
+					<div class="offre-card p-4 text-white mb-3">
+						<div class="fw-bold fs-5 mb-2">{{ offre.nom }}</div>
+						<div class="mb-2">{{ offre.domaine }}</div>
+						<div>
+							<span class="text-danger">
+								<i class="bi bi-geo-alt-fill me-1"></i>
+							</span>
+							{{ offre.lieu }}</div>
+						<div>
+							<i class="bi bi-envelope-fill"></i>
+							{{ offre.email }}</div>
+						<div>
+							<span style="color: #4f9de6">
+								<i class="bi bi-stopwatch-fill"></i>
+							</span>
+							{{ offre.duree }}</div>
+						<div class="mt-2">{{ offre.description }}</div>
+						<a href="{{ url_for('postule', {'id': offre.id}) }}" class="btn btn-primary mt-2">Postule</a>
+						<form method="POST" action="{{ url_for('ajouter-souhait', {'id': offre.id}) }}" style="display:inline">
+							<button type="submit" class="btn btn-primary mt-2">Enregistre</button>
+						</form>
+					</div>
+					<div class="carousel-item">
+						{% if loop.first %}
+							<h1>feur</h1>
+						{% endif %}
 					</div>
 				</div>
 			{% endfor %}
-            <div id="carouselExampleCaptions" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
 
-  <div class="carousel-inner">
-    <!-- Slide 1 - Stages -->
-    <div class="carousel-item active">
-      <img src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg" class="d-block w-100" alt="Étudiant en stage">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Découvre des stages</h5>
-        <p>Accède aux meilleures opportunités de stage pour enrichir ton CV et gagner de l'expérience.</p>
-      </div>
-    </div>
+			<div id="carouselExampleCaptions" class="carousel slide mt-5 w-75" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<h1>Statisques des offres</h1>
+						<div>
+							<img src="/image/Offre.jpg" alt="Stats" class="img-fluid rounded-4" style="height: 150px">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-flex flex-column justify-content-center align-items-center">
+							<h3>Nombres offres actuelles :</h3>
+							<p id="totalId">{{ totalOffres }}</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-flex flex-column justify-content-center align-items-center">
+							<h3>Nombres de postulations :</h3>
+							<p id="totalId">{{ totalPostulations }}</p>
+						</div>
+					</div>
+				</div>
+				<button class=" carousel-control-prev" type=" button" data-bs-target=" #carouselExampleCaptions" data-bs-slide=" prev">
+					<span class="carousel-control-prev-icon"></span>
+				</p>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</button>
+		</div>
 
-    <!-- Slide 2 - Offres d'emploi -->
-    <div class="carousel-item">
-      <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg" class="d-block w-100" alt="Offres d'emploi étudiant">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Emplois étudiants</h5>
-        <p>Trouve des jobs adaptés à ton emploi du temps et à ton domaine d'études.</p>
-      </div>
-    </div>
-
-    <!-- Slide 3 - Événements -->
-    <div class="carousel-item">
-      <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg" class="d-block w-100" alt="Événement étudiant">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Événements & réseautage</h5>
-        <p>Participe à des salons, ateliers et rencontres pour booster ton réseau professionnel.</p>
-      </div>
-    </div>
-  
-  </div>
-
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-			<div class="row g-5 align-items-center mb-5">
-				<div class="col-lg-6">
-					<img src="/image/SuivreCanditatures.png" class="img-fluid rounded-4 glass p-2"/>
-				</div>
-				<div class="col-lg-6 glass p-5">
-					<h3>Suivez votre candidature</h3>
-					<p class="text-light">
-						Gardez le contrôle à chaque étape. Postulez en toute sérénité et																																																																																																																												                recevez des notifications en temps réel.
-					</p>
-					<a href="{{ url_for('candidature') }}" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir mes candidatures</a>
-				</div>
-
-				<div class="col-lg-6">
-					<img src="/image/TrouverStage.png" class="img-fluid rounded-4 glass p-2"/>
-				</div>
-				<div class="col-lg-6 glass p-5">
-					<h3>Trouver mon stage</h3>
-					<p class="text-light">
-						Rémunération, télétravail, avantages… Toutes les informations
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												                essentielles sont claires dès le départ pour vous aider à faire le bon choix.
-					</p>
-					<a href="{{ url_for('stage') }}" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les offres</a>
-				</div>
-
-				<div class="col-lg-6">
-					<img src="/image/TrouverEntreprise.jpg" class="img-fluid rounded-4 glass p-2" style="max-width: 277px; min-height: 220px"/>
-				</div>
-				<div class="col-lg-6 glass p-5">
-					<h3>Trouver les entreprises qui me correspondent</h3>
-					<p class="text-light">
-						Processus de recrutement, délais de réponse, conditions de travail…																																																																																																																																																																																																																																																																																																																																															Accédez à des informations fiables et gagnez du temps dans votre recherche.
-					</p>
-					<a href="{{ url_for('entreprise') }}" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les entreprises</a>
-				</div>
+		<div class="row g-5 align-items-center mb-5">
+			<div class="col-lg-6">
+				<img src="/image/SuivreCanditatures.png" class="img-fluid rounded-4 glass p-2"/>
 			</div>
-		</main>
-	{% endblock %}
+			<div class="col-lg-6 glass p-5">
+				<h3>Suivez votre candidature</h3>
+				<p class="text-light">
+					Gardez le contrôle à chaque étape. Postulez en toute sérénité et																																																																																																																												                recevez des notifications en temps réel.
+				</p>
+				<a href="{{ url_for('candidature') }}" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir mes candidatures</a>
+			</div>
+
+			<div class="col-lg-6">
+				<img src="/image/TrouverStage.png" class="img-fluid rounded-4 glass p-2"/>
+			</div>
+			<div class="col-lg-6 glass p-5">
+				<h3>Trouver mon stage</h3>
+				<p class="text-light">
+					Rémunération, télétravail, avantages… Toutes les informations
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															                essentielles sont claires dès le départ pour vous aider à faire le bon choix.
+				</p>
+				<a href="{{ url_for('stage') }}" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les offres</a>
+			</div>
+
+			<div class="col-lg-6">
+				<img src="/image/TrouverEntreprise.jpg" class="img-fluid rounded-4 glass p-2" style="max-width: 277px; min-height: 220px"/>
+			</div>
+			<div class="col-lg-6 glass p-5">
+				<h3>Trouver les entreprises qui me correspondent</h3>
+				<p class="text-light">
+					Processus de recrutement, délais de réponse, conditions de travail…																																																																																																																																																																																																																																																																																																																																															Accédez à des informations fiables et gagnez du temps dans votre recherche.
+				</p>
+				<a href="{{ url_for('entreprise') }}" role="button" class="btn btn-light rounded-pill px-4 fw-bold">Voir les entreprises</a>
+			</div>
+		</div>
+	</main>
+{% endblock %}
