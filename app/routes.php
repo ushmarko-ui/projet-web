@@ -76,6 +76,7 @@ return function (App $app) {
         $group->post('/souhait/ajouter/{id}', [SouhaitController::class, 'ajouter'])->setName('ajouter-souhait');
         $group->post('/souhait/supprimer/{id}', [SouhaitController::class, 'supprimer'])->setName('supprimer-souhait');
         $group->get('/candidature', [CandidatureController::class, 'candidature'])->setName('candidature');
+        $group->post('/candidature/statut/{id}/{statut}', [CandidatureController::class, 'changerStatut'])->setName('changer-statut');
         $group->get('/postule/{id}', [PostuleController::class, 'afficher2'])->setName('postule');
         $group->post('/postule/{id}', [PostuleController::class, 'traiter']);
     })->add(new LoggedMiddleware($factory));

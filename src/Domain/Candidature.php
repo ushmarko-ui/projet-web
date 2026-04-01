@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\ORM\Mapping as ORM;
 
 #[Entity, Table(name: 'candidature')]
 class Candidature
@@ -42,6 +41,9 @@ class Candidature
     #[Column(type: 'string', nullable: false)]
     private string $salaire;
 
+    #[Column(type: 'string', nullable: false)]
+    private string $statut;
+
     #[ManyToOne(targetEntity: Utilisateur::class)]
     #[JoinColumn(nullable: false)]
     private Utilisateur $utilisateur;
@@ -50,10 +52,7 @@ class Candidature
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'string', length: 20, options: ['default' => 'En attente'])]
-private string $statut = 'En attente';
-
-    public function __construct(string $nom, string $domaine, string $lieu, string $email, string $description, string $duree, string $niveau, string $salaire,  Utilisateur $utilisateur)
+    public function __construct(string $nom, string $domaine, string $lieu, string $email, string $description, string $duree, string $niveau, string $salaire, string $statut,  Utilisateur $utilisateur)
     {
         $this->nom = $nom;
         $this->domaine = $domaine;
@@ -63,6 +62,7 @@ private string $statut = 'En attente';
         $this->duree = $duree;
         $this->niveau = $niveau;
         $this->salaire = $salaire;
+        $this->statut = $statut;
         $this->utilisateur = $utilisateur;
         $this->createdAt = new DateTimeImmutable('now');
     }
@@ -146,6 +146,16 @@ private string $statut = 'En attente';
         $this->salaire = $salaire;
     }
 
+    public function getStatut(): string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): void
+    {
+        $this->statut = $statut;
+    }
+
     public function getUtilisateur(): Utilisateur
     {
         return $this->utilisateur;
@@ -155,12 +165,4 @@ private string $statut = 'En attente';
     {
         return $this->createdAt;
     }
-    
-public function getStatut(): string {
-    return $this->statut;
-}
-
-public function setStatut(string $statut): void {
-    $this->statut = $statut;
-}
 }

@@ -36,11 +36,22 @@
 							{{ candidature.email }}</div>
 						<div>⏱️
 							{{ candidature.duree }}
-							|  💼{{ candidature.niveau }}
-							|  💸{{ candidature.salaire }}</div>
+							| 💼{{ candidature.niveau }}
+							| 💸{{ candidature.salaire }}</div>
 						<div class="mt-2">{{ candidature.description }}</div>
+						<div>Statut :
+							{{ candidature.statut }}</div>
+						{% if role == 'pilote' or role == 'admin' %}
+							<form method="POST" action="{{ url_for('changer-statut', {'id': candidature.id, 'statut': 'accepte'}) }}" style="display:inline">
+								<button class="btn btn-success btn-sm">Accepter</button>
+							</form>
+							<form method="POST" action="{{ url_for('changer-statut', {'id': candidature.id, 'statut': 'refuse'}) }}" style="display:inline">
+								<button class="btn btn-danger btn-sm">Refuser</button>
+							</form>
+						{% endif %}
 					</div>
 				</div>
 			{% endfor %}
-		</main>
-	{% endblock %}
+		</div>
+	</main>
+{% endblock %}

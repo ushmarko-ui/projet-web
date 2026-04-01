@@ -95,6 +95,7 @@ class PostuleController
                             $offre->getDuree(),
                             $offre->getNiveau(),
                             $offre->getSalaire(),
+                            'attente',
                             $user
                         );
 
