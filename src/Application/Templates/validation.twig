@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Validation des offres étudiants</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Étudiant</th>
+                <th>Offre</th>
+                <th>Statut</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in candidatures %}
+            <tr>
+                <td>{{ c.etudiantNom }}</td>
+                <td>{{ c.offreTitre }}</td>
+                <td>
+                    {# Petit badge de couleur selon le statut #}
+                    <span class="badge {% if c.statut == 'Accepté' %}bg-success{% elseif c.statut == 'Refusé' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
+                        {{ c.statut }}
+                    </span>
+                </td>
+                <td>
+                    {# On n'affiche les boutons que si c'est encore "En attente" #}
+                    {% if c.statut == 'En attente' %}
+                    <form method="POST" action="{{ url_for('valider-action', {id: c.id}) }}">
+                        <button name="action" value="accepter" class="btn btn-success btn-sm">Accepter</button>
+                        <button name="action" value="refuser" class="btn btn-danger btn-sm">Refuser</button>
+                    </form>
+                    {% else %}
+                    <span class="text-muted">Traité</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
