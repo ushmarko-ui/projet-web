@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping as ORM;
 
 #[Entity, Table(name: 'candidature')]
 class Candidature
@@ -48,6 +49,9 @@ class Candidature
 
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: 'string', length: 20, options: ['default' => 'En attente'])]
+private string $statut = 'En attente';
 
     public function __construct(string $nom, string $domaine, string $lieu, string $email, string $description, string $duree, string $niveau, string $salaire,  Utilisateur $utilisateur)
     {
@@ -151,4 +155,12 @@ class Candidature
     {
         return $this->createdAt;
     }
+    
+public function getStatut(): string {
+    return $this->statut;
+}
+
+public function setStatut(string $statut): void {
+    $this->statut = $statut;
+}
 }
