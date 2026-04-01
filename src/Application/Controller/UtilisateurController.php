@@ -19,42 +19,46 @@ class UtilisateurController
         $this->em = $em;
     }
 
-   public function gestion_utilisateurs(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-{
-    $view = Twig::fromRequest($request);
-    $repository = $this->em->getRepository(Utilisateur::class);
+    public function gestion_utilisateurs(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
+        $view = Twig::fromRequest($request);
+        $repository = $this->em->getRepository(Utilisateur::class);
 
-    $page = isset($args['page']) ? (int)$args['page'] : 1;
-    $parPage = 9;
-    $offset = ($page - 1) * $parPage;
-    $userConnecte = $request->getAttribute('user');
-    $roleConnecte = $userConnecte->getRole();
+        $page = isset($args['page']) ? (int)$args['page'] : 1;
+        $parPage = 9;
+        $offset = ($page - 1) * $parPage;
+        $userConnecte = $request->getAttribute('user');
+        $roleConnecte = $userConnecte->getRole();
 
-    $qb = $repository->createQueryBuilder('o');
-    if ($roleConnecte !== Role::ADMIN) {
-        $qb->where('o.role = :role')
-           ->setParameter('role', Role::ETUDIANT->value);
+        $qb = $repository->createQueryBuilder('o');
+        if ($roleConnecte !== Role::ADMIN) {
+            $qb->where('o.role = :role')
+                ->setParameter('role', Role::ETUDIANT->value)
+                ->andWhere('o.campus = :campus')
+                ->setParameter('campus', $userConnecte->getCampus());
+        }
+
+        $totalUtilisateurs = (clone $qb)
+            ->select('COUNT(o.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $gestion_utilisateurs = $qb
+            ->select('o')
+            ->orderBy('o.id', 'ASC')
+            ->setFirstResult($offset)
+            ->setMaxResults($parPage)
+            ->getQuery()
+            ->getResult();
+
+        $totalPages = (int)ceil($totalUtilisateurs / $parPage);
+
+        return $view->render($response, 'gestion_utilisateurs.html.twig', [
+            'gestion_utilisateurs' => $gestion_utilisateurs,
+            'page' => $page,
+            'totalPages' => $totalPages,
+        ]);
     }
-    $totalUtilisateurs = (clone $qb)
-        ->select('COUNT(o.id)')
-        ->getQuery()
-        ->getSingleScalarResult();
-    $gestion_utilisateurs = $qb
-        ->select('o')
-        ->orderBy('o.id', 'ASC')
-        ->setFirstResult($offset)
-        ->setMaxResults($parPage)
-        ->getQuery()
-        ->getResult();
-
-    $totalPages = (int)ceil($totalUtilisateurs / $parPage);
-
-    return $view->render($response, 'gestion_utilisateurs.html.twig', [
-        'gestion_utilisateurs' => $gestion_utilisateurs,
-        'page' => $page,
-        'totalPages' => $totalPages,
-    ]);
-}
 
     public function ajoute(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
@@ -66,13 +70,11 @@ class UtilisateurController
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
             $roleStr = trim($parsedBody['role'] ?? 'pilote');
             $role = Role::from($roleStr);
-            $lieu = trim($parsedBody['lieu'] ?? '');
+            $campus = trim($parsedBody['campus'] ?? '');
 
-            if ($nom !== '' && $email !== '') {
-                $utilisateurs = new Utilisateur($nom, $prenom, $lieu, $email, $mot_de_passe, $role);
-                $this->em->persist($utilisateurs);
-                $this->em->flush();
-            }
+            $utilisateurs = new Utilisateur($nom, $prenom, $campus, $email, $mot_de_passe, $role);
+            $this->em->persist($utilisateurs);
+            $this->em->flush();
         }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
@@ -95,24 +97,23 @@ class UtilisateurController
             $nom = trim($parsedBody['nom'] ?? '');
             $prenom = trim($parsedBody['prenom'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
-            $lieu = trim($parsedBody['lieu'] ?? '');
+            $campus = trim($parsedBody['campus'] ?? '');
             $mot_de_passe = trim($parsedBody['mot_de_passe'] ?? '');
             $roleStr = trim($parsedBody['role'] ?? 'pilote');
             $role = Role::from($roleStr);
 
-            if ($nom !== '' && $prenom !== '') {
-                $utilisateurs->setNom($nom);
-                $utilisateurs->setPrenom($prenom);
-                $utilisateurs->setLieu($lieu);
-                $utilisateurs->setEmail($email);
-                $utilisateurs->setMotDePasse($mot_de_passe);
-                $utilisateurs->setRole($role);
-                $this->em->flush();
 
-                $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-                $url = $routeParser->urlFor('gestion_utilisateurs');
-                return $response->withHeader('Location', $url)->withStatus(302);
-            }
+            $utilisateurs->setNom($nom);
+            $utilisateurs->setPrenom($prenom);
+            $utilisateurs->setCampus($campus);
+            $utilisateurs->setEmail($email);
+            $utilisateurs->setMotDePasse($mot_de_passe);
+            $utilisateurs->setRole($role);
+            $this->em->flush();
+
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            $url = $routeParser->urlFor('gestion_utilisateurs');
+            return $response->withHeader('Location', $url)->withStatus(302);
         }
 
         return $view->render($response, 'modifier_utilisateurs.html.twig', [

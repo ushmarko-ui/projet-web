@@ -11,7 +11,7 @@ class CookieController
     {
         $cookie = sprintf(
             'cookiesAccepted=true; Path=/; Max-Age=%d; SameSite=Lax',
-            60 * 60 * 24 * 365 // 1 an
+            60 * 60 * 24 * 365
         );
 
         return $response->withHeader('Set-Cookie', $cookie);

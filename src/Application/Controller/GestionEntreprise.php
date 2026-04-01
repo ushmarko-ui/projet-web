@@ -57,11 +57,9 @@ class GestionEntreprise
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
 
-            if ($nom !== '' && $domaine !== '') {
-                $entreprise = new Entreprise($nom, $domaine, $lieu, $email);
-                $this->em->persist($entreprise);
-                $this->em->flush();
-            }
+            $entreprise = new Entreprise($nom, $domaine, $lieu, $email);
+            $this->em->persist($entreprise);
+            $this->em->flush();
         }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
@@ -86,13 +84,12 @@ class GestionEntreprise
             $lieu = trim($parsedBody['lieu'] ?? '');
             $email = trim($parsedBody['email'] ?? '');
 
-            if ($nom !== '' && $domaine !== '') {
-                $entreprise->setNom($nom);
-                $entreprise->setDomaine($domaine);
-                $entreprise->setLieu($lieu);
-                $entreprise->setEmail($email);
-                $this->em->flush();
-            }
+            $entreprise->setNom($nom);
+            $entreprise->setDomaine($domaine);
+            $entreprise->setLieu($lieu);
+            $entreprise->setEmail($email);
+            $this->em->flush();
+
 
             $routeParser = RouteContext::fromRequest($request)->getRouteParser();
             $url = $routeParser->urlFor('gestion_entreprises');

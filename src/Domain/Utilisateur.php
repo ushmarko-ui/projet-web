@@ -23,7 +23,7 @@ class Utilisateur
     private string $prenom;
 
     #[Column(type: 'string', nullable: false)]
-    private string $lieu;
+    private string $campus;
 
     #[Column(type: 'string', nullable: false)]
     private string $email;
@@ -37,11 +37,11 @@ class Utilisateur
     #[Column(name: 'created_at', type: 'datetimetz_immutable', nullable: false)]
     private DateTimeImmutable $createdAt;
 
-    public function __construct(string $nom, string $prenom, string $lieu, string $email, string $mot_de_passe, Role $role = Role::ETUDIANT)
+    public function __construct(string $nom, string $prenom, string $campus, string $email, string $mot_de_passe, Role $role = Role::ETUDIANT)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->lieu = $lieu;
+        $this->campus = $campus;
         $this->email = $email;
         $this->mot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
         $this->role = $role;
@@ -73,14 +73,14 @@ class Utilisateur
         $this->prenom = $prenom;
     }
 
-    public function getLieu(): string
+    public function getCampus(): string
     {
-        return $this->lieu;
+        return $this->campus;
     }
 
-    public function setLieu(string $lieu): void
+    public function setCampus(string $campus): void
     {
-        $this->lieu = $lieu;
+        $this->campus = $campus;
     }
 
     public function getEmail(): string

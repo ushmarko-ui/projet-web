@@ -10,22 +10,22 @@
 			<button type="submit" class="btn btn-add-custom px-4 fw-bold">+</button>
 		</div>
 		<div class="col">
-			<input type="text" name="prenom" class="form-control form-control-dark" placeholder="Prénom"/>
+			<input type="text" name="prenom" class="form-control form-control-dark" placeholder="Prénom" required/>
 		</div>
 		<div class="col">
-			<input type="text" name="nom" class="form-control form-control-dark" placeholder="Nom"/>
+			<input type="text" name="nom" class="form-control form-control-dark" placeholder="Nom" required/>
 		</div>
 		<div class="col">
-			<input type="text" name="mot_de_passe" class="form-control form-control-dark" placeholder="Mot de passe"/>
+			<input type="text" name="mot_de_passe" class="form-control form-control-dark" placeholder="Mot de passe" required/>
 		</div>
 		<div class="col">
-			<input type="text" name="lieu" class="form-control form-control-dark" placeholder="Lieu"/>
+			<input type="text" name="campus" class="form-control form-control-dark" placeholder="Lieu" required/>
 		</div>
 		<div class="col">
-			<input type="email" name="email" class="form-control form-control-dark" placeholder="E-mail"/>
+			<input type="email" name="email" class="form-control form-control-dark" placeholder="E-mail" required/>
 		</div>
 		<div class="col">
-			<input type="text" name="role" class="form-control form-control-dark" placeholder="Role"/>
+			<input type="text" name="role" class="form-control form-control-dark" placeholder="Role" required/>
 		</div>
 	</form>
 
@@ -56,7 +56,7 @@
 						<td>{{ gestion_utilisateur.prenom }}</td>
 						<td>{{ gestion_utilisateur.nom }}</td>
 						<td>{{ gestion_utilisateur.motdepasse }}</td>
-						<td>{{ gestion_utilisateur.lieu }}</td>
+						<td>{{ gestion_utilisateur.campus }}</td>
 						<td>{{ gestion_utilisateur.email }}</td>
 						<td>{{ gestion_utilisateur.role.value }}</td>
 					</tr>
