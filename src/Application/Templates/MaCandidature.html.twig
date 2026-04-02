@@ -30,15 +30,20 @@
 					<div class="offre-card p-4 text-white">
 						<div class="fw-bold fs-5 mb-2">{{ candidature.nom }}</div>
 						<div class="mb-2">{{ candidature.domaine }}</div>
-						<div>📍
-							{{ candidature.lieu }}</div>
-						<div>✉️
-							{{ candidature.email }}</div>
-						<div>⏱️
-							{{ candidature.duree }}
-							| 💼{{ candidature.niveau }}
-							| 💸{{ candidature.salaire }}</div>
-						<div class="mt-2">{{ candidature.description }}</div>
+						{% if role == 'pilote' or role == 'admin' %}
+							<div>👤
+								{{ candidature.utilisateur.prenom }}
+								{{ candidature.utilisateur.nom }}</div>
+							<div>📍
+								{{ candidature.lieu }}</div>
+							<div>✉️
+								{{ candidature.email }}</div>
+							<div>⏱️
+								{{ candidature.duree }}
+								| 💼{{ candidature.niveau }}
+								| 💸{{ candidature.salaire }}</div>
+							<div class="mt-2">{{ candidature.description }}</div>
+						{% endif %}
 						<div>Statut :
 							{{ candidature.statut }}</div>
 						{% if role == 'pilote' or role == 'admin' %}

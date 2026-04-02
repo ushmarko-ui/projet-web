@@ -20,7 +20,6 @@
 
 			.custom-card {
 				max-width: 700px;
-				background: white;
 				border-radius: 15px;
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 			}
@@ -65,58 +64,69 @@
 	<body>
 
 		<div class="container d-flex justify-content-center py-5">
-			<div class="custom-card p-4 p-md-5">
+			<div class="custom-card bg-light p-4 p-md-5">
 				<h1 class="mb-4">Mentions Légales</h1>
 
-				<section>
-					<h3>1. Éditeur du site</h3>
-					<p>
-						Le site
-						<strong>ReadyToWork</strong>
-						est édité par :
-						<br/>
-						<strong>Nom :</strong>
-						Groupe (Pierre-Louis; Carla; Marko; Jules)
-						<br/>
-						<strong>Statut :</strong>
-						Projet étudiant dans le cadre d'un stage
-						<br/>
-						<strong>Contact :</strong>
-						contact@readytowork.fr
-					</p>
+				<h3>1. Éditeur du site</h3>
+				<p>
+					Le site
+					<strong>ReadyToWork</strong>
+					est édité par :<br/>
+					<strong>Équipe :</strong>
+					Pierre-Louis, Carla, Marko, Jules<br/>
+					<strong>Statut :</strong>
+					Projet étudiant — CESI<br/>
+					<strong>Adresse :</strong>
+					CESI, France<br/>
+					<strong>Contact :</strong>
+					contact@readytowork.fr
+				</p>
 
-					<h3>2. Hébergement</h3>
-					<p>
-						Ce site est hébergé par :
-						<br/>
-						<strong>Hébergeur :</strong>
-						CESI
-						<br/>
-						<strong>Adresse :</strong>
-						127.0.0.1
-					</p>
+				<h3>2. Hébergement</h3>
+				<p>
+					Ce site est hébergé par :<br/>
+					<strong>Hébergeur :</strong>
+					CESI<br/>
+					<strong>Adresse :</strong>
+					France<br/>
+					<strong>Serveur :</strong>
+					localhost (environnement de développement)
+				</p>
 
-					<h3>3. Propriété intellectuelle</h3>
-					<p>
-						L'ensemble des contenus (textes, logos, icônes) présents sur le site
-											sont la propriété exclusive de ReadyToWork, sauf mention contraire.
-											Toute reproduction est interdite sans accord préalable.
-					</p>
+				<h3>3. Propriété intellectuelle</h3>
+				<p>
+					L'ensemble des contenus présents sur le site ReadyToWork (textes, logos, icônes, structure) sont la propriété exclusive de leurs auteurs respectifs. Toute reproduction, représentation, modification ou exploitation, totale ou partielle, est strictement interdite sans accord préalable écrit des auteurs.
+				</p>
 
-					<h3>4. Limitation de responsabilité</h3>
-					<p>
-						Stage Explorer s'efforce d'assurer l'exactitude des informations mais ne
-											peut être tenu responsable des erreurs ou de l'indisponibilité des
-											offres de stage.
-					</p>
-				</section>
+				<h3>4. Données personnelles</h3>
+				<p>
+					Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679), vous disposez des droits suivants concernant vos données personnelles :
+				</p>
+				<ul>
+					<li>Droit d'accès à vos données</li>
+					<li>Droit de rectification</li>
+					<li>Droit à l'effacement (droit à l'oubli)</li>
+					<li>Droit à la portabilité</li>
+					<li>Droit d'opposition au traitement</li>
+				</ul>
+				<p>Pour exercer ces droits, contactez-nous à :
+					<strong>contact@readytowork.fr</strong>
+				</p>
 
+				<h3>5. Limitation de responsabilité</h3>
+				<p>
+					ReadyToWork s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, l'équipe ne peut garantir l'exactitude, la complétude ou l'actualité des informations. En conséquence, l'utilisateur reconnaît utiliser ces informations sous sa responsabilité exclusive. ReadyToWork ne saurait être tenu responsable des dommages directs ou indirects résultant de l'utilisation du site.
+				</p>
+
+				<h3>6. Droit applicable</h3>
+				<p>
+					Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.
+				</p>
 				<div class="mt-4 border-top pt-3">
 					<a href="{{ url_for('accueil') }}" class="back-link-custom">← Retour au site</a>
 				</div>
 			</div>
 		</div>
-
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
