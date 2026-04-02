@@ -63,19 +63,26 @@ class SouhaitController
         $user = $request->getAttribute('user');
 
         if ($offre && $user) {
-            $souhait = new Souhait(
-                $offre->getNom(),
-                $offre->getDomaine(),
-                $offre->getLieu(),
-                $offre->getEmail(),
-                $offre->getDescription(),
-                $offre->getDuree(),
-                $offre->getNiveau(),
-                $offre->getSalaire(),
-                $user
-            );
-            $this->em->persist($souhait);
-            $this->em->flush();
+            $dejaSouhaite = $this->em->getRepository(Souhait::class)->findOneBy([
+                'utilisateur' => $user,
+                'nom' => $offre->getNom()
+            ]);
+
+            if (!$dejaSouhaite) {
+                $souhait = new Souhait(
+                    $offre->getNom(),
+                    $offre->getDomaine(),
+                    $offre->getLieu(),
+                    $offre->getEmail(),
+                    $offre->getDescription(),
+                    $offre->getDuree(),
+                    $offre->getNiveau(),
+                    $offre->getSalaire(),
+                    $user
+                );
+                $this->em->persist($souhait);
+                $this->em->flush();
+            }
         }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();

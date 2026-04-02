@@ -22,9 +22,19 @@ class PostuleController
     public function afficher2(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $view = Twig::fromRequest($request);
-
         // On récupère l'ID de l'offre pour l'envoyer à la vue (pour le bouton submit)
         $idOffre = $args['id'] ?? null;
+        $user = $request->getAttribute('user');
+        $offre = $this->em->find(Offres::class, (int)$idOffre);
+
+        $dejaPostule = $this->em->getRepository(Candidature::class)->findOneBy([
+            'utilisateur' => $user,
+            'nom' => $offre->getNom()
+        ]);
+
+        if ($dejaPostule) {
+            return $response->withHeader('Location', '/candidature')->withStatus(302);
+        }
 
         return $view->render($response, 'Formulaire_postule.html.twig', [
             'offre_id' => $idOffre
@@ -49,20 +59,15 @@ class PostuleController
         $success = null;
 
         //validations probleme peut etre sur email mais a changer facon
-        if (empty($prenom)) {
-            $error = "Le prénom est obligatoire.";
-        } elseif (preg_match("/[^A-Za-zÀ-ÿ\s-]/", $prenom)) {
+
+        if (preg_match("/[^A-Za-zÀ-ÿ\s-]/", $prenom)) {
             $error = "Votre prénom ne doit contenir que des lettres.";
-        } elseif (empty($nom)) {
-            $error = "Le nom est obligatoire.";
         } elseif (preg_match("/[^A-Za-zÀ-ÿ\s-]/", $nom)) {
             $error = "Votre nom ne doit contenir que des lettres.";
-        } elseif (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "L'adresse email '$email' n'est pas valide.";
-        } elseif (empty($telephone)) {
-            $error = "Le numéro est obligatoire.";
-        } elseif (!preg_match("/^[0-9]+$/", $telephone)) {
-            $error = "Votre numéro ne doit contenir que des chiffres.";
+        } elseif (!preg_match("/^[0-9]{10}$/", $telephone)) {
+            $error = "Votre numéro doit contenir exactement 10 chiffres et ne contenir que des chiffres.";
         }
 
         //si pas erreur
@@ -98,6 +103,7 @@ class PostuleController
                             'attente',
                             $user
                         );
+
 
                         $this->em->persist($candidature);
                         $this->em->flush();
